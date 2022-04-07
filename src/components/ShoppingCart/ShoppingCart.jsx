@@ -1,9 +1,16 @@
 import React, { useState } from "react";
-import items from '../fixtures';
-import CountItems from '../constants';
+import items from '../cart-fixtures';
 import styles from './ShoppingCart.module.css';
 import CartItem from '../CartItem/CartItem';
+import CountItems from '../constants';
 
+function CartItemList ({list}) {
+    return (
+        <div className={styles['left-body']}>
+            {list.map(el => <CartItem item={el} key={el+1}/>)}
+        </div>
+    );
+}
 
 function LeftBlock () {
     const [x, setX] = useState(true);
@@ -13,14 +20,10 @@ function LeftBlock () {
                 <div className={styles['head-wrapper']}>
                     <input type="checkbox" checked={x} onChange={() => setX(!x)} />
                     <span>Выбрать все</span>
-                    <span className={styles['red']}>Удалить выбранное</span>
+                    <span styles={{color:'red'}}>Удалить выбранное</span>
                 </div>
             </div>
-            <div className={styles['left-body']}>
-                <CartItem item={items[0]}/>
-                <CartItem item={items[1]}/>
-                <CartItem item={items[2]}/>
-            </div>
+            <CartItemList list={items}/>
         </div>
     )
 }
@@ -59,7 +62,6 @@ function RightBlock () {
 }
 
 function ShoppingCart () {
-
     return (
         <div className={styles['cart']}>
             <div className={styles['content']}>
