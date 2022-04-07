@@ -3,11 +3,9 @@ import styles from './CartItem.module.css';
 
 
 function OptionCount () {
-    let content = [];
     for (let i = 1; i <= 10; i++) {
-      content.push(<option value={i} key={i}>{i}</option>);
+      return (<option value={i}>{i}</option>);
     }
-    return content;
 }
 
 function CartItem (props) {
@@ -22,7 +20,7 @@ function CartItem (props) {
         <div className={styles['cart-item-wrapper']}>
             <div className={styles['item-description']}>
                 <div><input type="checkbox" checked={x} onChange={() => setX(!x)} /></div>
-                {/* <img src="" alt={item.name} /> */}
+                {/* <img src={item.image} alt={item.name} /> */}
                 <div>
                     <h3>{item.name}</h3>
                     <p style={{color:'lightgray'}}>цвет {item.color}, {item.weight}</p>

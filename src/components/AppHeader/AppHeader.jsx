@@ -7,7 +7,7 @@ function AppHeader () {
         <div className={styles['nav-bar']}>
             <div className={styles['content']}>
                 <div className={styles['ozon-logo']}>
-                    <a href="https://www.ozon.ru/"><img src={ require('../assets/ozon_logo.png') } alt="ozon-logo" /></a>
+                    <a href="/"><img src={ require('../assets/ozon_logo.png') } alt="ozon-logo" /></a>
                 </div>
                 <div className={styles['search-bar']}>
                     <label className={styles['search-place']}>
