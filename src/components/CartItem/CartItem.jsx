@@ -3,24 +3,25 @@ import styles from './CartItem.module.css';
 
 
 function OptionCount () {
+    let option = [];
     for (let i = 1; i <= 10; i++) {
-      return (<option value={i}>{i}</option>);
+      option.push(<option value={i}>{i}</option>);
     }
+    return option;
 }
 
 function CartItem (props) {
     const [selects, setSelects] = useState(1);
     const {item} = props;
-    // const itemImage = require(`${item.image}`);
-    const price = useMemo(() => item.price*selects);
-    const discount = useMemo(() => (price/100*35));
-    const afterDiscount = useMemo(() => (price - discount));
+    const price = useMemo(() => item.price*selects, [item.price, selects]);
+    const discount = useMemo(() => (price/100*35), [price]);
+    const afterDiscount = useMemo(() => (price - discount), [price, discount]);
     const [x, setX] = useState(true);
     return (
         <div className={styles['cart-item-wrapper']}>
             <div className={styles['item-description']}>
                 <div><input type="checkbox" checked={x} onChange={() => setX(!x)} /></div>
-                {/* <img src={item.image} alt={item.name} /> */}
+                <img src={item.image} alt={item.name} />
                 <div>
                     <h3>{item.name}</h3>
                     <p style={{color:'lightgray'}}>цвет {item.color}, {item.weight}</p>

@@ -1,4 +1,4 @@
-export default [
+const cartItems = [
     {
         "id": "1",
         "name": "Маска для сна",
@@ -24,3 +24,4 @@ export default [
         "price": "33000",
     },
 ]
+export default cartItems;

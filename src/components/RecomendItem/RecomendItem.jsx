@@ -3,16 +3,16 @@ import styles from './RecomendItem.module.css';
 
 function RecomendItem (props) {
     const {item} = props;
-    const price = useMemo(() => item.price);
+    const price = useMemo(() => item.price, [item.price]);
     const percent = 35;
-    const discountPerc = useMemo(() => (price/100*percent));
-    const redPrice =useMemo(() =>  price - discountPerc);
+    const discountPerc = useMemo(() => (price/100*percent), [price, percent]);
+    const redPrice =useMemo(() =>  price - discountPerc, [price, discountPerc]);
     return (
         <div className={styles['recom-item-wrapper']}>
             <div className={styles['top-wrap']}>
-                <div className={styles['like']}><img src={require('../assets/like_icon.png')} alt='like' /></div>
+                <div className={styles['like']}><img src={require('./like_icon.png')} alt='like' /></div>
                 <span>- {percent}%</span>
-                <div className={styles['rec-image']}></div>
+                <div className={styles['rec-image']}><img src={item.image} alt={item.name} /></div>
             </div>
             <div className={styles['mid-wrap']}>
                 <p className={styles['price']}>{redPrice} ₽ <span>{price} ₽</span></p>

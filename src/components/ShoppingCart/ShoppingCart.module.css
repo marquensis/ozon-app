@@ -110,6 +110,9 @@
     margin-top: 10px;
     border-bottom: 1px solid #F2F5F9;
 }
+.right-sum table {
+    width: 100%;
+}
 .right-sum tr {
     height: 40px;
     display: flex;
@@ -125,5 +128,6 @@
 .red {
     color: red;
 }
-
-
+.bolder {
+    font-weight: bolder;
+}

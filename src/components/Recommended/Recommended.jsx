@@ -1,6 +1,6 @@
 import React from "react";
 import styles from './Recommended.module.css';
-import items from '../fixtures';
+// import items from '../../fixtures/fixtures';
 import RecomendItem from '../RecomendItem/RecomendItem';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import "swiper/css";
@@ -24,12 +24,12 @@ function RecItemList ({list}) {
     );
 }
 
-function RecommendedList () {
+function RecommendedList ({rec}) {
     return (
         <div className={styles['recommended']}>
             <div className={styles['content']}>
                 <h1>Рекомендуем</h1>
-                <RecItemList list={items}/>
+                <RecItemList list={rec}/>
             </div>
         </div>
     )
