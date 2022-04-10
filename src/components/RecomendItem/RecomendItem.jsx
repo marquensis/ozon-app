@@ -8,18 +8,18 @@ function RecomendItem (props) {
     const discountPerc = useMemo(() => (price/100*percent), [price, percent]);
     const redPrice =useMemo(() =>  price - discountPerc, [price, discountPerc]);
     return (
-        <div className={styles['recom-item-wrapper']}>
-            <div className={styles['top-wrap']}>
-                <div className={styles['like']}><img src={require('./like_icon.png')} alt='like' /></div>
+        <div className={styles.recomItemWrapper}>
+            <div className={styles.topWrap}>
+                <div className={styles.like}><img src={require('./like_icon.png')} alt='like' /></div>
                 <span>- {percent}%</span>
-                <div className={styles['rec-image']}><img src={item.image} alt={item.name} /></div>
+                <div className={styles.recImage}><img src={item.image} alt={item.name} /></div>
             </div>
-            <div className={styles['mid-wrap']}>
-                <p className={styles['price']}>{redPrice} ₽ <span>{price} ₽</span></p>
+            <div className={styles.midWrap}>
+                <p className={styles.price}>{redPrice} ₽ <span>{price} ₽</span></p>
                 <p>{item.name}</p>
                 <span>★★★★★</span>
             </div>
-            <div className={styles['bot-wrap']}>
+            <div className={styles.botWrap}>
                 <button>В корзину</button>
             </div>
         </div>

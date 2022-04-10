@@ -13,7 +13,7 @@ function RecItemList ({list}) {
         <Swiper
             navigation={true} 
             modules={[Navigation]}
-            className={styles['recommended-wrapper']}
+            className={styles.recommendedWrapper}
             spaceBetween={0}
             slidesPerView={5}
             onSlideChange={() => console.log('slide change')}
@@ -26,8 +26,8 @@ function RecItemList ({list}) {
 
 function RecommendedList ({rec}) {
     return (
-        <div className={styles['recommended']}>
-            <div className={styles['content']}>
+        <div className={styles.recommended}>
+            <div className={styles.content}>
                 <h1>Рекомендуем</h1>
                 <RecItemList list={rec}/>
             </div>

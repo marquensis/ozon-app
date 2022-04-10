@@ -1,4 +1,4 @@
-.recom-item-wrapper {
+.recomItemWrapper {
     width: 250px;
     height: 500px;
     display: flex;
@@ -8,16 +8,16 @@
 }
 
 
-.top-wrap {
+.topWrap {
     width: 100%;
     height: 50%;
 }
-.rec-image {
+.recImage {
     background-color: #F2F5F9;
     width: 100%;
     height: 100%;
 }
-.rec-image img {
+.recImage img {
     width: 100%;
     height: 100%;
 }
@@ -30,7 +30,7 @@
     width: 20px;
     height: 20px;
 }
-.top-wrap span {
+.topWrap span {
     position: absolute;
     background-color: red;
     color: #fff;
@@ -40,7 +40,7 @@
 }
 
 
-.mid-wrap span{
+.midWrap span{
     font-size: 18px;
     color:darkorange ;
 }
@@ -57,7 +57,7 @@
 }
 
 
-.bot-wrap button{
+.botWrap button{
     padding: 15px 20px;
     color: #fff;
     background-color: #005BFF;

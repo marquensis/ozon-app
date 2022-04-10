@@ -18,8 +18,8 @@ function CartItem (props) {
     const afterDiscount = useMemo(() => (price - discount), [price, discount]);
     const [x, setX] = useState(true);
     return (
-        <div className={styles['cart-item-wrapper']}>
-            <div className={styles['item-description']}>
+        <div className={styles.cartItemWrapper}>
+            <div className={styles.itemDescription}>
                 <div><input type="checkbox" checked={x} onChange={() => setX(!x)} /></div>
                 <img src={item.image} alt={item.name} />
                 <div>
@@ -27,11 +27,11 @@ function CartItem (props) {
                     <p style={{color:'lightgray'}}>цвет {item.color}, {item.weight}</p>
                 </div>
             </div>
-            <div className={styles['item-price']}>
+            <div className={styles.itemPrice}>
                 <h3 style={{fontWeight:'bold'}}>{afterDiscount} ₽</h3>
                 <h3 style={{color:'red'}}><span>{price} ₽</span> Скидка {discount} ₽</h3>
             </div>
-            <div className={styles['item-count']}>
+            <div className={styles.itemCount}>
                 <select value={selects} onChange={e => setSelects(e.target.value)} defaultValue={'1'}>
                     <OptionCount />
                 </select>

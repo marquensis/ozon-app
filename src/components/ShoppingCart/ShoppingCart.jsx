@@ -6,7 +6,7 @@ import CountItems from '../constants';
 
 function CartItemList ({list}) {
     return (
-        <div className={styles['left-body']}>
+        <div className={styles.leftBody}>
             {list.map(el => <CartItem item={el} key={el}/>)}
         </div>
     );
