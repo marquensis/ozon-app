@@ -32,7 +32,7 @@ function CartItem (props) {
                 <h3 style={{color:'red'}}><span>{price} ₽</span> Скидка {discount} ₽</h3>
             </div>
             <div className={styles['item-count']}>
-                <select value={selects} onChange={e => setSelects(e.target.value)}>
+                <select value={selects} onChange={e => setSelects(e.target.value)} defaultValue={'1'}>
                     <OptionCount />
                 </select>
             </div>

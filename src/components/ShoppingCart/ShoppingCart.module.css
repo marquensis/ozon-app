@@ -10,7 +10,7 @@
     flex-direction: column;
 }
 
-.cart-wrapper {
+.cartWrapper {
     width: 100%;
     height: auto;
     display: flex;
@@ -18,20 +18,20 @@
 }
 
 
-.cart-head h1 {
+.cartHead h1 {
     display: block;
     font-size: 24px;
     font-weight: bolder;
     margin-top: 40px;
 }
-.cart-head span {
+.cartHead span {
     position: absolute;
     margin-left: 100px;
     margin-top: 40px;
 }
 
 
-.cart-wrapper {
+.cartWrapper {
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -39,53 +39,53 @@
     margin-top: 50px;
 }
 
-.cart-left {
+.cartLeft {
     width: 64%;
     height: 100px;
 }
-.left-head, .left-body {
+.leftHead, .leftBody {
     background-color: #FFFFFF;
     width: 100%;
     border-radius: 3px;
 }
-.left-head {
+.leftHead {
     border-bottom: 3px solid #F2F5F9;
 }
-.head-wrapper {
+.headWrapper {
     width: 95%;
     height: 40px;
     margin: auto;
     display: flex;
     align-items: center;
 }
-.head-wrapper span {
+.headWrapper span {
     margin-left: 10px;
 }
-.left-body {
+.leftBody {
     display: flex;
     flex-direction: column;
 }
 
 
 
-.cart-right {
+.cartRight {
     width: 34%;
     height: auto;
 }
 
-.right-green-button, .right-sum {
+.rightGreenButton, .rightSum {
     background-color: #FFFFFF;
     width: 100%;
     border-radius: 3px;
 }
-.right-green-button {
+.rightGreenButton {
     height: 100px;
     display: flex;
     justify-content: center;
     align-items: center;
     border-bottom: 3px solid #F2F5F9;
 }
-.right-green-button button {
+.rightGreenButton button {
     width: 90%;
     height: 50px;
     color: #FFFFFF;
@@ -95,7 +95,7 @@
     border-radius: 6px;
 }
 
-.right-sum {
+.rightSum {
     width: 100%;
     height: 300;
     display: flex;
@@ -103,26 +103,26 @@
     justify-content: space-between;
     align-items: center;
 }
-.sum-count, .sum-final {
+.sumCount, .sumFinal {
     width: 90%;
 }
-.sum-count {
+.sumCount {
     margin-top: 10px;
     border-bottom: 1px solid #F2F5F9;
 }
-.right-sum table {
+.rightSum table {
     width: 100%;
 }
-.right-sum tr {
+.rightSum tr {
     height: 40px;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
-.right-sum th {
+.rightSum th {
     font-size: 20px;
 }
-.right-sum hr {
+.rightSum hr {
     background-color: #F2F5F9;
 }
 .red {
