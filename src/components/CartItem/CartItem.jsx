@@ -13,7 +13,7 @@ function OptionCount () {
 
 function CartItem ({item}) {
     const [selects, setSelects] = useState(1);
-    const price = useMemo(() => item.price*selects, [item.price, selects]);
+    const price = useMemo(() => item.item.price*selects, [item.item.price, selects]);
     const discount = useMemo(() => (price/100*35), [price]);
     const afterDiscount = useMemo(() => (price - discount), [price, discount]);
     const [x, setX] = useState(true);
@@ -21,10 +21,10 @@ function CartItem ({item}) {
         <div className={styles.cartItemWrapper}>
             <div className={styles.itemDescription}>
                 <div><input type="checkbox" checked={x} onChange={() => setX(!x)} /></div>
-                <img src={item.image} alt={item.name} />
+                <img src={item.item.image} alt={item.item.name} />
                 <div>
-                    <h3>{item.name}</h3>
-                    <p style={{color:'lightgray'}}>цвет {item.color}, {item.weight}</p>
+                    <h3>{item.item.name}</h3>
+                    <p style={{color:'lightgray'}}>цвет {item.item.color}, {item.item.weight}</p>
                 </div>
             </div>
             <div className={styles.itemPrice}>
