@@ -12,8 +12,8 @@ function AppHeader () {
                 </div>
                 <div className={styles.searchBar}>
                     <label className={styles.searchPlace}>
-                        <select>
-                            <option value='everywhere' selected>Везде</option>
+                        <select defaultValue={'everywhere'}>
+                            <option value='everywhere'>Везде</option>
                             <option value='here'>Тут</option>
                             <option value='there'>Там</option>
                         </select>

@@ -1,18 +1,18 @@
 import React, { useState, useMemo } from "react";
 import styles from './CartItem.module.css';
+import { nanoid } from 'nanoid';
 
 
 function OptionCount () {
     let option = [];
     for (let i = 1; i <= 10; i++) {
-      option.push(<option value={i}>{i}</option>);
+      option.push(<option value={i} key={nanoid()}>{i}</option>);
     }
     return option;
 }
 
-function CartItem (props) {
+function CartItem ({item}) {
     const [selects, setSelects] = useState(1);
-    const {item} = props;
     const price = useMemo(() => item.price*selects, [item.price, selects]);
     const discount = useMemo(() => (price/100*35), [price]);
     const afterDiscount = useMemo(() => (price - discount), [price, discount]);
@@ -32,7 +32,10 @@ function CartItem (props) {
                 <h3 style={{color:'red'}}><span>{price} ₽</span> Скидка {discount} ₽</h3>
             </div>
             <div className={styles.itemCount}>
-                <select value={selects} onChange={e => setSelects(e.target.value)} defaultValue={'1'}>
+                <select 
+                    className={styles.select} 
+                    value={selects} 
+                    onChange={(e) => setSelects(e.target.value)}>
                     <OptionCount />
                 </select>
             </div>

@@ -6,6 +6,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import "swiper/css";
 import "swiper/css/navigation";
 import { Navigation } from "swiper";
+import { nanoid } from 'nanoid';
 
 
 function RecItemList ({list}) {
@@ -17,9 +18,9 @@ function RecItemList ({list}) {
             spaceBetween={0}
             slidesPerView={5}
             onSlideChange={() => console.log('slide change')}
-            onSwiper={(swiper) => console.log(swiper)}
+            onSwiper={(swiper) => (swiper)}
             >
-            {list.map(el => <SwiperSlide><RecomendItem item={el} key={el}/></SwiperSlide>)}
+            {list.map(el => <SwiperSlide key={nanoid()}><RecomendItem item={el}/></SwiperSlide>)}
         </Swiper>
     );
 }

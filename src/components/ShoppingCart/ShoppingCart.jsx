@@ -3,11 +3,12 @@ import styles from './ShoppingCart.module.css';
 // import cartItems from "../../fixtures/cart-fixtures";
 import CartItem from '../CartItem/CartItem';
 import CountItems from '../constants';
+import { nanoid } from 'nanoid';
 
 function CartItemList ({list}) {
     return (
         <div className={styles.leftBody}>
-            {list.map(el => <CartItem item={el} key={el}/>)}
+            {list.map(el => <CartItem item={el} key={nanoid()}/>)}
         </div>
     );
 }
