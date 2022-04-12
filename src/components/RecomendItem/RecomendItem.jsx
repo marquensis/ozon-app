@@ -1,5 +1,6 @@
 import React, { useMemo } from "react";
 import styles from './styles.module.css';
+import Like from './like_icon.png'
 
 function RecomendItem ({item}) {
     const price = item.price;
@@ -9,7 +10,7 @@ function RecomendItem ({item}) {
     return (
         <div className={styles.recomItemWrapper}>
             <div className={styles.topWrap}>
-                <div className={styles.like}><img src={require('./like_icon.png')} alt='like' /></div>
+                <div className={styles.like}><img src={ Like } alt='like' /></div>
                 <span>- {percent}%</span>
                 <div className={styles.recImage}><img src={item.image} alt={item.name} /></div>
             </div>
