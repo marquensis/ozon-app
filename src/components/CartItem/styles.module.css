@@ -34,3 +34,12 @@
     text-decoration: line-through;
 }
 .select{}
+.lightGray {
+    color: lightgray;
+}
+.bold  {
+    font-weight: bolder;
+}
+.red {
+    color: red;
+}

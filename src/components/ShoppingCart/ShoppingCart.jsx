@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import styles from './ShoppingCart.module.css';
+import styles from './styles.module.css';
 // import cartItems from "../../fixtures/cart-fixtures";
 import CartItem from '../CartItem/CartItem';
 import CountItems from '../constants';

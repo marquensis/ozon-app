@@ -1,5 +1,5 @@
 import React from "react";
-import styles from './AppHeader.module.css';
+import styles from './styles.module.css';
 import CountItems from '../constants';
 
 function AppHeader () {

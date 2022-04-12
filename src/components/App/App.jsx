@@ -8,11 +8,11 @@ import "swiper/css/bundle";
 
 function App () {
     return (
-        <div id="app">
+        <>
             <AppHeader/>
             <ShoppingCart cart={cartItems}/>
             <RecommendedList rec={recItems}/>
-        </div>
+        </>
     )
 }
 

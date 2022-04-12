@@ -1,9 +1,8 @@
 import React, { useMemo } from "react";
-import styles from './RecomendItem.module.css';
+import styles from './styles.module.css';
 
-function RecomendItem (props) {
-    const {item} = props;
-    const price = useMemo(() => item.price, [item.price]);
+function RecomendItem ({item}) {
+    const price = item.price;
     const percent = 35;
     const discountPerc = useMemo(() => (price/100*percent), [price, percent]);
     const redPrice =useMemo(() =>  price - discountPerc, [price, discountPerc]);

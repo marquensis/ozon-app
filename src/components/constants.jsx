@@ -1,5 +1,3 @@
-import items from '../fixtures/cart-fixtures';
-
-const CountItems = items.length;
+const CountItems = 3;
 
 export default CountItems;
