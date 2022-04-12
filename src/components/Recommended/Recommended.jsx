@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styles from './styles.module.css';
 // import items from '../../fixtures/fixtures';
 import RecomendItem from '../RecomendItem/RecomendItem';
@@ -10,6 +10,10 @@ import { nanoid } from 'nanoid';
 
 
 function RecItemList ({list}) {
+    const keyCode = [];
+    useEffect(() => {
+        list.map(el => keyCode.push(nanoid()));
+    });
     return (
         <Swiper
             navigation={true} 
@@ -20,7 +24,7 @@ function RecItemList ({list}) {
             onSlideChange={() => console.log('slide change')}
             onSwiper={(swiper) => (swiper)}
             >
-            {list.map(el => <SwiperSlide key={nanoid()}><RecomendItem item={el}/></SwiperSlide>)}
+            {list.map((el, keyCode) => <SwiperSlide key={keyCode}><RecomendItem item={el}/></SwiperSlide>)}
         </Swiper>
     );
 }

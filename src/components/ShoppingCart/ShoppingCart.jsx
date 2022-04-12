@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from './styles.module.css';
 // import cartItems from "../../fixtures/cart-fixtures";
 import CartItem from '../CartItem/CartItem';
@@ -6,9 +6,13 @@ import CountItems from '../constants';
 import { nanoid } from 'nanoid';
 
 function CartItemList ({list}) {
+    const keyCode = [];
+    useEffect(() => {
+        list.map(el => keyCode.push(nanoid()));
+    });
     return (
         <div className={styles.leftBody}>
-            {list.map(el => <CartItem item={el} key={nanoid()}/>)}
+            {list.map((el, keyCode) => <CartItem item={el} key={keyCode}/>)}
         </div>
     );
 }

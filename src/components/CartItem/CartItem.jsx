@@ -1,6 +1,5 @@
 import React, { useState, useMemo } from "react";
 import styles from './styles.module.css';
-import { nanoid } from 'nanoid';
 
 
 function OptionCount () {
@@ -12,9 +11,8 @@ function OptionCount () {
 }
 
 function CartItem ({item}) {
-    const prod = item.item;
     const [selects, setSelects] = useState(1);
-    const price = useMemo(() => prod.price*selects, [prod, selects]);
+    const price = useMemo(() => item.price*selects, [item, selects]);
     const discount = useMemo(() => (price/100*35), [price]);
     const afterDiscount = useMemo(() => (price - discount), [price, discount]);
     const [x, setX] = useState(true);
@@ -22,10 +20,10 @@ function CartItem ({item}) {
         <div className={styles.cartItemWrapper}>
             <div className={styles.itemDescription}>
                 <div><input type="checkbox" checked={x} onChange={() => setX(!x)} /></div>
-                <img src={prod.image} alt={prod.name} />
+                <img src={item.image} alt={item.name} />
                 <div>
-                    <h3>{prod.name}</h3>
-                    <p className={styles.lightGray}>цвет {prod.color}, {prod.weight}</p>
+                    <h3>{item.name}</h3>
+                    <p className={styles.lightGray}>цвет {item.color}, {item.weight}</p>
                 </div>
             </div>
             <div className={styles.itemPrice}>
