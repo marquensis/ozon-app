@@ -6,13 +6,12 @@ import CountItems from '../constants';
 import { nanoid } from 'nanoid';
 
 function CartItemList ({list}) {
-    const keyCode = [];
     useEffect(() => {
-        list.map(el => keyCode.push(nanoid()));
-    });
+        list.map(el => el.key = nanoid());
+    }, []);
     return (
         <div className={styles.leftBody}>
-            {list.map((el, keyCode) => <CartItem item={el} key={keyCode}/>)}
+            {list.map((el) => <CartItem item={el} key={el.key}/>)}
         </div>
     );
 }
@@ -32,7 +31,7 @@ function ShoppingCart ({cart}) {
                             <div className={styles.headWrapper}>
                                 <input type="checkbox" checked={x} onChange={() => setX(!x)} />
                                 <span>Выбрать все</span>
-                                <span styles={{color:'red'}}>Удалить выбранное</span>
+                                <span className={styles.red}>Удалить выбранное</span>
                             </div>
                         </div>
                         <CartItemList list={cart}/>
@@ -51,11 +50,11 @@ function ShoppingCart ({cart}) {
                                     </tr>
                                     <tr>
                                         <td>Товары ({CountItems})</td>
-                                        <td style={{fontWeight:'bolder'}}>12000 ₽</td>
+                                        <td className={styles.bolder}>12000 ₽</td>
                                     </tr>
                                     <tr>
                                         <td>Скидка</td>
-                                        <td style={{fontWeight:'bolder'}} className={styles.red}>- 5023 ₽</td>
+                                        <td className={`${styles.bolder} ${styles.red}`}>- 5023 ₽</td>
                                     </tr>
                                 </tbody>
                             </table>

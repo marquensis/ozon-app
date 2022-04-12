@@ -10,10 +10,9 @@ import { nanoid } from 'nanoid';
 
 
 function RecItemList ({list}) {
-    const keyCode = [];
     useEffect(() => {
-        list.map(el => keyCode.push(nanoid()));
-    });
+        list.map(el => el.key = nanoid());
+    }, []);
     return (
         <Swiper
             navigation={true} 
@@ -24,7 +23,7 @@ function RecItemList ({list}) {
             onSlideChange={() => console.log('slide change')}
             onSwiper={(swiper) => (swiper)}
             >
-            {list.map((el, keyCode) => <SwiperSlide key={keyCode}><RecomendItem item={el}/></SwiperSlide>)}
+            {list.map(el => <SwiperSlide key={el.key}><RecomendItem item={el}/></SwiperSlide>)}
         </Swiper>
     );
 }
