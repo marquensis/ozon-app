@@ -16,7 +16,11 @@ function CartItemList ({list}) {
     );
 }
 
-function ShoppingCart ({cart}) {
+function ShoppingCart ({cartId, rec}) {
+    const cartItemsList = cartId.map((item) => {
+        const equalId = rec.find(recVal => recVal.id === item.id);
+        return { ...item, ...equalId };
+    });
     const [x, setX] = useState(true);
     return (
         <div className={styles.cart}>
@@ -34,7 +38,7 @@ function ShoppingCart ({cart}) {
                                 <span className={styles.red}>Удалить выбранное</span>
                             </div>
                         </div>
-                        <CartItemList list={cart}/>
+                        <CartItemList list={cartItemsList}/>
                     </div>
                     <div className={styles.cartRight}>
                     <div className={styles.rightGreenButton}>
