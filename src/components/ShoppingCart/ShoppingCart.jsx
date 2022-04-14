@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import styles from './styles.module.css';
 // import cartItems from "../../fixtures/cart-fixtures";
 import CartItem from '../CartItem/CartItem';
 import CountItems from '../constants';
 import { nanoid } from 'nanoid';
+import PropTypes from 'prop-types';
 
 function CartItemList ({list}) {
     useEffect(() => {
@@ -17,13 +18,10 @@ function CartItemList ({list}) {
 }
 
 function ShoppingCart ({cartId, rec}) {
-    const [itemList, SetItemList] = useState([]);
-    useEffect(() => {
-        SetItemList(cartId.map((item) => {
-            const equalId = rec.find(recVal => recVal.id === item.id);
-            return { ...item, ...equalId };
-        }));
-    }, []);
+    const itemList = useMemo(() => cartId.map((item) => {
+        const equalId = rec.find(recVal => recVal.id === item.id);
+        return { ...item, ...equalId };
+    }), [cartId, rec]);
     const [x, setX] = useState(true);
     return (
         <div className={styles.cart}>
@@ -83,5 +81,11 @@ function ShoppingCart ({cartId, rec}) {
             </div>
         </div>
     )
+}
+CartItemList.propTypes = {
+    rec: PropTypes.arrayOf(PropTypes.object),
+}
+ShoppingCart.propTypes = {
+    list: PropTypes.arrayOf(PropTypes.object),
 }
 export default ShoppingCart;

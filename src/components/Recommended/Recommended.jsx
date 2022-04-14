@@ -7,6 +7,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import { Navigation } from "swiper";
 import { nanoid } from 'nanoid';
+import PropTypes from 'prop-types';
 
 
 function RecItemList ({list}) {
@@ -37,5 +38,11 @@ function RecommendedList ({rec}) {
             </div>
         </div>
     )
+}
+RecommendedList.propTypes = {
+    rec: PropTypes.arrayOf(PropTypes.object),
+}
+RecItemList.propTypes = {
+    list: PropTypes.arrayOf(PropTypes.object),
 }
 export default RecommendedList;

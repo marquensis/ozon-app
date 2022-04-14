@@ -1,5 +1,6 @@
 import React, { useState, useMemo } from "react";
 import styles from './styles.module.css';
+import PropTypes from 'prop-types';
 
 
 function OptionCount () {
@@ -40,6 +41,9 @@ function CartItem ({item}) {
             </div>
         </div>
     )
+}
+CartItem.propTypes = {
+    item: PropTypes.object,
 }
 
 

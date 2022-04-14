@@ -1,6 +1,7 @@
 import React, { useMemo } from "react";
 import styles from './styles.module.css';
-import Like from './like_icon.png'
+import Like from './like_icon.png';
+import PropTypes from 'prop-types';
 
 function RecomendItem ({item}) {
     const price = item.price;
@@ -25,6 +26,8 @@ function RecomendItem ({item}) {
         </div>
     )
 }
-
+RecomendItem.propTypes = {
+    item: PropTypes.object,
+}
 
 export default RecomendItem;
