@@ -44,6 +44,11 @@ function CartItem ({item}) {
 }
 CartItem.propTypes = {
     item: PropTypes.object,
+    name: PropTypes.string,
+    color: PropTypes.string,
+    weight: PropTypes.string,
+    image: PropTypes.string,
+    price: PropTypes.number,
 }
 
 

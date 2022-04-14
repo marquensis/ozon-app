@@ -28,6 +28,9 @@ function RecomendItem ({item}) {
 }
 RecomendItem.propTypes = {
     item: PropTypes.object,
+    name: PropTypes.string,
+    image: PropTypes.string,
+    price: PropTypes.number,
 }
 
 export default RecomendItem;
