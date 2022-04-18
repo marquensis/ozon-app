@@ -13,7 +13,7 @@ import PropTypes from 'prop-types';
 function RecItemList ({list}) {
     useEffect(() => {
         list.map(el => el.key = nanoid());
-    }, []);
+    }, [list]);
     return (
         <Swiper
             navigation={true} 

@@ -6,13 +6,16 @@ import CountItems from '../constants';
 import { nanoid } from 'nanoid';
 import PropTypes from 'prop-types';
 
+// {list.length && list.map((el) => el.key && <CartItem item={el} key={el.key}/>)}
 function CartItemList ({list}) {
     useEffect(() => {
-        list.map(el => el.key = nanoid());
-    }, []);
+        if (list.length > 0){
+            list.map(el => el.key = nanoid());
+        }
+    }, [list]);
     return (
         <div className={styles.leftBody}>
-            {list.map((el) => <CartItem item={el} key={el.key}/>)}
+            {list.length && list.map((el) => el.key && <CartItem item={el} key={el.key}/>)}
         </div>
     );
 }
