@@ -40,9 +40,9 @@ function RecommendedList ({rec}) {
     )
 }
 RecommendedList.propTypes = {
-    rec: PropTypes.arrayOf(PropTypes.object),
+    rec: PropTypes.array.isRequired,
 }
 RecItemList.propTypes = {
-    list: PropTypes.arrayOf(PropTypes.object),
+    list: PropTypes.array.isRequired,
 }
 export default RecommendedList;

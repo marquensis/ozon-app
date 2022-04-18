@@ -5,7 +5,7 @@ const recItems = [
         "color": "Голубой",
         "weight": "200гр",
         "image": "/img/1.jpg",
-        "price": "150",
+        "price": 150,
     },
     {
         "id": "2",
@@ -13,7 +13,7 @@ const recItems = [
         "color": "Белый",
         "weight": "3000гр",
         "image": "/img/2.jpg",
-        "price": "300000",
+        "price": 300000,
     },
     {
         "id": "3",
@@ -21,7 +21,7 @@ const recItems = [
         "color": "Розовая жемчужина",
         "weight": "500гр",
         "image": "/img/3.jpg",
-        "price": "33000",
+        "price": 33000,
     },
     {
         "id": "4",
@@ -29,7 +29,7 @@ const recItems = [
         "color": "Розовая жемчужина",
         "weight": "500гр",
         "image": "/img/3.jpg",
-        "price": "33000",
+        "price": 33000,
     },
     {
         "id": "5",
@@ -37,7 +37,7 @@ const recItems = [
         "color": "Розовая жемчужина",
         "weight": "500гр",
         "image": "/img/3.jpg",
-        "price": "33000",
+        "price": 33000,
     },
     {
         "id": "6",
@@ -45,7 +45,7 @@ const recItems = [
         "color": "Розовая жемчужина",
         "weight": "500гр",
         "image": "/img/3.jpg",
-        "price": "33000",
+        "price": 33000,
     },
     {
         "id": "7",
@@ -53,7 +53,7 @@ const recItems = [
         "color": "Розовая жемчужина",
         "weight": "500гр",
         "image": "/img/3.jpg",
-        "price": "33000",
+        "price": 33000,
     },
     {
         "id": "8",
@@ -61,7 +61,7 @@ const recItems = [
         "color": "Розовая жемчужина",
         "weight": "500гр",
         "image": "/img/3.jpg",
-        "price": "33000",
+        "price": 33000,
     },
     {
         "id": "9",
@@ -69,7 +69,7 @@ const recItems = [
         "color": "Розовая жемчужина",
         "weight": "500гр",
         "image": "/img/3.jpg",
-        "price": "33000",
+        "price": 33000,
     },
     {
         "id": "10",
@@ -77,7 +77,7 @@ const recItems = [
         "color": "Розовая жемчужина",
         "weight": "500гр",
         "image": "/img/3.jpg",
-        "price": "33000",
+        "price": 33000,
     },
     {
         "id": "11",
@@ -85,7 +85,7 @@ const recItems = [
         "color": "Розовая жемчужина",
         "weight": "500гр",
         "image": "/img/3.jpg",
-        "price": "33000",
+        "price": 33000,
     },
     {
         "id": "12",
@@ -93,7 +93,7 @@ const recItems = [
         "color": "Розовая жемчужина",
         "weight": "500гр",
         "image": "/img/3.jpg",
-        "price": "33000",
+        "price": 33000,
     },
     {
         "id": "13",
@@ -101,7 +101,7 @@ const recItems = [
         "color": "Розовая жемчужина",
         "weight": "500гр",
         "image": "/img/3.jpg",
-        "price": "33000",
+        "price": 33000,
     },
     {
         "id": "14",
@@ -109,7 +109,7 @@ const recItems = [
         "color": "Розовая жемчужина",
         "weight": "500гр",
         "image": "/img/3.jpg",
-        "price": "33000",
+        "price": 33000,
     },
     {
         "id": "15",
@@ -117,7 +117,7 @@ const recItems = [
         "color": "Розовая жемчужина",
         "weight": "500гр",
         "image": "/img/3.jpg",
-        "price": "33000",
+        "price": 33000,
     },
     {
         "id": "16",
@@ -125,7 +125,7 @@ const recItems = [
         "color": "Розовая жемчужина",
         "weight": "500гр",
         "image": "/img/3.jpg",
-        "price": "33000",
+        "price": 33000,
     },
     {
         "id": "17",
@@ -133,7 +133,7 @@ const recItems = [
         "color": "Розовая жемчужина",
         "weight": "500гр",
         "image": "/img/3.jpg",
-        "price": "33000",
+        "price": 33000,
     },
     {
         "id": "18",
@@ -141,7 +141,7 @@ const recItems = [
         "color": "Розовая жемчужина",
         "weight": "500гр",
         "image": "/img/3.jpg",
-        "price": "33000",
+        "price": 33000,
     },
     {
         "id": "19",
@@ -149,7 +149,7 @@ const recItems = [
         "color": "Розовая жемчужина",
         "weight": "500гр",
         "image": "/img/3.jpg",
-        "price": "33000",
+        "price": 33000,
     },
     {
         "id": "20",
@@ -157,7 +157,7 @@ const recItems = [
         "color": "Розовая жемчужина",
         "weight": "500гр",
         "image": "/img/3.jpg",
-        "price": "33000",
+        "price": 33000,
     },
     {
         "id": "21",
@@ -165,7 +165,7 @@ const recItems = [
         "color": "Розовая жемчужина",
         "weight": "500гр",
         "image": "/img/3.jpg",
-        "price": "33000",
+        "price": 33000,
     },
     {
         "id": "22",
@@ -173,7 +173,7 @@ const recItems = [
         "color": "Розовая жемчужина",
         "weight": "500гр",
         "image": "/img/3.jpg",
-        "price": "33000",
+        "price": 33000,
     },
     {
         "id": "23",
@@ -181,7 +181,7 @@ const recItems = [
         "color": "Розовая жемчужина",
         "weight": "500гр",
         "image": "/img/3.jpg",
-        "price": "33000",
+        "price": 33000,
     },
 ]
 export default recItems;

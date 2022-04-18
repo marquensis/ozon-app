@@ -2,6 +2,7 @@ import React, { useMemo } from "react";
 import styles from './styles.module.css';
 import Like from './like_icon.png';
 import PropTypes from 'prop-types';
+import RecShapes from "../../shapes/RecShapes";
 
 function RecomendItem ({item}) {
     const price = item.price;
@@ -26,11 +27,9 @@ function RecomendItem ({item}) {
         </div>
     )
 }
+
 RecomendItem.propTypes = {
-    item: PropTypes.object,
-    name: PropTypes.string,
-    image: PropTypes.string,
-    price: PropTypes.number,
+    item: PropTypes.shape(RecShapes).isRequired,
 }
 
 export default RecomendItem;
