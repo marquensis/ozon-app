@@ -8,10 +8,7 @@ import PropTypes from 'prop-types';
 
 // {list.length && list.map((el) => el.key && <CartItem item={el} key={el.key}/>)}
 function CartItemList ({list}) {
-    useEffect(() => {
-        if (list.length > 0){
-            list.map(el => el.key = nanoid());
-        }
+    useEffect(() => {list.map(el => el.key = nanoid())
     }, [list]);
     return (
         <div className={styles.leftBody}>
