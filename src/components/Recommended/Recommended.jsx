@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo } from "react";
+import React, { useMemo } from "react";
 import styles from './styles.module.css';
 // import items from '../../fixtures/fixtures';
 import RecomendItem from '../RecomendItem/RecomendItem';
@@ -27,12 +27,14 @@ function RecItemList ({list}) {
 }
 
 function RecommendedList ({rec}) {
-    rec.map(item => item.key = nanoid());
+    const itemList = useMemo(() => rec.map((item) => {
+        return { ...item, ...{key: nanoid()} };
+    }), [rec]);
     return (
         <div className={styles.recommended}>
             <div className={styles.content}>
                 <h1>Рекомендуем</h1>
-                <RecItemList list={rec}/>
+                <RecItemList list={itemList}/>
             </div>
         </div>
     )

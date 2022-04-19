@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useMemo, useState } from "react";
 import styles from './styles.module.css';
 // import cartItems from "../../fixtures/cart-fixtures";
 import CartItem from '../CartItem/CartItem';
@@ -17,9 +17,8 @@ function CartItemList ({list}) {
 
 function ShoppingCart ({cartId, rec}) {
     const itemList = useMemo(() => cartId.map((item) => {
-        item.key = nanoid();
-        const equalId = rec.find(recVal => recVal.id === item.id);  
-        return { ...item, ...equalId };
+        const equalId = rec.find(recVal => recVal.id === item.id);
+        return { ...item, ...equalId, ...{key: nanoid()} };
     }), [cartId, rec]);
     const [x, setX] = useState(true);
     return (

@@ -11,7 +11,7 @@ function OptionCount () {
     return option;
 }
 
-function CartItem ({item}) {
+function CartItem ({item}) { 
     const [selects, setSelects] = useState(1);
     const price = useMemo(() => item.price*selects, [item, selects]);
     const discount = useMemo(() => (price/100*35), [price]);

@@ -22,6 +22,7 @@
 .itemDescription img {
     width: 100px;
     height: 100px;
+    margin-left: 10px;
 }
 .itemCount select {
     width: 70px;
@@ -32,8 +33,8 @@
 .itemPrice span {
     color: lightgray;
     text-decoration: line-through;
+    margin-right: 10px;
 }
-.select{}
 .lightGray {
     color: lightgray;
 }
