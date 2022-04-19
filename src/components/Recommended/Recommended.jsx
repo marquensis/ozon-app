@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useMemo } from "react";
 import styles from './styles.module.css';
 // import items from '../../fixtures/fixtures';
 import RecomendItem from '../RecomendItem/RecomendItem';
@@ -11,9 +11,6 @@ import PropTypes from 'prop-types';
 
 
 function RecItemList ({list}) {
-    useEffect(() => {
-        list.map(el => el.key = nanoid());
-    }, [list]);
     return (
         <Swiper
             navigation={true} 
@@ -30,6 +27,7 @@ function RecItemList ({list}) {
 }
 
 function RecommendedList ({rec}) {
+    rec.map(item => item.key = nanoid());
     return (
         <div className={styles.recommended}>
             <div className={styles.content}>

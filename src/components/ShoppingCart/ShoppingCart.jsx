@@ -8,18 +8,17 @@ import PropTypes from 'prop-types';
 
 // {list.length && list.map((el) => el.key && <CartItem item={el} key={el.key}/>)}
 function CartItemList ({list}) {
-    useEffect(() => {list.map(el => el.key = nanoid())
-    }, [list]);
     return (
         <div className={styles.leftBody}>
-            {list.length && list.map((el) => el.key && <CartItem item={el} key={el.key}/>)}
+            {list.length && list.map((el) => <CartItem item={el} key={el.key}/>)}
         </div>
     );
 }
 
 function ShoppingCart ({cartId, rec}) {
     const itemList = useMemo(() => cartId.map((item) => {
-        const equalId = rec.find(recVal => recVal.id === item.id);
+        item.key = nanoid();
+        const equalId = rec.find(recVal => recVal.id === item.id);  
         return { ...item, ...equalId };
     }), [cartId, rec]);
     const [x, setX] = useState(true);
