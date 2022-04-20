@@ -5,6 +5,8 @@ import CartItem from '../CartItem/CartItem';
 import CountItems from '../constants';
 import { nanoid } from 'nanoid';
 import PropTypes from 'prop-types';
+import RecShapes from "../../shapes/RecShapes";
+import CartShapes from "../../shapes/CartShapes";
 
 // {list.length && list.map((el) => el.key && <CartItem item={el} key={el.key}/>)}
 function CartItemList ({list}) {
@@ -84,7 +86,15 @@ CartItemList.propTypes = {
     list: PropTypes.array.isRequired,
 }
 ShoppingCart.propTypes = {
-    rec: PropTypes.array.isRequired,
-    cartId: PropTypes.array.isRequired,
+    rec: PropTypes.arrayOf(
+        PropTypes.shape({
+            recVal: PropTypes.arrayOf(RecShapes),
+        })
+    ).isRequired,
+    cartId: PropTypes.arrayOf(
+        PropTypes.shape({
+            item: PropTypes.arrayOf(CartShapes),
+        })
+    ).isRequired,
 }
 export default ShoppingCart;

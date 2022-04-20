@@ -8,6 +8,7 @@ import "swiper/css/navigation";
 import { Navigation } from "swiper";
 import { nanoid } from 'nanoid';
 import PropTypes from 'prop-types';
+import RecShapes from "../../shapes/RecShapes";
 
 
 function RecItemList ({list}) {
@@ -43,6 +44,10 @@ RecommendedList.propTypes = {
     rec: PropTypes.array.isRequired,
 }
 RecItemList.propTypes = {
-    list: PropTypes.array.isRequired,
+    list: PropTypes.arrayOf(
+        PropTypes.shape({
+            item: PropTypes.arrayOf(RecShapes),
+        })
+    ).isRequired,
 }
 export default RecommendedList;
