@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-const RecommendedShapes = PropTypes.shape({
+const RecommendedShapes = ({
     name: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,

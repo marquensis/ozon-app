@@ -1,7 +1,7 @@
 
 import PropTypes from 'prop-types';
 
-const CartShapes = PropTypes.shape({
+const CartShapes = ({
     name: PropTypes.string.isRequired,
     color: PropTypes.string.isRequired,
     weight: PropTypes.string.isRequired,
