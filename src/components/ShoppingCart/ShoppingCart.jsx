@@ -5,7 +5,7 @@ import CartItem from '../CartItem/CartItem';
 import CountItems from '../constants';
 import { nanoid } from 'nanoid';
 import PropTypes from 'prop-types';
-import RecShapes from "../../shapes/RecShapes";
+import RecommendedShapes from "../../shapes/RecShapes";
 import CartShapes from "../../shapes/CartShapes";
 
 // {list.length && list.map((el) => el.key && <CartItem item={el} key={el.key}/>)}
@@ -18,7 +18,7 @@ function CartItemList ({list}) {
 }
 
 function ShoppingCart ({cartId, rec}) {
-    const itemList = useMemo(() => cartId.map((item) => {
+     const itemList = useMemo(() => cartId.map((item) => {
         const equalId = rec.find(recVal => recVal.id === item.id);
         return { ...item, ...equalId, ...{key: nanoid()} };
     }), [cartId, rec]);
@@ -83,18 +83,15 @@ function ShoppingCart ({cartId, rec}) {
     )
 }
 CartItemList.propTypes = {
-    list: PropTypes.array.isRequired,
+    list: PropTypes.arrayOf(
+        PropTypes.shape({
+            rec: PropTypes.object,
+            cartId: PropTypes.object,
+        })
+    ).isRequired,
 }
 ShoppingCart.propTypes = {
-    rec: PropTypes.arrayOf(
-        PropTypes.shape({
-            recVal: PropTypes.arrayOf(RecShapes),
-        })
-    ).isRequired,
-    cartId: PropTypes.arrayOf(
-        PropTypes.shape({
-            item: PropTypes.arrayOf(CartShapes),
-        })
-    ).isRequired,
+    rec: PropTypes.shape(RecommendedShapes).isRequired,
+    cartId: PropTypes.shape(CartShapes).isRequired,
 }
 export default ShoppingCart;

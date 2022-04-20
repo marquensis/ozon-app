@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types';
 
-const RecShapes = {
+const RecommendedShapes = {
     name: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
 }
 
-export default RecShapes;
+export default RecommendedShapes;
