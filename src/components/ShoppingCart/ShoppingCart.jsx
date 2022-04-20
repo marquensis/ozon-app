@@ -88,10 +88,10 @@ CartItemList.propTypes = {
             rec: PropTypes.object,
             cartId: PropTypes.object,
         })
-    ).isRequired,
+    ),
 }
 ShoppingCart.propTypes = {
-    rec: PropTypes.shape(RecommendedShapes).isRequired,
-    cartId: PropTypes.shape(CartShapes).isRequired,
+    rec: PropTypes.arrayOf(PropTypes.shape(RecommendedShapes)),
+    cartId: PropTypes.arrayOf(PropTypes.shape(CartShapes)),
 }
 export default ShoppingCart;
