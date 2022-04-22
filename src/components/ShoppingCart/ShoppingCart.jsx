@@ -85,13 +85,13 @@ function ShoppingCart ({cartId, rec}) {
 CartItemList.propTypes = {
     list: PropTypes.arrayOf(
         PropTypes.shape({
-            rec: PropTypes.object,
-            cartId: PropTypes.object,
+            item: PropTypes.array,
+            key: PropTypes.string
         })
     ),
 }
 ShoppingCart.propTypes = {
-    rec: PropTypes.arrayOf(PropTypes.shape(RecommendedShapes)),
-    cartId: PropTypes.arrayOf(PropTypes.shape(CartShapes)),
+    rec: PropTypes.arrayOf(RecommendedShapes),
+    cartId: PropTypes.arrayOf(CartShapes),
 }
 export default ShoppingCart;
