@@ -29,7 +29,7 @@ function RecomendItem ({item}) {
 }
 
 RecomendItem.propTypes = {
-    item: PropTypes.shape(RecommendedShapes).isRequired,
+    item: PropTypes.shape(RecommendedShapes),
 }
 
 export default RecomendItem;

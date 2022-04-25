@@ -46,7 +46,7 @@ RecommendedList.propTypes = {
 RecItemList.propTypes = {
     list: PropTypes.arrayOf(
         PropTypes.shape({
-            item: PropTypes.arrayOf(RecommendedShapes),
+            rec: PropTypes.arrayOf(RecommendedShapes),
             key: PropTypes.string,
         })
     ),

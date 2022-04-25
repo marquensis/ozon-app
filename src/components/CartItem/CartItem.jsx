@@ -44,7 +44,7 @@ function CartItem ({item}) {
 }
 
 CartItem.propTypes = {
-    item: PropTypes.shape(CartShapes).isRequired,
+    item: PropTypes.shape(CartShapes),
 }
 
 
