@@ -1,6 +1,5 @@
 import React, { useMemo, useState } from "react";
 import styles from './styles.module.css';
-// import cartItems from "../../fixtures/cart-fixtures";
 import CartItem from '../CartItem/CartItem';
 import CountItems from '../constants';
 import { nanoid } from 'nanoid';
@@ -8,11 +7,10 @@ import PropTypes from 'prop-types';
 import RecommendedShapes from "../../shapes/RecShapes";
 import CartShapes from "../../shapes/CartShapes";
 
-// {list.length && list.map((el) => el.key && <CartItem item={el} key={el.key}/>)}
 function CartItemList ({list}) {
     return (
         <div className={styles.leftBody}>
-            {list.length && list.map((el) => <CartItem item={el} key={el.key}/>)}
+            {list.length && list.map((el) => (typeof(el) === 'object') ? <CartItem item={el} key={el.key}/> : '')}
         </div>
     );
 }
@@ -85,9 +83,14 @@ function ShoppingCart ({cartId, rec}) {
 CartItemList.propTypes = {
     list: PropTypes.arrayOf(
         PropTypes.shape({
-            cartId: PropTypes.arrayOf(CartShapes),
-            rec: PropTypes.arrayOf(RecommendedShapes),
+            color: PropTypes.string,
+            count: PropTypes.number,
+            id: PropTypes.string,
+            image: PropTypes.string,
             key: PropTypes.string,
+            name: PropTypes.string,
+            price: PropTypes.number,
+            weight: PropTypes.string,
         })
     ),
 }

@@ -10,7 +10,6 @@ import { nanoid } from 'nanoid';
 import PropTypes from 'prop-types';
 import RecommendedShapes from "../../shapes/RecShapes";
 
-
 function RecItemList ({list}) {
     return (
         <Swiper
@@ -22,7 +21,7 @@ function RecItemList ({list}) {
             onSlideChange={() => console.log('slide change')}
             onSwiper={(swiper) => (swiper)}
             >
-            {list.map(el => <SwiperSlide key={el.key}><RecomendItem item={el}/></SwiperSlide>)}
+            {list.length && list.map(el => (typeof(el) === 'object') ? <SwiperSlide key={el.key}><RecomendItem item={el}/></SwiperSlide> : '')}
         </Swiper>
     );
 }
@@ -40,14 +39,24 @@ function RecommendedList ({rec}) {
         </div>
     )
 }
-RecommendedList.propTypes = {
-    rec: PropTypes.arrayOf(RecommendedShapes),
-}
 RecItemList.propTypes = {
     list: PropTypes.arrayOf(
         PropTypes.shape({
-            rec: PropTypes.arrayOf(RecommendedShapes),
-            key: PropTypes.string,
+            color: PropTypes.string.isRequired,
+            id: PropTypes.string.isRequired,
+            image: PropTypes.string.isRequired,
+            key: PropTypes.string.isRequired,
+            name: PropTypes.string.isRequired,
+            price: PropTypes.number.isRequired,
+            weight: PropTypes.string.isRequired,
+        })
+    ),
+}
+RecommendedList.propTypes = {
+    list: PropTypes.arrayOf(
+        PropTypes.shape({
+            rec: PropTypes.arrayOf(RecommendedShapes).isRequired,
+            key: PropTypes.string.isRequired,
         })
     ),
 }

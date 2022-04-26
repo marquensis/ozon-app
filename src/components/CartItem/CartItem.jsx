@@ -1,7 +1,6 @@
 import React, { useState, useMemo } from "react";
 import styles from './styles.module.css';
 import PropTypes from 'prop-types';
-import CartShapes from "../../shapes/CartShapes";
 
 function OptionCount () {
     let option = [];
@@ -44,7 +43,16 @@ function CartItem ({item}) {
 }
 
 CartItem.propTypes = {
-    item: PropTypes.shape(CartShapes),
+    item: PropTypes.shape({
+        color: PropTypes.string.isRequired,
+        count: PropTypes.number.isRequired,
+        id: PropTypes.string.isRequired,
+        image: PropTypes.string.isRequired,
+        key: PropTypes.string.isRequired,
+        name: PropTypes.string.isRequired,
+        price: PropTypes.number.isRequired,
+        weight: PropTypes.string.isRequired,
+    }),
 }
 
 
