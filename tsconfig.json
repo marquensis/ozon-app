@@ -22,5 +22,5 @@
   },
   "include": [
     "src"
-  ]
+, "src/fixtures/fixtures.jsx", "src/fixtures/cart-item-id.jsx"  ]
 }

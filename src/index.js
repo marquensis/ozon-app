@@ -1,10 +1,6 @@
 import React from "react";
-import styles from './index.module.css';
-import { render } from "react-dom";
-import App from './components/App/app.jsx';
+import styles from './styles.module.css';
+import ReactDOM from "react-dom";
+import App from './components/App/App';
 
-function Page () {
-    render(<App />, document.getElementById('root'));
-}
-
-setInterval(Page, 10);
+ReactDOM.render(<App />, document.getElementById('root'));

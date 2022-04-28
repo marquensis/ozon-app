@@ -1,0 +1,48 @@
+
+.cartItemWrapper {
+    width: 95%;
+    height: 150px;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #F2F5F9;
+}
+.itemDescription {
+    width: 60%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+.itemDescription div:last-child {
+    margin-left: 10px;
+    font-weight: bolder;
+}
+.itemDescription img {
+    width: 100px;
+    height: 100px;
+    margin-left: 10px;
+}
+.itemCount select {
+    width: 70px;
+    height: 25px;
+    border: 2px solid lightgray;
+    border-radius: 6px;
+}
+.itemPrice span {
+    color: lightgray;
+    text-decoration: line-through;
+    margin-right: 10px;
+}
+.lightGray {
+    color: lightgray;
+}
+.bold  {
+    font-weight: bolder;
+}
+.red {
+    color: red;
+    display: flex;
+    flex-wrap: wrap;
+}

@@ -1,0 +1,133 @@
+.cart {
+    height: 700px;
+    background-color: #F2F5F9;
+    margin-bottom: 20px;
+}
+.content {
+    width: 75%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.cartWrapper {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+
+.cartHead h1 {
+    display: block;
+    font-size: 24px;
+    font-weight: bolder;
+    margin-top: 40px;
+}
+.cartHead span {
+    position: absolute;
+    margin-left: 100px;
+    margin-top: 40px;
+}
+
+
+.cartWrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 50px;
+}
+
+.cartLeft {
+    width: 64%;
+    height: 100px;
+}
+.leftHead, .leftBody {
+    background-color: #FFFFFF;
+    width: 100%;
+    border-radius: 3px;
+}
+.leftHead {
+    border-bottom: 3px solid #F2F5F9;
+}
+.headWrapper {
+    width: 95%;
+    height: 40px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+}
+.headWrapper span {
+    margin-left: 10px;
+}
+.leftBody {
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+.cartRight {
+    width: 34%;
+    height: auto;
+}
+
+.rightGreenButton, .rightSum {
+    background-color: #FFFFFF;
+    width: 100%;
+    border-radius: 3px;
+}
+.rightGreenButton {
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 3px solid #F2F5F9;
+}
+.rightGreenButton button {
+    width: 90%;
+    height: 50px;
+    color: #FFFFFF;
+    font-weight: bolder;
+    font-size: 16px;
+    background-color: #10C44C;
+    border-radius: 6px;
+}
+
+.rightSum {
+    width: 100%;
+    height: 300;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+.sumCount, .sumFinal {
+    width: 90%;
+}
+.sumCount {
+    margin-top: 10px;
+    border-bottom: 1px solid #F2F5F9;
+}
+.rightSum table {
+    width: 100%;
+}
+.rightSum tr {
+    height: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.rightSum th {
+    font-size: 20px;
+}
+.rightSum hr {
+    background-color: #F2F5F9;
+}
+.red {
+    color: red;
+}
+.bolder {
+    font-weight: bolder;
+}
