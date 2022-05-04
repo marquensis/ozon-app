@@ -6,6 +6,7 @@ import Orders from './orders_icon.png';
 import Logo from './ozon_logo.png';
 import Search from './search_icon.png';
 import Shopbag from './shopbag_icon.png';
+import Login from './login_icon.png';
 
 function AppHeader () {
     
@@ -29,6 +30,10 @@ function AppHeader () {
                     </form>
                 </div>
                 <div className={styles.navButtons}>
+                    <div className={styles.navButton}>
+                        <img src={ Login } alt="Orders" />
+                        <p>Войти</p>
+                    </div>
                     <div className={styles.navButton}>
                         <img src={ Orders } alt="Orders" />
                         <p>Заказы</p>

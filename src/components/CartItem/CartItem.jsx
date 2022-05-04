@@ -20,7 +20,7 @@ function CartItem ({item}) {
         <div className={styles.cartItemWrapper}>
             <div className={styles.itemDescription}>
                 <div><input type="checkbox" checked={x} onChange={() => setX(!x)} /></div>
-                <img src={item.image} alt={item.name} />
+                <img src={item.image} alt={item.name} />    
                 <div>
                     <h3>{item.name}</h3>
                     <p className={styles.lightGray}>цвет {item.color}, {item.weight}</p>

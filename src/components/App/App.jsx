@@ -4,11 +4,13 @@
     import ShoppingCart from "../ShoppingCart/ShoppingCart";
     import cartItemsId from "../../fixtures/cart-item-id";
     import recItems from "../../fixtures/fixtures";
+    import ShadowView from "../ShadowView/ShadowView";
     import "swiper/css/bundle";
 
     function App () {
         return (
             <>
+                <ShadowView />
                 <AppHeader/>
                 <ShoppingCart cartId={cartItemsId} rec={recItems}/>
                 <RecommendedList rec={recItems}/>

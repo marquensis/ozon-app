@@ -16,7 +16,8 @@ function CartItemList ({list}) {
 }
 
 function ShoppingCart ({cartId, rec}) {
-     const itemList = useMemo(() => cartId.map((item) => {
+    const [showLogin, setShowLogin] = useState(false);
+    const itemList = useMemo(() => cartId.map((item) => {
         const equalId = rec.find(recVal => recVal.id === item.id);
         return { ...item, ...equalId, ...{key: nanoid()} };
     }), [cartId, rec]);
@@ -40,7 +41,7 @@ function ShoppingCart ({cartId, rec}) {
                         <CartItemList list={itemList}/>
                     </div>
                     <div className={styles.cartRight}>
-                    <div className={styles.rightGreenButton}>
+                    <div className={styles.rightGreenButton} onClick={() => setShowLogin(true)}>
                         <button>Перейти к оформлению</button>
                     </div>
                     <div className={styles.rightSum}>
