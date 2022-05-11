@@ -1,12 +1,19 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import styles from './styles.module.css';
 import LoginWindow from "../LoginWindow/LoginWindow";
+import ShowHideContext from "../../contexts/ContextView";
 
 function ShadowView() {
-    const [shadowClose, setShadowClose] = useState(true);
+    const {view, setView} = useContext(ShowHideContext);
+
+    const change = () => {
+        setView(view === 'hide' ? 'show' : 'hide');
+    }
+
     return(
-        <div className={styles.shadow} onClick={() => setShadowClose(false)}>
-            <LoginWindow window={shadowClose}/>
+        <div className={styles[view]}>
+            <div className={styles.click} onClick={change}></div>
+            <LoginWindow />
         </div>
     )
 }

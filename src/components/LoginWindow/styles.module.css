@@ -5,6 +5,7 @@
     border-radius: 15px;
     padding: 40px 25px;
     display: flex;
+    z-index: 10000;
     flex-direction: column;
     justify-content: space-between;
 }

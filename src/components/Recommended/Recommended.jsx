@@ -48,7 +48,7 @@ RecItemList.propTypes = {
             key: PropTypes.string.isRequired,
             name: PropTypes.string.isRequired,
             price: PropTypes.number.isRequired,
-            weight: PropTypes.string.isRequired,
+            weight: PropTypes.number.isRequired,
         })
     ),
 }

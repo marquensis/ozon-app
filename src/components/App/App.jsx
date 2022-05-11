@@ -1,20 +1,26 @@
-    import React from "react";
-    import AppHeader from "../AppHeader/AppHeader";
-    import RecommendedList from "../Recommended/Recommended";
-    import ShoppingCart from "../ShoppingCart/ShoppingCart";
-    import cartItemsId from "../../fixtures/cart-item-id";
-    import recItems from "../../fixtures/fixtures";
-    import ShadowView from "../ShadowView/ShadowView";
-    import "swiper/css/bundle";
+import React, { useState } from "react";
+import AppHeader from "../AppHeader/AppHeader";
+import RecommendedList from "../Recommended/Recommended";
+import ShoppingCart from "../ShoppingCart/ShoppingCart";
+import ShadowView from "../ShadowView/ShadowView";
+import cartItemsId from "../../fixtures/cart-item-id";
+import recItems from "../../fixtures/fixtures";
+import "swiper/css/bundle";
+import ShowHideContext from "../../contexts/ContextView";
 
-    function App () {
-        return (
-            <>
+function App () {
+
+    const [view, setView] = useState('hide');
+
+    return (
+        <>  
+            <ShowHideContext.Provider value={{view, setView}}>
                 <ShadowView />
                 <AppHeader/>
                 <ShoppingCart cartId={cartItemsId} rec={recItems}/>
                 <RecommendedList rec={recItems}/>
-            </>
-        )
-    }
-    export default App;
+            </ShowHideContext.Provider>
+        </>
+    )
+}
+export default App;
