@@ -26,7 +26,7 @@ function CartItem ({item}) {
     const {totalDiscount, setDiscount} = useContext(CartChangesContext);
     useEffect(() => {
         setWeight(totalWeight + updatedWeight);
-        setCount(totalCount + selects);
+        setCount(selects >= selects ? totalCount + Number(selects) : totalCount - Number(selects));
         setPrice(totalPrice + afterDiscount);
         setDiscount(totalDiscount + discount);
     }, [selects])

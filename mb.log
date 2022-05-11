@@ -1,0 +1,4 @@
+{"level":"info","message":"[mb:2525] mountebank v2.6.0 now taking orders - point your browser to http://localhost:2525/ for help","timestamp":"2022-05-11T07:30:35.068Z"}
+{"level":"info","message":"[mb:2525] PUT /imposters","timestamp":"2022-05-11T07:30:35.138Z"}
+{"level":"info","message":"[http:3001] Open for business...","timestamp":"2022-05-11T07:30:35.176Z"}
+{"level":"info","message":"[mb:2525] Adios - see you soon?","timestamp":"2022-05-11T07:31:46.753Z"}
