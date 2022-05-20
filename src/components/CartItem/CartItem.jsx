@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useEffect, useContext } from "react";
+import React, { useState, useMemo, useCallback, useContext } from "react";
 import styles from './styles.module.css';
 import PropTypes from 'prop-types';
 import CartChangesContext from "../../contexts/ContextCartChanges";
@@ -12,24 +12,13 @@ function OptionCount () {
 }
 
 function CartItem ({item}) { 
-    const [selects, setSelects] = useState(1);
+    const [selects, setSelects] = useState(item.value);
     const price = useMemo(() => item.price*selects, [item, selects]);
     const updatedWeight = useMemo(() => item.weight*selects, [item, selects]);
     const discount = useMemo(() => (price/100*35), [price]);
     const afterDiscount = useMemo(() => (price - discount), [price, discount]);
     const [x, setX] = useState(true);
 
-    // Изменение значения в итогово1 корзине
-    const {totalWeight, setWeight} = useContext(CartChangesContext);
-    const {totalCount, setCount} = useContext(CartChangesContext);
-    const {totalPrice, setPrice} = useContext(CartChangesContext);
-    const {totalDiscount, setDiscount} = useContext(CartChangesContext);
-    useEffect(() => {
-        setWeight(totalWeight + updatedWeight);
-        setCount(selects >= selects ? totalCount + Number(selects) : totalCount - Number(selects));
-        setPrice(totalPrice + afterDiscount);
-        setDiscount(totalDiscount + discount);
-    }, [selects])
 
     return (
         <div className={styles.cartItemWrapper}>
@@ -67,6 +56,7 @@ CartItem.propTypes = {
         name: PropTypes.string.isRequired,
         price: PropTypes.number.isRequired,
         weight: PropTypes.number.isRequired,
+        value: PropTypes.number.isRequired,
     }),
 }
 

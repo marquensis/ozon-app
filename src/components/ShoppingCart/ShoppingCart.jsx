@@ -17,11 +17,6 @@ function CartItemList ({list}) {
 }
 
 function ShoppingCart ({cartId, rec}) {
-    // Изменение итоговых значений в корзине
-    const [totalWeight, setWeight] = useState(0);
-    const [totalCount, setCount] = useState(0);
-    const [totalPrice, setPrice] = useState(0);
-    const [totalDiscount, setDiscount] = useState(0);
 
     // Создание списка товаров с учетом уникального айди и содержимого товара
     const itemList = useMemo(() => cartId.map((item) => {
@@ -29,22 +24,27 @@ function ShoppingCart ({cartId, rec}) {
         return { ...item, ...equalId, ...{key: nanoid()} };
     }), [cartId, rec]);
 
+    // Изменение итоговых значений в корзине
+    const [total, setTotal] = useState({
+        weight: itemList.reduce((prev, current) => { return prev + current.weight}, 0),
+        count: itemList.reduce((prev, current) => { return prev + current.value}, 0),
+        price: itemList.reduce((prev, current) => { return prev + current.price}, 0),
+        totalPrice: itemList.reduce((prev, current) => { return prev + current.price}, 0),
+        discount: 0,
+    });
 
     // State меняющий значение в чекбоксе "Выбрать все"
     const [x, setX] = useState(true);
 
     // Кнопка открытия логин окна
     const {view, setView} = useContext(ShowHideContext);
-    const change = () => {
-        setView(view === 'hide' ? 'show' : 'hide');
-    }
 
     return (
-        <CartChangesContext.Provider value={{totalWeight, setWeight, totalCount, setCount, totalPrice, setPrice, totalDiscount, setDiscount}}>
+        <CartChangesContext.Provider value={{total, setTotal}}>
             <div className={styles.cart}>
                 <div className={styles.content}>
                     <div className={styles.cartHead}>
-                        <span>{totalCount}</span>
+                        <span>{total.count}</span>
                         <h1>Корзина</h1>
                     </div>
                     <div className={styles.cartWrapper}>
@@ -60,7 +60,7 @@ function ShoppingCart ({cartId, rec}) {
                         </div>
                         <div className={styles.cartRight}>
                         <div className={styles.rightGreenButton}>
-                            <button onClick={change}>Перейти к оформлению</button>
+                            <button onClick={() => setView('show')}>Перейти к оформлению</button>
                         </div>
                         <div className={styles.rightSum}>
                             <div className={styles.sumCount}>
@@ -68,15 +68,15 @@ function ShoppingCart ({cartId, rec}) {
                                     <tbody>
                                         <tr>
                                             <th>Ваша корзина</th>
-                                            <td>{totalCount} товар * {totalWeight}гр</td>
+                                            <td>{total.count} товар * {total.weight}гр</td>
                                         </tr>
                                         <tr>
-                                            <td>Товары ({totalCount})</td>
-                                            <td className={styles.bolder}>{totalPrice} ₽</td>
+                                            <td>Товары ({total.count})</td>
+                                            <td className={styles.bolder}>{total.price} ₽</td>
                                         </tr>
                                         <tr>
                                             <td>Скидка</td>
-                                            <td className={`${styles.bolder} ${styles.red}`}>- {totalDiscount} ₽</td>
+                                            <td className={`${styles.bolder} ${styles.red}`}>- {total.discount} ₽</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -87,7 +87,7 @@ function ShoppingCart ({cartId, rec}) {
                                     <tbody>
                                         <tr>
                                             <th>Общая стоимость</th>
-                                            <th>{totalPrice} ₽</th>
+                                            <th>{total.totalPrice} ₽</th>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -111,6 +111,7 @@ CartItemList.propTypes = {
             name: PropTypes.string.isRequired,
             price: PropTypes.number.isRequired,
             weight: PropTypes.number.isRequired,
+            value: PropTypes.number.isRequired,
         })
     ),
 }

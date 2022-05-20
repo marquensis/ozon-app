@@ -1,300 +1,326 @@
 {
-    "imposters": [
-      {
-        "protocol": "http",
-        "port": 3001,
-        "recordRequests": false,
-        "stubs": [
-          {
-            "predicates": [
-              {
-                "equals": {
-                  "path": "/api/v1/goods",
-                  "query": {
-                    "page": 1
-                  }
+  "imposters": [
+    {
+      "protocol": "http",
+      "port": 3001,
+      "recordRequests": false,
+      "stubs": [
+        {
+          "predicates": [
+            {
+              "equals": {
+                "path": "/api/v1/goods",
+                "query": {
+                  "page": 1
                 }
               }
-            ],
-            "responses": [
-              {
-                "is": {
-                  "statusCode": 200,
-                  "headers": {
-                    "Content-Type": "application/json; charset=UTF-8"
-                  },
-                  "body": {
-                    "goods": [
-                      {
-                        "id": "1",
-                        "name": "Маска для сна",
-                        "color": "Голубой",
-                        "weight": 200,
-                        "image": "/img/1.jpg",
-                        "price": 150
-                      },
-                      {
-                        "id": "2",
-                        "name": "Игровая приставка",
-                        "color": "Белый",
-                        "weight": 3000,
-                        "image": "/img/2.jpg",
-                        "price": 300000
-                      },
-                      {
-                        "id": "3",
-                        "name": "Телефон POCO X3 Pro, новый телефон, флагман, новая модель, смартфон, прикол",
-                        "color": "Розовая жемчужина",
-                        "weight": 500,
-                        "image": "/img/3.jpg",
-                        "price": 33000
-                      },
-                      {
-                        "id": "4",
-                        "name": "Телефон POCO X3 Pro, новый телефон, флагман, новая модель, смартфон, прикол",
-                        "color": "Розовая жемчужина",
-                        "weight": 500,
-                        "image": "/img/3.jpg",
-                        "price": 33000
-                      },
-                      {
-                        "id": "5",
-                        "name": "Телефон POCO X3 Pro, новый телефон, флагман, новая модель, смартфон, прикол",
-                        "color": "Розовая жемчужина",
-                        "weight": 500,
-                        "image": "/img/3.jpg",
-                        "price": 33000
-                      },
-                      {
-                        "id": "6",
-                        "name": "Телефон POCO X3 Pro, новый телефон, флагман, новая модель, смартфон, прикол",
-                        "color": "Розовая жемчужина",
-                        "weight": 500,
-                        "image": "/img/3.jpg",
-                        "price": 33000
-                      },
-                      {
-                        "id": "7",
-                        "name": "Телефон POCO X3 Pro, новый телефон, флагман, новая модель, смартфон, прикол",
-                        "color": "Розовая жемчужина",
-                        "weight": 500,
-                        "image": "/img/3.jpg",
-                        "price": 33000
-                      },
-                      {
-                        "id": "8",
-                        "name": "Телефон POCO X3 Pro, новый телефон, флагман, новая модель, смартфон, прикол",
-                        "color": "Розовая жемчужина",
-                        "weight": 500,
-                        "image": "/img/3.jpg",
-                        "price": 33000
-                      },
-                      {
-                        "id": "9",
-                        "name": "Телефон POCO X3 Pro, новый телефон, флагман, новая модель, смартфон, прикол",
-                        "color": "Розовая жемчужина",
-                        "weight": 500,
-                        "image": "/img/3.jpg",
-                        "price": 33000
-                      },
-                      {
-                        "id": "10",
-                        "name": "Телефон POCO X3 Pro, новый телефон, флагман, новая модель, смартфон, прикол",
-                        "color": "Розовая жемчужина",
-                        "weight": 500,
-                        "image": "/img/3.jpg",
-                        "price": 33000
-                      },
-                      {
-                        "id": "11",
-                        "name": "Телефон POCO X3 Pro, новый телефон, флагман, новая модель, смартфон, прикол",
-                        "color": "Розовая жемчужина",
-                        "weight": 500,
-                        "image": "/img/3.jpg",
-                        "price": 33000
-                      },
-                      {
-                        "id": "12",
-                        "name": "Телефон POCO X3 Pro, новый телефон, флагман, новая модель, смартфон, прикол",
-                        "color": "Розовая жемчужина",
-                        "weight": 500,
-                        "image": "/img/3.jpg",
-                        "price": 33000
-                      },
-                      {
-                        "id": "13",
-                        "name": "Телефон POCO X3 Pro, новый телефон, флагман, новая модель, смартфон, прикол",
-                        "color": "Розовая жемчужина",
-                        "weight": 500,
-                        "image": "/img/3.jpg",
-                        "price": 33000
-                      },
-                      {
-                        "id": "14",
-                        "name": "Телефон POCO X3 Pro, новый телефон, флагман, новая модель, смартфон, прикол",
-                        "color": "Розовая жемчужина",
-                        "weight": 500,
-                        "image": "/img/3.jpg",
-                        "price": 33000
-                      },
-                      {
-                        "id": "15",
-                        "name": "Телефон POCO X3 Pro, новый телефон, флагман, новая модель, смартфон, прикол",
-                        "color": "Розовая жемчужина",
-                        "weight": 500,
-                        "image": "/img/3.jpg",
-                        "price": 33000
-                      },
-                      {
-                        "id": "16",
-                        "name": "Телефон POCO X3 Pro, новый телефон, флагман, новая модель, смартфон, прикол",
-                        "color": "Розовая жемчужина",
-                        "weight": 500,
-                        "image": "/img/3.jpg",
-                        "price": 33000
-                      },
-                      {
-                        "id": "17",
-                        "name": "Телефон POCO X3 Pro, новый телефон, флагман, новая модель, смартфон, прикол",
-                        "color": "Розовая жемчужина",
-                        "weight": 500,
-                        "image": "/img/3.jpg",
-                        "price": 33000
-                      },
-                      {
-                        "id": "18",
-                        "name": "Телефон POCO X3 Pro, новый телефон, флагман, новая модель, смартфон, прикол",
-                        "color": "Розовая жемчужина",
-                        "weight": 500,
-                        "image": "/img/3.jpg",
-                        "price": 33000
-                      },
-                      {
-                        "id": "19",
-                        "name": "Телефон POCO X3 Pro, новый телефон, флагман, новая модель, смартфон, прикол",
-                        "color": "Розовая жемчужина",
-                        "weight": 500,
-                        "image": "/img/3.jpg",
-                        "price": 33000
-                      },
-                      {
-                        "id": "20",
-                        "name": "Телефон POCO X3 Pro, новый телефон, флагман, новая модель, смартфон, прикол",
-                        "color": "Розовая жемчужина",
-                        "weight": 500,
-                        "image": "/img/3.jpg",
-                        "price": 33000
-                      }
-                    ],
-                    "_meta": {
-                      "totalCount": 23,
-                      "pageCount": 2,
-                      "currentPage": 1,
-                      "perPage": 20
+            }
+          ],
+          "responses": [
+            {
+              "is": {
+                "statusCode": 200,
+                "headers": {
+                  "Content-Type": "application/json; charset=UTF-8",
+                  "Access-Control-Allow-Origin": "*"
+                },
+                "body": {
+                  "goods": [
+                    {
+                      "id": "1",
+                      "name": "Маска для сна",
+                      "color": "Голубой",
+                      "weight": 200,
+                      "image": "/img/1.jpg",
+                      "price": 150,
+                      "value": 1
+                    },
+                    {
+                      "id": "2",
+                      "name": "Игровая приставка",
+                      "color": "Белый",
+                      "weight": 3000,
+                      "image": "/img/2.jpg",
+                      "price": 300000,
+                      "value": 1
+                    },
+                    {
+                      "id": "3",
+                      "name": "Телефон POCO X3 Pro, новый телефон, флагман, новая модель, смартфон, прикол",
+                      "color": "Розовая жемчужина",
+                      "weight": 500,
+                      "image": "/img/3.jpg",
+                      "price": 33000,
+                      "value": 1
+                    },
+                    {
+                      "id": "4",
+                      "name": "Телефон POCO X3 Pro, новый телефон, флагман, новая модель, смартфон, прикол",
+                      "color": "Розовая жемчужина",
+                      "weight": 500,
+                      "image": "/img/3.jpg",
+                      "price": 33000,
+                      "value": 1
+                    },
+                    {
+                      "id": "5",
+                      "name": "Телефон POCO X3 Pro, новый телефон, флагман, новая модель, смартфон, прикол",
+                      "color": "Розовая жемчужина",
+                      "weight": 500,
+                      "image": "/img/3.jpg",
+                      "price": 33000,
+                      "value": 1
+                    },
+                    {
+                      "id": "6",
+                      "name": "Телефон POCO X3 Pro, новый телефон, флагман, новая модель, смартфон, прикол",
+                      "color": "Розовая жемчужина",
+                      "weight": 500,
+                      "image": "/img/3.jpg",
+                      "price": 33000,
+                      "value": 1
+                    },
+                    {
+                      "id": "7",
+                      "name": "Телефон POCO X3 Pro, новый телефон, флагман, новая модель, смартфон, прикол",
+                      "color": "Розовая жемчужина",
+                      "weight": 500,
+                      "image": "/img/3.jpg",
+                      "price": 33000,
+                      "value": 1
+                    },
+                    {
+                      "id": "8",
+                      "name": "Телефон POCO X3 Pro, новый телефон, флагман, новая модель, смартфон, прикол",
+                      "color": "Розовая жемчужина",
+                      "weight": 500,
+                      "image": "/img/3.jpg",
+                      "price": 33000,
+                      "value": 1
+                    },
+                    {
+                      "id": "9",
+                      "name": "Телефон POCO X3 Pro, новый телефон, флагман, новая модель, смартфон, прикол",
+                      "color": "Розовая жемчужина",
+                      "weight": 500,
+                      "image": "/img/3.jpg",
+                      "price": 33000,
+                      "value": 1
+                    },
+                    {
+                      "id": "10",
+                      "name": "Телефон POCO X3 Pro, новый телефон, флагман, новая модель, смартфон, прикол",
+                      "color": "Розовая жемчужина",
+                      "weight": 500,
+                      "image": "/img/3.jpg",
+                      "price": 33000,
+                      "value": 1
+                    },
+                    {
+                      "id": "11",
+                      "name": "Телефон POCO X3 Pro, новый телефон, флагман, новая модель, смартфон, прикол",
+                      "color": "Розовая жемчужина",
+                      "weight": 500,
+                      "image": "/img/3.jpg",
+                      "price": 33000,
+                      "value": 1
+                    },
+                    {
+                      "id": "12",
+                      "name": "Телефон POCO X3 Pro, новый телефон, флагман, новая модель, смартфон, прикол",
+                      "color": "Розовая жемчужина",
+                      "weight": 500,
+                      "image": "/img/3.jpg",
+                      "price": 33000,
+                      "value": 1
+                    },
+                    {
+                      "id": "13",
+                      "name": "Телефон POCO X3 Pro, новый телефон, флагман, новая модель, смартфон, прикол",
+                      "color": "Розовая жемчужина",
+                      "weight": 500,
+                      "image": "/img/3.jpg",
+                      "price": 33000,
+                      "value": 1
+                    },
+                    {
+                      "id": "14",
+                      "name": "Телефон POCO X3 Pro, новый телефон, флагман, новая модель, смартфон, прикол",
+                      "color": "Розовая жемчужина",
+                      "weight": 500,
+                      "image": "/img/3.jpg",
+                      "price": 33000,
+                      "value": 1
+                    },
+                    {
+                      "id": "15",
+                      "name": "Телефон POCO X3 Pro, новый телефон, флагман, новая модель, смартфон, прикол",
+                      "color": "Розовая жемчужина",
+                      "weight": 500,
+                      "image": "/img/3.jpg",
+                      "price": 33000,
+                      "value": 1
+                    },
+                    {
+                      "id": "16",
+                      "name": "Телефон POCO X3 Pro, новый телефон, флагман, новая модель, смартфон, прикол",
+                      "color": "Розовая жемчужина",
+                      "weight": 500,
+                      "image": "/img/3.jpg",
+                      "price": 33000,
+                      "value": 1
+                    },
+                    {
+                      "id": "17",
+                      "name": "Телефон POCO X3 Pro, новый телефон, флагман, новая модель, смартфон, прикол",
+                      "color": "Розовая жемчужина",
+                      "weight": 500,
+                      "image": "/img/3.jpg",
+                      "price": 33000,
+                      "value": 1
+                    },
+                    {
+                      "id": "18",
+                      "name": "Телефон POCO X3 Pro, новый телефон, флагман, новая модель, смартфон, прикол",
+                      "color": "Розовая жемчужина",
+                      "weight": 500,
+                      "image": "/img/3.jpg",
+                      "price": 33000,
+                      "value": 1
+                    },
+                    {
+                      "id": "19",
+                      "name": "Телефон POCO X3 Pro, новый телефон, флагман, новая модель, смартфон, прикол",
+                      "color": "Розовая жемчужина",
+                      "weight": 500,
+                      "image": "/img/3.jpg",
+                      "price": 33000,
+                      "value": 1
+                    },
+                    {
+                      "id": "20",
+                      "name": "Телефон POCO X3 Pro, новый телефон, флагман, новая модель, смартфон, прикол",
+                      "color": "Розовая жемчужина",
+                      "weight": 500,
+                      "image": "/img/3.jpg",
+                      "price": 33000,
+                      "value": 1
                     }
+                  ],
+                  "_meta": {
+                    "totalCount": 23,
+                    "pageCount": 2,
+                    "currentPage": 1,
+                    "perPage": 20
                   }
                 }
               }
-            ]
-          },
-          {
-            "predicates": [
-              {
-                "equals": {
-                  "path": "/api/v1/goods",
-                  "query": {
-                    "page": 2
-                  }
+            }
+          ]
+        },
+        {
+          "predicates": [
+            {
+              "equals": {
+                "path": "/api/v1/goods",
+                "query": {
+                  "page": 2
                 }
               }
-            ],
-            "responses": [
-              {
-                "is": {
-                  "statusCode": 200,
-                  "headers": {
-                    "Content-Type": "application/json; charset=UTF-8"
-                  },
-                  "body": {
-                    "goods": [
-                      {
-                        "id": "21",
-                        "name": "Телефон POCO X3 Pro, новый телефон, флагман, новая модель, смартфон, прикол",
-                        "color": "Розовая жемчужина",
-                        "weight": 500,
-                        "image": "/img/3.jpg",
-                        "price": 33000
-                      },
-                      {
-                        "id": "22",
-                        "name": "Телефон POCO X3 Pro, новый телефон, флагман, новая модель, смартфон, прикол",
-                        "color": "Розовая жемчужина",
-                        "weight": 500,
-                        "image": "/img/3.jpg",
-                        "price": 33000
-                      },
-                      {
-                        "id": "23",
-                        "name": "Телефон POCO X3 Pro, новый телефон, флагман, новая модель, смартфон, прикол",
-                        "color": "Розовая жемчужина",
-                        "weight": 500,
-                        "image": "/img/3.jpg",
-                        "price": 33000
-                      }
-                    ],
-                    "_meta": {
-                      "totalCount": 23,
-                      "pageCount": 2,
-                      "currentPage": 2,
-                      "perPage": 20
+            }
+          ],
+          "responses": [
+            {
+              "is": {
+                "statusCode": 200,
+                "headers": {
+                  "Content-Type": "application/json; charset=UTF-8",
+                  "Access-Control-Allow-Origin": "*"
+                },
+                "body": {
+                  "goods": [
+                    {
+                      "id": "21",
+                      "name": "Телефон POCO X3 Pro, новый телефон, флагман, новая модель, смартфон, прикол",
+                      "color": "Розовая жемчужина",
+                      "weight": 500,
+                      "image": "/img/3.jpg",
+                      "price": 33000,
+                      "value": 1
+                    },
+                    {
+                      "id": "22",
+                      "name": "Телефон POCO X3 Pro, новый телефон, флагман, новая модель, смартфон, прикол",
+                      "color": "Розовая жемчужина",
+                      "weight": 500,
+                      "image": "/img/3.jpg",
+                      "price": 33000,
+                      "value": 1
+                    },
+                    {
+                      "id": "23",
+                      "name": "Телефон POCO X3 Pro, новый телефон, флагман, новая модель, смартфон, прикол",
+                      "color": "Розовая жемчужина",
+                      "weight": 500,
+                      "image": "/img/3.jpg",
+                      "price": 33000,
+                      "value": 1
                     }
+                  ],
+                  "_meta": {
+                    "totalCount": 23,
+                    "pageCount": 2,
+                    "currentPage": 2,
+                    "perPage": 20
                   }
                 }
               }
-            ]
-          },
-          {
-            "predicates": [
-              {
-                "equals": {
-                  "path": "/api/v1/cart"
-                }
+            }
+          ]
+        },
+        {
+          "predicates": [
+            {
+              "equals": {
+                "path": "/api/v1/cart"
               }
-            ],
-            "responses": [
-              {
-                "is": {
-                  "statusCode": 200,
-                  "headers": {
-                    "Content-Type": "application/json; charset=UTF-8"
-                  },
-                  "body": {
-                    "cart": [
-                      {
-                        "id": "1",
-                        "count" : 1
-                      },
-                      {
-                        "id": "20",
-                        "count" : 2
-                      },
-                      {
-                        "id": "23",
-                        "count" : 3
-                      }
-                    ],
-                    "_meta": {
-                      "totalCount": 3,
-                      "pageCount": 1,
-                      "currentPage": 1,
-                      "perPage": 20
+            }
+          ],
+          "responses": [
+            {
+              "is": {
+                "statusCode": 200,
+                "headers": {
+                  "Content-Type": "application/json; charset=UTF-8",
+                  "Access-Control-Allow-Origin": "*"
+                },
+                "body": {
+                  "cart": [
+                    {
+                      "id": "1",
+                      "count" : 1
+                    },
+                    {
+                      "id": "20",
+                      "count" : 2
+                    },
+                    {
+                      "id": "23",
+                      "count" : 3
                     }
+                  ],
+                  "_meta": {
+                    "totalCount": 3,
+                    "pageCount": 1,
+                    "currentPage": 1,
+                    "perPage": 20
                   }
                 }
               }
-            ]
-          }
-        ]
-      }
-    ]
-  }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

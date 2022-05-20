@@ -1,24 +1,11 @@
-import React, {useContext} from 'react';
+import React from 'react';
 import styles from './styles.module.css';
-import Logo from './ozon_logo.png';
-import ShowHideContext from '../../contexts/ContextView';
+import Modal from '../ModalBase/ModalBase';
 
 function LoginWindow () {
     
-    const {view, setView} = useContext(ShowHideContext);
-
-    const change = () => {
-        setView(view === 'hide' ? 'show' : 'hide');
-    }
     return (
-        <div className={styles.windowWrapper}>
-            <div className={styles.windowHead}>
-                <div className={styles.ozonLogo}>
-                        <img src={ Logo } alt="ozon-logo" />
-                        <span>ID</span>
-                </div>
-                <button type='close' onClick={change}>x</button>
-            </div>
+        <Modal>
             <div className={styles.windowText}>
                 <h3>Войдите по почте</h3>
                 <p>Только для зарегистрированных пользователей</p>
@@ -29,7 +16,7 @@ function LoginWindow () {
                     <button type="submit">Получить код</button>
                 </form>
             </div>
-        </div>
+        </Modal>
     )
 }
 

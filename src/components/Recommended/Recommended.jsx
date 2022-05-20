@@ -1,6 +1,5 @@
-import React, { useMemo } from "react";
+import React, { useEffect, useMemo } from "react";
 import styles from './styles.module.css';
-// import items from '../../fixtures/fixtures';
 import RecomendItem from '../RecomendItem/RecomendItem';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import "swiper/css";
@@ -27,9 +26,14 @@ function RecItemList ({list}) {
 }
 
 function RecommendedList ({rec}) {
-    const itemList = useMemo(() => rec.map((item) => {
-        return { ...item, ...{key: nanoid()} };
-    }), [rec]);
+    // const itemList = useMemo(() => rec.map((item) => {
+    //     return { ...item, ...{key: nanoid()} };
+    // }), [rec]);
+    const itemList = [];
+    useEffect(() => {
+        rec.map((item) => console.log(item));
+        console.log(itemList);
+    }, [rec])
     return (
         <div className={styles.recommended}>
             <div className={styles.content}>

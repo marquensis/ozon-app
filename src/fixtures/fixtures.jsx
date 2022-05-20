@@ -6,6 +6,7 @@ const recItems = [
         "weight": 200,
         "image": "/img/1.jpg",
         "price": 150,
+        "value": 1,
     },
     {
         "id": "2",
@@ -14,6 +15,7 @@ const recItems = [
         "weight": 3000,
         "image": "/img/2.jpg",
         "price": 300000,
+        "value": 1,
     },
     {
         "id": "3",
@@ -22,6 +24,7 @@ const recItems = [
         "weight": 500,
         "image": "/img/3.jpg",
         "price": 33000,
+        "value": 1,
     },
     {
         "id": "4",
@@ -30,6 +33,7 @@ const recItems = [
         "weight": 500,
         "image": "/img/3.jpg",
         "price": 33000,
+        "value": 1,
     },
     {
         "id": "5",
@@ -38,6 +42,7 @@ const recItems = [
         "weight": 500,
         "image": "/img/3.jpg",
         "price": 33000,
+        "value": 1,
     },
     {
         "id": "6",
@@ -46,6 +51,7 @@ const recItems = [
         "weight": 500,
         "image": "/img/3.jpg",
         "price": 33000,
+        "value": 1,
     },
     {
         "id": "7",
@@ -54,6 +60,7 @@ const recItems = [
         "weight": 500,
         "image": "/img/3.jpg",
         "price": 33000,
+        "value": 1,
     },
     {
         "id": "8",
@@ -62,6 +69,7 @@ const recItems = [
         "weight": 500,
         "image": "/img/3.jpg",
         "price": 33000,
+        "value": 1,
     },
     {
         "id": "9",
@@ -70,6 +78,7 @@ const recItems = [
         "weight": 500,
         "image": "/img/3.jpg",
         "price": 33000,
+        "value": 1,
     },
     {
         "id": "10",
@@ -78,6 +87,7 @@ const recItems = [
         "weight": 500,
         "image": "/img/3.jpg",
         "price": 33000,
+        "value": 1,
     },
     {
         "id": "11",
@@ -86,6 +96,7 @@ const recItems = [
         "weight": 500,
         "image": "/img/3.jpg",
         "price": 33000,
+        "value": 1,
     },
     {
         "id": "12",
@@ -94,6 +105,7 @@ const recItems = [
         "weight": 500,
         "image": "/img/3.jpg",
         "price": 33000,
+        "value": 1,
     },
     {
         "id": "13",
@@ -102,6 +114,7 @@ const recItems = [
         "weight": 500,
         "image": "/img/3.jpg",
         "price": 33000,
+        "value": 1,
     },
     {
         "id": "14",
@@ -110,6 +123,7 @@ const recItems = [
         "weight": 500,
         "image": "/img/3.jpg",
         "price": 33000,
+        "value": 1,
     },
     {
         "id": "15",
@@ -118,6 +132,7 @@ const recItems = [
         "weight": 500,
         "image": "/img/3.jpg",
         "price": 33000,
+        "value": 1,
     },
     {
         "id": "16",
@@ -126,6 +141,7 @@ const recItems = [
         "weight": 500,
         "image": "/img/3.jpg",
         "price": 33000,
+        "value": 1,
     },
     {
         "id": "17",
@@ -134,6 +150,7 @@ const recItems = [
         "weight": 500,
         "image": "/img/3.jpg",
         "price": 33000,
+        "value": 1,
     },
     {
         "id": "18",
@@ -142,6 +159,7 @@ const recItems = [
         "weight": 500,
         "image": "/img/3.jpg",
         "price": 33000,
+        "value": 1,
     },
     {
         "id": "19",
@@ -150,6 +168,7 @@ const recItems = [
         "weight": 500,
         "image": "/img/3.jpg",
         "price": 33000,
+        "value": 1,
     },
     {
         "id": "20",
@@ -158,6 +177,7 @@ const recItems = [
         "weight": 500,
         "image": "/img/3.jpg",
         "price": 33000,
+        "value": 1,
     },
     {
         "id": "21",
@@ -166,6 +186,7 @@ const recItems = [
         "weight": 500,
         "image": "/img/3.jpg",
         "price": 33000,
+        "value": 1,
     },
     {
         "id": "22",
@@ -174,6 +195,7 @@ const recItems = [
         "weight": 500,
         "image": "/img/3.jpg",
         "price": 33000,
+        "value": 1,
     },
     {
         "id": "23",
@@ -182,6 +204,7 @@ const recItems = [
         "weight": 500,
         "image": "/img/3.jpg",
         "price": 33000,
+        "value": 1,
     },
 ]
 export default recItems;

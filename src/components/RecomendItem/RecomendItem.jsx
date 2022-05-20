@@ -4,6 +4,7 @@ import Like from './like_icon.png';
 import PropTypes from 'prop-types';
 
 function RecomendItem ({item}) {
+    console.log(item);
     const price = item.price;
     const percent = 35;
     const discountPerc = useMemo(() => (price/100*percent), [price, percent]);

@@ -13,9 +13,6 @@ function AppHeader () {
     
     const {view, setView} = useContext(ShowHideContext);
 
-    const change = () => {
-        setView(view === 'hide' ? 'show' : 'hide');
-    }
     return (
         <div className={styles.navBar}>
             <div className={styles.content}>
@@ -36,7 +33,7 @@ function AppHeader () {
                     </form>
                 </div>
                 <div className={styles.navButtons}>
-                    <div className={styles.navButton} onClick={change}>
+                    <div className={styles.navButton} onClick={() => setView('show')}>
                         <img src={ Login } alt="Orders" />
                         <p>Войти</p>
                     </div>
