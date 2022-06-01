@@ -11,19 +11,44 @@ import CartChangesContext from "../../contexts/ContextCartChanges";
 function CartItemList ({list}) {
     return (
         <div className={styles.leftBody}>
-            {list.length && list.map((el) => (typeof(el) === 'object') ? <CartItem item={el} key={el.key}/> : '')}
+            {list.length && list.map((el) => (el.id !== undefined) ? <CartItem item={el} key={el.key}/> : '')}
         </div>
     );
 }
 
 function ShoppingCart ({cartId, rec}) {
-
-    // Создание списка товаров с учетом уникального айди и содержимого товара
+    const [values, setValue] = useState([]);
+    if (rec.length !== 0) {
+        setValue(rec.map(item => item));
+    }
+    const resetVal = (itemId, newVal) => {
+        const recid = rec.map(recVal => recVal.id);
+        setValue(values.map(item => {
+            for (itemId of recid) return {...item, value: newVal};
+        }));
+        console.log(values);
+    }
     const itemList = useMemo(() => cartId.map((item) => {
-        const equalId = rec.find(recVal => recVal.id === item.id);
-        return { ...item, ...equalId, ...{key: nanoid()} };
+        const equalId = rec.find(recVal => item.id === recVal.id);
+        
+        const value = (equalId === undefined) ? 0 : resetVal(item.id ,5);
+        const price = (equalId === undefined) ? 0 : equalId.price * value;
+        const weight = (equalId === undefined) ? 0 : equalId.weight * value;
+        const discount = (equalId === undefined) ? 0 : price / 100 * equalId.discount;
+        const totalPrice = (equalId === undefined) ? 0 : equalId.price - discount;
+        
+        return (equalId === undefined) ? {} : { 
+                 ...item, 
+                 ...equalId, 
+                 ...{key: nanoid()},
+                 ...{newvalue: value},
+                 ...{updatedPrice: price},
+                 ...{updatedWeight: weight},
+                 ...{updatedDiscount: discount},
+                 ...{totalPrice: totalPrice} 
+            };
     }), [cartId, rec]);
-
+    
     // Изменение итоговых значений в корзине
     const [total, setTotal] = useState({
         weight: itemList.reduce((prev, current) => { return prev + current.weight}, 0),
@@ -40,7 +65,7 @@ function ShoppingCart ({cartId, rec}) {
     const {view, setView} = useContext(ShowHideContext);
 
     return (
-        <CartChangesContext.Provider value={{total, setTotal}}>
+        <CartChangesContext.Provider value={{resetVal}}>
             <div className={styles.cart}>
                 <div className={styles.content}>
                     <div className={styles.cartHead}>
@@ -56,7 +81,7 @@ function ShoppingCart ({cartId, rec}) {
                                     <span className={styles.red}>Удалить выбранное</span>
                                 </div>
                             </div>
-                            <CartItemList list={itemList}/>
+                            <CartItemList list={itemList} />
                         </div>
                         <div className={styles.cartRight}>
                         <div className={styles.rightGreenButton}>
@@ -112,6 +137,11 @@ CartItemList.propTypes = {
             price: PropTypes.number.isRequired,
             weight: PropTypes.number.isRequired,
             value: PropTypes.number.isRequired,
+            discount: PropTypes.number.isRequired,
+            updatedPrice: PropTypes.number.isRequired,
+            updatedWeight: PropTypes.number.isRequired,
+            totalPrice: PropTypes.number.isRequired,
+            updatedDiscount: PropTypes.number.isRequired,
         })
     ),
 }
