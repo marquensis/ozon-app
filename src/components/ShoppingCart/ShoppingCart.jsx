@@ -1,41 +1,31 @@
-import React, { useMemo, useState, useContext } from "react";
+import React, { useMemo, useState, useContext, useEffect } from "react";
 import styles from './styles.module.css';
 import CartItem from '../CartItem/CartItem';
 import { nanoid } from 'nanoid';
-import PropTypes from 'prop-types';
+import PropTypes, { element } from 'prop-types';
 import RecommendedShapes from "../../shapes/RecShapes";
 import CartShapes from "../../shapes/CartShapes";
 import ShowHideContext from "../../contexts/ContextView";
 import CartChangesContext from "../../contexts/ContextCartChanges";
 
-function CartItemList ({list}) {
+function CartItemList ({list, resetVal}) {
     return (
         <div className={styles.leftBody}>
-            {list.length && list.map((el) => (el.id !== undefined) ? <CartItem item={el} key={el.key}/> : '')}
+            {list.length !== 0 && list.map((el) => (el.id !== undefined) ? <CartItem item={el} key={el.key} resetVal={resetVal}/> : '')}
         </div>
     );
 }
 
 function ShoppingCart ({cartId, rec}) {
-    const [values, setValue] = useState([]);
-    if (rec.length !== 0) {
-        setValue(rec.map(item => item));
-    }
-    const resetVal = (itemId, newVal) => {
-        const recid = rec.map(recVal => recVal.id);
-        setValue(values.map(item => {
-            for (itemId of recid) return {...item, value: newVal};
-        }));
-        console.log(values);
-    }
+
     const itemList = useMemo(() => cartId.map((item) => {
         const equalId = rec.find(recVal => item.id === recVal.id);
         
-        const value = (equalId === undefined) ? 0 : resetVal(item.id ,5);
+        const value = (equalId === undefined) ? 0 : equalId.value;
         const price = (equalId === undefined) ? 0 : equalId.price * value;
         const weight = (equalId === undefined) ? 0 : equalId.weight * value;
-        const discount = (equalId === undefined) ? 0 : price / 100 * equalId.discount;
-        const totalPrice = (equalId === undefined) ? 0 : equalId.price - discount;
+        const discount = (equalId === undefined) ? 0 : price * equalId.discount / 100;
+        const totalPrice = (equalId === undefined) ? 0 : price - discount;
         
         return (equalId === undefined) ? {} : { 
                  ...item, 
@@ -48,15 +38,23 @@ function ShoppingCart ({cartId, rec}) {
                  ...{totalPrice: totalPrice} 
             };
     }), [cartId, rec]);
+    console.log(itemList);
+
+    const resetVal = (itemId, newVal) => {
+        itemList.find(item => item.id === itemId).value = newVal;
+        console.log(itemList);
+    }
+    
     
     // Изменение итоговых значений в корзине
     const [total, setTotal] = useState({
-        weight: itemList.reduce((prev, current) => { return prev + current.weight}, 0),
-        count: itemList.reduce((prev, current) => { return prev + current.value}, 0),
-        price: itemList.reduce((prev, current) => { return prev + current.price}, 0),
-        totalPrice: itemList.reduce((prev, current) => { return prev + current.price}, 0),
+        weight: 0,
+        count: 0,
+        price: 0,
+        totalPrice: 0,
         discount: 0,
     });
+    // itemList.reduce((prev, current) => { return prev + current.value}, 0),
 
     // State меняющий значение в чекбоксе "Выбрать все"
     const [x, setX] = useState(true);
@@ -65,7 +63,7 @@ function ShoppingCart ({cartId, rec}) {
     const {view, setView} = useContext(ShowHideContext);
 
     return (
-        <CartChangesContext.Provider value={{resetVal}}>
+        <CartChangesContext.Provider value={{view}}>
             <div className={styles.cart}>
                 <div className={styles.content}>
                     <div className={styles.cartHead}>
@@ -81,7 +79,7 @@ function ShoppingCart ({cartId, rec}) {
                                     <span className={styles.red}>Удалить выбранное</span>
                                 </div>
                             </div>
-                            <CartItemList list={itemList} />
+                            <CartItemList list={itemList}  resetVal={resetVal}/>
                         </div>
                         <div className={styles.cartRight}>
                         <div className={styles.rightGreenButton}>

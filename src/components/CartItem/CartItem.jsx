@@ -1,7 +1,6 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import styles from './styles.module.css';
 import PropTypes from 'prop-types';
-import CartChangesContext from "../../contexts/ContextCartChanges";
 
 function OptionCount () {
     let option = [];
@@ -11,13 +10,15 @@ function OptionCount () {
     return option;
 }
 
-function CartItem ({item}) {
-
-    const [selects, setSelects] = useState(item.value);
+function CartItem ({item, resetVal}) {
     
-    const {resetVal} = useContext(CartChangesContext);
-    // setItemList({...item, value: selects})
-    resetVal(item.id, selects);
+    const [selects, setSelects] = useState(item.value);
+
+    const func = (event)=>{
+        setSelects(event.target.value);
+        resetVal(item.id, selects);
+    }
+   
 
     const [x, setX] = useState(true);
     return (
@@ -38,7 +39,7 @@ function CartItem ({item}) {
                 <select 
                     className={styles.select} 
                     value={selects} 
-                    onChange={(event) => setSelects(event.target.value)}>
+                    onChange={func}>
                     <OptionCount />
                 </select>
             </div>
