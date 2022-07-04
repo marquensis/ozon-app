@@ -18,33 +18,33 @@ function CartItemList ({list, resetVal}) {
 
 function ShoppingCart ({cartId, rec}) {
 
+    const valuesArr = [];
+    for (let i = 0; i < cartId.length; i ++){
+        valuesArr[i] = 1;
+    }
+    const [value, setValue] = useState(valuesArr);
+
     const itemList = useMemo(() => cartId.map((item) => {
         const equalId = rec.find(recVal => item.id === recVal.id);
-        
-        const value = (equalId === undefined) ? 0 : equalId.value;
-        const price = (equalId === undefined) ? 0 : equalId.price * value;
-        const weight = (equalId === undefined) ? 0 : equalId.weight * value;
-        const discount = (equalId === undefined) ? 0 : price * equalId.discount / 100;
-        const totalPrice = (equalId === undefined) ? 0 : price - discount;
-        
-        return (equalId === undefined) ? {} : { 
-                 ...item, 
-                 ...equalId, 
-                 ...{key: nanoid()},
-                 ...{newvalue: value},
-                 ...{updatedPrice: price},
-                 ...{updatedWeight: weight},
-                 ...{updatedDiscount: discount},
-                 ...{totalPrice: totalPrice} 
-            };
-    }), [cartId, rec]);
-    console.log(itemList);
+        const idx = cartId.findIndex(i => i === item);
+        const result = (equalId === undefined) ? {} : { 
+            ...item, 
+            ...equalId, 
+            ...{key: nanoid()},
+            ...{newvalue: value[idx]},
+            ...{updatedPrice: equalId.price * value[idx]},
+            ...{updatedWeight: equalId.weight * value[idx]},
+            ...{updatedDiscount: (equalId.price * value[idx]) * equalId.discount / 100},
+            ...{totalPrice: (equalId.price * value[idx]) - (equalId.price * value[idx]) * equalId.discount / 100}
+        };
+        return result;
 
+    }), [cartId, rec, value]);
+    console.log(value);
     const resetVal = (itemId, newVal) => {
-        itemList.find(item => item.id === itemId).value = newVal;
-        console.log(itemList);
+        setValue(value[itemId] = newVal);
+        console.log(value);
     }
-    
     
     // Изменение итоговых значений в корзине
     const [total, setTotal] = useState({

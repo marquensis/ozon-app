@@ -13,10 +13,9 @@ function OptionCount () {
 function CartItem ({item, resetVal}) {
     
     const [selects, setSelects] = useState(item.value);
-
     const func = (event)=>{
         setSelects(event.target.value);
-        resetVal(item.id, selects);
+        resetVal(item.id-1, +(event.target.value));
     }
    
 
