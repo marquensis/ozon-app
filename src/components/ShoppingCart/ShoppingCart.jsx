@@ -54,7 +54,6 @@ function ShoppingCart ({cartId, rec}) {
             }
             return val;
         })
-        console.log(newarr);
         setValue(newarr);
     }
     
@@ -66,7 +65,15 @@ function ShoppingCart ({cartId, rec}) {
         totalPrice: 0,
         discount: 0,
     });
-
+    useEffect(()=>{
+        setTotal({
+            weight: itemList.reduce((prev, current) => { return prev + current.updatedWeight}, 0),
+            count: itemList.reduce((prev, current) => { return prev + current.newvalue}, 0),
+            price: itemList.reduce((prev, current) => { return prev + current.updatedPrice}, 0),
+            totalPrice: itemList.reduce((prev, current) => { return prev + current.updatedDiscount}, 0),
+            discount: itemList.reduce((prev, current) => { return prev + current.totalPrice}, 0),
+        })
+    },[itemList])
     // itemList.reduce((prev, current) => { return prev + current.value}, 0),
 
     // State меняющий значение в чекбоксе "Выбрать все"
