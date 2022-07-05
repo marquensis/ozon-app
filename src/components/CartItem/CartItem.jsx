@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from './styles.module.css';
 import PropTypes from 'prop-types';
 
@@ -13,11 +13,11 @@ function OptionCount () {
 function CartItem ({item, resetVal}) {
     
     const [selects, setSelects] = useState(item.value);
-    const func = (event)=>{
+
+    const changeVal = (event) => {
+        resetVal(item.id, event.target.value);
         setSelects(event.target.value);
-        resetVal(item.id-1, +(event.target.value));
     }
-   
 
     const [x, setX] = useState(true);
     return (
@@ -38,7 +38,7 @@ function CartItem ({item, resetVal}) {
                 <select 
                     className={styles.select} 
                     value={selects} 
-                    onChange={func}>
+                    onChange={changeVal}>
                     <OptionCount />
                 </select>
             </div>

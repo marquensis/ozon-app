@@ -2,7 +2,7 @@ import React, { useMemo, useState, useContext, useEffect } from "react";
 import styles from './styles.module.css';
 import CartItem from '../CartItem/CartItem';
 import { nanoid } from 'nanoid';
-import PropTypes, { element } from 'prop-types';
+import PropTypes from 'prop-types';
 import RecommendedShapes from "../../shapes/RecShapes";
 import CartShapes from "../../shapes/CartShapes";
 import ShowHideContext from "../../contexts/ContextView";
@@ -22,7 +22,11 @@ function ShoppingCart ({cartId, rec}) {
     for (let i = 0; i < cartId.length; i ++){
         valuesArr[i] = 1;
     }
-    const [value, setValue] = useState(valuesArr);
+    const [value, setValue] = useState([]);
+
+    useEffect(()=>{
+        setValue(valuesArr);
+    },[])
 
     const itemList = useMemo(() => cartId.map((item) => {
         const equalId = rec.find(recVal => item.id === recVal.id);
@@ -40,10 +44,18 @@ function ShoppingCart ({cartId, rec}) {
         return result;
 
     }), [cartId, rec, value]);
-    console.log(value);
+    
+    // Функция изменения количества товаров
     const resetVal = (itemId, newVal) => {
-        setValue(value[itemId] = newVal);
-        console.log(value);
+        const newarr = value.reduce(function(){
+            const val = [];
+            for (let i=0; i<value.length; i++) {
+                val.push(i === itemId-1 ? +newVal : value[i]);
+            }
+            return val;
+        })
+        console.log(newarr);
+        setValue(newarr);
     }
     
     // Изменение итоговых значений в корзине
@@ -54,6 +66,7 @@ function ShoppingCart ({cartId, rec}) {
         totalPrice: 0,
         discount: 0,
     });
+
     // itemList.reduce((prev, current) => { return prev + current.value}, 0),
 
     // State меняющий значение в чекбоксе "Выбрать все"
