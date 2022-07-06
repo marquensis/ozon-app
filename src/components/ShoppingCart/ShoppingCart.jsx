@@ -20,42 +20,48 @@ function ShoppingCart ({cartId, rec}) {
 
     const valuesArr = [];
     for (let i = 0; i < cartId.length; i ++){
-        valuesArr[i] = 1;
+        valuesArr[i] = {id : cartId[i].id, value : 1};
     }
+
     const [value, setValue] = useState([]);
 
     useEffect(()=>{
         setValue(valuesArr);
     },[])
-
-    const itemList = useMemo(() => cartId.map((item) => {
+    const preList = useMemo(() => cartId.map((item) => {
         const equalId = rec.find(recVal => item.id === recVal.id);
-        const idx = cartId.findIndex(i => i === item);
         const result = (equalId === undefined) ? {} : { 
             ...item, 
             ...equalId, 
-            ...{key: nanoid()},
-            ...{newvalue: value[idx]},
-            ...{updatedPrice: equalId.price * value[idx]},
-            ...{updatedWeight: equalId.weight * value[idx]},
-            ...{updatedDiscount: (equalId.price * value[idx]) * equalId.discount / 100},
-            ...{totalPrice: (equalId.price * value[idx]) - (equalId.price * value[idx]) * equalId.discount / 100}
+            ...{key: nanoid()}
         };
         return result;
 
-    }), [cartId, rec, value]);
+    }), [cartId, rec]);
+
+    const itemList = useMemo(() => preList.map((item) => {
+        const val = value[item.id] !== undefined ? value[item.id].value : 1;
+        const result = { 
+            ...item, 
+            ...{newvalue: val},
+            ...{updatedPrice: item.price * val},
+            ...{updatedWeight: item.weight * val},
+            ...{updatedDiscount: (item.price * val) * item.discount / 100},
+            ...{totalPrice: (item.price * val) - (item.price * val) * item.discount / 100}
+        };
+        return result;
+
+    }), [value, preList]);
     
     // Функция изменения количества товаров
     const resetVal = (itemId, newVal) => {
-        const newarr = value.reduce(function(){
-            const val = [];
-            for (let i=0; i<value.length; i++) {
-                val.push(i === itemId-1 ? +newVal : value[i]);
-            }
-            return val;
-        })
+        const newarr = value;   
+        newarr.forEach((el, id) => {
+            itemId === newarr[id].id ? value[id].value=+newVal : value[id].value=el.value;
+        });
         setValue(newarr);
-    }
+    };
+    console.log(value);
     
     // Изменение итоговых значений в корзине
     const [total, setTotal] = useState({
@@ -65,6 +71,7 @@ function ShoppingCart ({cartId, rec}) {
         totalPrice: 0,
         discount: 0,
     });
+
     useEffect(()=>{
         setTotal({
             weight: itemList.reduce((prev, current) => { return prev + current.updatedWeight}, 0),
@@ -74,7 +81,6 @@ function ShoppingCart ({cartId, rec}) {
             discount: itemList.reduce((prev, current) => { return prev + current.totalPrice}, 0),
         })
     },[itemList])
-    // itemList.reduce((prev, current) => { return prev + current.value}, 0),
 
     // State меняющий значение в чекбоксе "Выбрать все"
     const [x, setX] = useState(true);
