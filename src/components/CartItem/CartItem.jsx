@@ -1,7 +1,6 @@
-import React, { useState, useMemo, useCallback, useContext } from "react";
+import React, { useEffect, useState } from "react";
 import styles from './styles.module.css';
 import PropTypes from 'prop-types';
-import CartChangesContext from "../../contexts/ContextCartChanges";
 
 function OptionCount () {
     let option = [];
@@ -11,15 +10,16 @@ function OptionCount () {
     return option;
 }
 
-function CartItem ({item}) { 
+function CartItem ({item, resetVal}) {
+    
     const [selects, setSelects] = useState(item.value);
-    const price = useMemo(() => item.price*selects, [item, selects]);
-    const updatedWeight = useMemo(() => item.weight*selects, [item, selects]);
-    const discount = useMemo(() => (price/100*35), [price]);
-    const afterDiscount = useMemo(() => (price - discount), [price, discount]);
+
+    const changeVal = (event) => {
+        resetVal(item.id, event.target.value);
+        setSelects(event.target.value);
+    }
+
     const [x, setX] = useState(true);
-
-
     return (
         <div className={styles.cartItemWrapper}>
             <div className={styles.itemDescription}>
@@ -27,18 +27,18 @@ function CartItem ({item}) {
                 <img src={item.image} alt={item.name} />    
                 <div>
                     <h3>{item.name}</h3>
-                    <p className={styles.lightGray}>цвет {item.color}, {updatedWeight}гр</p>
+                    <p className={styles.lightGray}>цвет {item.color}, {item.updatedWeight}гр</p>
                 </div>
             </div>
             <div className={styles.itemPrice}>  
-                <h3 className={styles.bold}>{afterDiscount} ₽</h3>
-                <h3 className={styles.red}><span>{price} ₽</span> Скидка {discount} ₽</h3>
+                <h3 className={styles.bold}>{item.totalPrice} ₽</h3>
+                <h3 className={styles.red}><span>{item.updatedPrice} ₽</span> Скидка {item.updatedDiscount} ₽</h3>
             </div>
             <div className={styles.itemCount}>
                 <select 
                     className={styles.select} 
                     value={selects} 
-                    onChange={(e) => setSelects(e.target.value)}>
+                    onChange={changeVal}>
                     <OptionCount />
                 </select>
             </div>
@@ -57,6 +57,11 @@ CartItem.propTypes = {
         price: PropTypes.number.isRequired,
         weight: PropTypes.number.isRequired,
         value: PropTypes.number.isRequired,
+        discount: PropTypes.number.isRequired,
+        updatedPrice: PropTypes.number.isRequired,
+        updatedWeight: PropTypes.number.isRequired,
+        updatedDiscount: PropTypes.number.isRequired,
+        totalPrice: PropTypes.number.isRequired,
     }),
 }
 
