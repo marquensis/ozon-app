@@ -1,6 +1,5 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useState } from "react";
 import styles from './styles.module.css';
-// import items from '../../fixtures/fixtures';
 import RecomendItem from '../RecomendItem/RecomendItem';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import "swiper/css";
@@ -28,7 +27,7 @@ function RecItemList ({list}) {
 
 function RecommendedList ({rec}) {
     const itemList = useMemo(() => rec.map((item) => {
-        return { ...item, ...{key: nanoid()} };
+        return { ...item, ...{key: nanoid()}, ...{totalPrice: item.price - (item.price / 100 * item.discount)} };
     }), [rec]);
     return (
         <div className={styles.recommended}>
@@ -48,7 +47,9 @@ RecItemList.propTypes = {
             key: PropTypes.string.isRequired,
             name: PropTypes.string.isRequired,
             price: PropTypes.number.isRequired,
-            weight: PropTypes.string.isRequired,
+            weight: PropTypes.number.isRequired,
+            discount: PropTypes.number.isRequired,
+            totalPrice: PropTypes.number.isRequired,
         })
     ),
 }

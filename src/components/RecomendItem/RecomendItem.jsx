@@ -4,19 +4,15 @@ import Like from './like_icon.png';
 import PropTypes from 'prop-types';
 
 function RecomendItem ({item}) {
-    const price = item.price;
-    const percent = 35;
-    const discountPerc = useMemo(() => (price/100*percent), [price, percent]);
-    const redPrice =useMemo(() =>  price - discountPerc, [price, discountPerc]);
     return (
         <div className={styles.recomItemWrapper}>
             <div className={styles.topWrap}>
                 <div className={styles.like}><img src={ Like } alt='like' /></div>
-                <span>- {percent}%</span>
+                <span>- {item.discount}%</span>
                 <div className={styles.recImage}><img src={item.image} alt={item.name} /></div>
             </div>
             <div className={styles.midWrap}>
-                <p className={styles.price}>{redPrice} ₽ <span>{price} ₽</span></p>
+                <p className={styles.price}>{item.totalPrice} ₽ <span>{item.price} ₽</span></p>
                 <p>{item.name}</p>
                 <span>★★★★★</span>
             </div>
@@ -35,7 +31,9 @@ RecomendItem.propTypes = {
         key: PropTypes.string.isRequired,
         name: PropTypes.string.isRequired,
         price: PropTypes.number.isRequired,
-        weight: PropTypes.string.isRequired,
+        weight: PropTypes.number.isRequired,
+        discount: PropTypes.number.isRequired,
+        totalPrice: PropTypes.number.isRequired,
     }),
 }
 

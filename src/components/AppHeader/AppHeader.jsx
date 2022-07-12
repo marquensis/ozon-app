@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import styles from './styles.module.css';
 import CountItems from '../constants';
 import Like from './like_icon.png';
@@ -6,9 +6,13 @@ import Orders from './orders_icon.png';
 import Logo from './ozon_logo.png';
 import Search from './search_icon.png';
 import Shopbag from './shopbag_icon.png';
+import Login from './login_icon.png';
+import ShowHideContext from "../../contexts/ContextView";
 
 function AppHeader () {
     
+    const {view, setView} = useContext(ShowHideContext);
+
     return (
         <div className={styles.navBar}>
             <div className={styles.content}>
@@ -29,6 +33,10 @@ function AppHeader () {
                     </form>
                 </div>
                 <div className={styles.navButtons}>
+                    <div className={styles.navButton} onClick={() => setView('show')}>
+                        <img src={ Login } alt="Orders" />
+                        <p>Войти</p>
+                    </div>
                     <div className={styles.navButton}>
                         <img src={ Orders } alt="Orders" />
                         <p>Заказы</p>
