@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import styles from './styles.module.css';
 import PropTypes from 'prop-types';
 
-function OptionCount () {
+function OptionCount ({count}) {
     let option = [];
     for (let i = 1; i <= 10; i++) {
       option.push(<option value={i} key={i}>{i}</option>);
@@ -11,8 +11,8 @@ function OptionCount () {
 }
 
 function CartItem ({item, resetVal}) {
-    
-    const [selects, setSelects] = useState(item.value);
+
+    const [selects, setSelects] = useState(item.count);
 
     const changeVal = (event) => {
         resetVal(item.id, event.target.value);
@@ -24,22 +24,22 @@ function CartItem ({item, resetVal}) {
         <div className={styles.cartItemWrapper}>
             <div className={styles.itemDescription}>
                 <div><input type="checkbox" checked={x} onChange={() => setX(!x)} /></div>
-                <img src={item.image} alt={item.name} />    
+                <img src={item.image} alt={item.name} />
                 <div>
                     <h3>{item.name}</h3>
                     <p className={styles.lightGray}>цвет {item.color}, {item.updatedWeight}гр</p>
                 </div>
             </div>
-            <div className={styles.itemPrice}>  
+            <div className={styles.itemPrice}>
                 <h3 className={styles.bold}>{item.totalPrice} ₽</h3>
                 <h3 className={styles.red}><span>{item.updatedPrice} ₽</span> Скидка {item.updatedDiscount} ₽</h3>
             </div>
             <div className={styles.itemCount}>
-                <select 
-                    className={styles.select} 
-                    value={selects} 
+                <select
+                    className={styles.select}
+                    value={selects}
                     onChange={changeVal}>
-                    <OptionCount />
+                    <OptionCount count={item.count}/>
                 </select>
             </div>
         </div>

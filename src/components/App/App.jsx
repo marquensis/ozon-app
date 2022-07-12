@@ -21,7 +21,7 @@ function App () {
     const [allItems, setAllItems] = useState([]);
     const [cartItemsId, setCartItemsId] = useState([]);
 
-    
+
     const [er, setEr] = useState();
     // Получение списка товаров по апи
     const getAllItems = async () => {
@@ -75,7 +75,7 @@ function App () {
                                                                             <LoginWindow />
                                                                             <AppHeader/>
                                                                             <AllItemsContext.Provider value={allItems}>
-                                                                                <ShoppingCart cartId={cartItemsId} rec={allItems}/>
+                                                                                <ShoppingCart cartId={cartItemsId}/>
                                                                                 <RecommendedList rec={allItems}/>
                                                                             </AllItemsContext.Provider>
                                                                         </ShowHideContext.Provider>}
