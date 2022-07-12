@@ -61,7 +61,6 @@ function ShoppingCart ({cartId, rec}) {
         });
         setValue(newarr);
     };
-    console.log(value);
     
     // Изменение итоговых значений в корзине
     const [total, setTotal] = useState({
