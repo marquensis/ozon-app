@@ -1,10 +1,45 @@
-{"level":"info","message":"[mb:2525] mountebank v2.6.0 now taking orders - point your browser to http://localhost:2525/ for help","timestamp":"2022-07-12T09:51:14.822Z"}
-{"level":"info","message":"[mb:2525] PUT /imposters","timestamp":"2022-07-12T09:51:14.885Z"}
-{"level":"info","message":"[http:3001] Open for business...","timestamp":"2022-07-12T09:51:14.916Z"}
-{"level":"info","message":"[http:3001] ::1:44144 => GET /api/v1/goods?page=1","timestamp":"2022-07-12T09:51:17.837Z"}
-{"level":"info","message":"[http:3001] ::1:44146 => GET /api/v1/cart","timestamp":"2022-07-12T09:51:17.852Z"}
-{"level":"info","message":"[http:3001] ::1:44148 => GET /api/v1/goods?page=2","timestamp":"2022-07-12T09:51:17.997Z"}
-{"level":"info","message":"[http:3001] ::1:44150 => GET /api/v1/goods?page=1","timestamp":"2022-07-12T09:51:18.011Z"}
-{"level":"info","message":"[http:3001] ::1:44152 => GET /api/v1/goods?page=1","timestamp":"2022-07-12T09:51:18.019Z"}
-{"level":"info","message":"[http:3001] ::1:44154 => GET /api/v1/goods?page=2","timestamp":"2022-07-12T09:51:18.284Z"}
-{"level":"info","message":"[http:3001] ::1:44156 => GET /api/v1/goods?page=2","timestamp":"2022-07-12T09:51:18.303Z"}
+{"level":"info","message":"[mb:2525] mountebank v2.6.0 now taking orders - point your browser to http://localhost:2525/ for help","timestamp":"2022-07-15T06:10:19.628Z"}
+{"level":"info","message":"[mb:2525] PUT /imposters","timestamp":"2022-07-15T06:10:19.726Z"}
+{"level":"info","message":"[http:3001] Open for business...","timestamp":"2022-07-15T06:10:19.759Z"}
+{"level":"info","message":"[http:3001] ::1:43896 => GET /api/v1/goods?page=1","timestamp":"2022-07-15T06:10:37.464Z"}
+{"level":"info","message":"[http:3001] ::1:43898 => GET /api/v1/cart","timestamp":"2022-07-15T06:10:37.477Z"}
+{"level":"info","message":"[http:3001] ::1:43900 => GET /api/v1/goods?page=2","timestamp":"2022-07-15T06:10:37.493Z"}
+{"level":"info","message":"[http:3001] ::1:43902 => GET /api/v1/goods?page=1","timestamp":"2022-07-15T06:10:37.637Z"}
+{"level":"info","message":"[http:3001] ::1:43904 => GET /api/v1/goods?page=1","timestamp":"2022-07-15T06:10:37.645Z"}
+{"level":"info","message":"[http:3001] ::1:43906 => GET /api/v1/goods?page=2","timestamp":"2022-07-15T06:10:37.697Z"}
+{"level":"info","message":"[http:3001] ::1:43908 => GET /api/v1/goods?page=2","timestamp":"2022-07-15T06:10:37.710Z"}
+{"level":"info","message":"[http:3001] ::1:43910 => GET /api/v1/goods?page=1","timestamp":"2022-07-15T06:11:21.800Z"}
+{"level":"info","message":"[http:3001] ::1:43912 => GET /api/v1/cart","timestamp":"2022-07-15T06:11:21.805Z"}
+{"level":"info","message":"[http:3001] ::1:43914 => GET /api/v1/goods?page=2","timestamp":"2022-07-15T06:11:21.821Z"}
+{"level":"info","message":"[http:3001] ::1:43916 => GET /api/v1/goods?page=1","timestamp":"2022-07-15T06:11:21.835Z"}
+{"level":"info","message":"[http:3001] ::1:43918 => GET /api/v1/goods?page=1","timestamp":"2022-07-15T06:11:21.862Z"}
+{"level":"info","message":"[http:3001] ::1:43920 => GET /api/v1/goods?page=2","timestamp":"2022-07-15T06:11:22.131Z"}
+{"level":"info","message":"[http:3001] ::1:43922 => GET /api/v1/goods?page=2","timestamp":"2022-07-15T06:11:22.142Z"}
+{"level":"info","message":"[http:3001] ::1:43924 => GET /api/v1/goods?page=1","timestamp":"2022-07-15T06:11:44.759Z"}
+{"level":"info","message":"[http:3001] ::1:43926 => GET /api/v1/cart","timestamp":"2022-07-15T06:11:44.765Z"}
+{"level":"info","message":"[http:3001] ::1:43928 => GET /api/v1/goods?page=2","timestamp":"2022-07-15T06:11:44.808Z"}
+{"level":"info","message":"[http:3001] ::1:43930 => GET /api/v1/goods?page=1","timestamp":"2022-07-15T06:11:44.817Z"}
+{"level":"info","message":"[http:3001] ::1:43932 => GET /api/v1/goods?page=1","timestamp":"2022-07-15T06:11:44.839Z"}
+{"level":"info","message":"[http:3001] ::1:43934 => GET /api/v1/goods?page=2","timestamp":"2022-07-15T06:11:45.091Z"}
+{"level":"info","message":"[http:3001] ::1:43936 => GET /api/v1/goods?page=2","timestamp":"2022-07-15T06:11:45.104Z"}
+{"level":"info","message":"[http:3001] ::1:43938 => GET /api/v1/goods?page=1","timestamp":"2022-07-15T06:12:08.426Z"}
+{"level":"info","message":"[http:3001] ::1:43940 => GET /api/v1/cart","timestamp":"2022-07-15T06:12:08.436Z"}
+{"level":"info","message":"[http:3001] ::1:43942 => GET /api/v1/goods?page=2","timestamp":"2022-07-15T06:12:08.468Z"}
+{"level":"info","message":"[http:3001] ::1:43944 => GET /api/v1/goods?page=1","timestamp":"2022-07-15T06:12:08.501Z"}
+{"level":"info","message":"[http:3001] ::1:43946 => GET /api/v1/goods?page=1","timestamp":"2022-07-15T06:12:08.514Z"}
+{"level":"info","message":"[http:3001] ::1:43948 => GET /api/v1/goods?page=2","timestamp":"2022-07-15T06:12:08.730Z"}
+{"level":"info","message":"[http:3001] ::1:43950 => GET /api/v1/goods?page=2","timestamp":"2022-07-15T06:12:08.747Z"}
+{"level":"info","message":"[http:3001] ::1:43952 => GET /api/v1/goods?page=1","timestamp":"2022-07-15T06:13:03.416Z"}
+{"level":"info","message":"[http:3001] ::1:43954 => GET /api/v1/cart","timestamp":"2022-07-15T06:13:03.423Z"}
+{"level":"info","message":"[http:3001] ::1:43956 => GET /api/v1/goods?page=2","timestamp":"2022-07-15T06:13:03.463Z"}
+{"level":"info","message":"[http:3001] ::1:43958 => GET /api/v1/goods?page=1","timestamp":"2022-07-15T06:13:03.495Z"}
+{"level":"info","message":"[http:3001] ::1:43960 => GET /api/v1/goods?page=1","timestamp":"2022-07-15T06:13:03.506Z"}
+{"level":"info","message":"[http:3001] ::1:43962 => GET /api/v1/goods?page=2","timestamp":"2022-07-15T06:13:03.719Z"}
+{"level":"info","message":"[http:3001] ::1:43964 => GET /api/v1/goods?page=2","timestamp":"2022-07-15T06:13:03.728Z"}
+{"level":"info","message":"[http:3001] ::1:43968 => GET /api/v1/goods?page=1","timestamp":"2022-07-15T06:13:31.295Z"}
+{"level":"info","message":"[http:3001] ::1:43970 => GET /api/v1/cart","timestamp":"2022-07-15T06:13:31.301Z"}
+{"level":"info","message":"[http:3001] ::1:43972 => GET /api/v1/goods?page=2","timestamp":"2022-07-15T06:13:31.332Z"}
+{"level":"info","message":"[http:3001] ::1:43974 => GET /api/v1/goods?page=1","timestamp":"2022-07-15T06:13:31.346Z"}
+{"level":"info","message":"[http:3001] ::1:43976 => GET /api/v1/goods?page=1","timestamp":"2022-07-15T06:13:31.358Z"}
+{"level":"info","message":"[http:3001] ::1:43978 => GET /api/v1/goods?page=2","timestamp":"2022-07-15T06:13:31.614Z"}
+{"level":"info","message":"[http:3001] ::1:43980 => GET /api/v1/goods?page=2","timestamp":"2022-07-15T06:13:31.623Z"}

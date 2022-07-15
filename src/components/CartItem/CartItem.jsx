@@ -1,16 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import styles from './styles.module.css';
 import PropTypes from 'prop-types';
 
-function OptionCount () {
+
+function CartItem ({item, resetVal}) {
+
     let option = [];
+
     for (let i = 1; i <= 10; i++) {
       option.push(<option value={i} key={i}>{i}</option>);
     }
-    return option;
-}
-
-function CartItem ({item, resetVal}) {
     
     const [selects, setSelects] = useState(item.value);
 
@@ -39,7 +38,7 @@ function CartItem ({item, resetVal}) {
                     className={styles.select} 
                     value={selects} 
                     onChange={changeVal}>
-                    <OptionCount />
+                    {option}
                 </select>
             </div>
         </div>

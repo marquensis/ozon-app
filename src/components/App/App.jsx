@@ -75,7 +75,7 @@ function App () {
                                                                             <LoginWindow />
                                                                             <AppHeader/>
                                                                             <AllItemsContext.Provider value={allItems}>
-                                                                                <ShoppingCart cartId={cartItemsId} rec={allItems}/>
+                                                                                <ShoppingCart cartId={cartItemsId}/>
                                                                                 <RecommendedList rec={allItems}/>
                                                                             </AllItemsContext.Provider>
                                                                         </ShowHideContext.Provider>}
