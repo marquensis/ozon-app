@@ -11,7 +11,7 @@ import ShowHideContext from "../../contexts/ContextView";
 
 function AppHeader () {
     
-    const {view, setView} = useContext(ShowHideContext);
+    const {isModalOpen, setIsModalOpen} = useContext(ShowHideContext);
 
     return (
         <div className={styles.navBar}>
@@ -33,7 +33,7 @@ function AppHeader () {
                     </form>
                 </div>
                 <div className={styles.navButtons}>
-                    <div className={styles.navButton} onClick={() => setView('show')}>
+                    <div className={styles.navButton} onClick={() => setIsModalOpen(true)}>
                         <img src={ Login } alt="Orders" />
                         <p>Войти</p>
                     </div>

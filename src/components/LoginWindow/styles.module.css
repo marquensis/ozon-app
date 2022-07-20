@@ -23,12 +23,14 @@
     width: 30px;
     height: 30px;
     font-size: 24px;
-}
+} */
 
 .ozonLogo {
+    width: max-content;
     display: flex;
     flex-direction: row;
     align-items: center;
+    margin-top: -75px;
 }
 
 .ozonLogo img {
@@ -40,7 +42,7 @@
     font-size: 40px;
     margin-left: 10px;
     cursor:default;
-} */
+}
 
 .windowText h3 {
     font-weight: bolder;

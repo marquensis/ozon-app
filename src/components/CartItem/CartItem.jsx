@@ -18,11 +18,11 @@ function CartItem ({item, resetVal}) {
         setSelects(event.target.value);
     }
 
-    const [x, setX] = useState(true);
+    const [checkbox, setCheckbox] = useState(true);
     return (
         <div className={styles.cartItemWrapper}>
             <div className={styles.itemDescription}>
-                <div><input type="checkbox" checked={x} onChange={() => setX(!x)} /></div>
+                <div><input type="checkbox" checked={checkbox} onChange={() => setCheckbox(!checkbox)} /></div>
                 <img src={item.image} alt={item.name} />    
                 <div>
                     <h3>{item.name}</h3>

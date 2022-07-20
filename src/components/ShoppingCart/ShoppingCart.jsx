@@ -10,8 +10,8 @@ import AllItemsContext from "../../contexts/ContextAllItems";
 
 function ShoppingCart ({cartId}) {
 
-    const rec = useContext(AllItemsContext)
-    const [cartItems, setCartItems] = useState([])
+    const recItems = useContext(AllItemsContext);
+    const [cartItems, setCartItems] = useState([]);
     const [total, setTotal] = useState({
         weight: 0,
         count: 0,
@@ -22,10 +22,10 @@ function ShoppingCart ({cartId}) {
 
         //useMemo(() => {
     useEffect(() => {
-        if (cartId && rec) {
+        if (cartId && recItems) {
             setCartItems(cartId.map((item) => {
 
-                const equalId = rec.find(recVal => item.id === recVal.id);
+                const equalId = recItems.find(recVal => item.id === recVal.id);
                 const result = (equalId === undefined) ? {} : {
                     ...item,
                     ...equalId,
@@ -57,7 +57,7 @@ function ShoppingCart ({cartId}) {
                 }, 0),
             })
         }
-    }, [cartId, rec] );
+    }, [cartId, recItems] );
 
     // Функция изменения количества товаров
     const resetVal = (itemId, newVal) => {
@@ -75,7 +75,7 @@ function ShoppingCart ({cartId}) {
                 return prev + current.updatedWeight
             }, 0),
             count: cartItems.reduce((prev, current) => {
-                return prev + current.value
+                return prev + current.count
             }, 0),
             price: cartItems.reduce((prev, current) => {
                 return prev + current.updatedPrice
@@ -91,13 +91,13 @@ function ShoppingCart ({cartId}) {
     };
 
     // State меняющий значение в чекбоксе "Выбрать все"
-    const [x, setX] = useState(true);
+    const [checkbox, setCheckbox] = useState(true);
 
     // Кнопка открытия логин окна
-    const {view, setView} = useContext(ShowHideContext);
+    const {isModalOpen, setIsModalOpen} = useContext(ShowHideContext);
 
     return (
-        <CartChangesContext.Provider value={{view}}>
+        <CartChangesContext.Provider value={{isModalOpen}}>
             <div className={styles.cart}>
                 <div className={styles.content}>
                     <div className={styles.cartHead}>
@@ -108,7 +108,7 @@ function ShoppingCart ({cartId}) {
                         <div className={styles.cartLeft}>
                             <div className={styles.leftHead}>
                                 <div className={styles.headWrapper}>
-                                    <input type="checkbox" checked={x} onChange={() => setX(!x)} />
+                                    <input type="checkbox" checked={checkbox} onChange={() => setCheckbox(!checkbox)} />
                                     <span>Выбрать все</span>
                                     <span className={styles.red}>Удалить выбранное</span>
                                 </div>
@@ -120,7 +120,7 @@ function ShoppingCart ({cartId}) {
                         </div>
                         <div className={styles.cartRight}>
                         <div className={styles.rightGreenButton}>
-                            <button onClick={() => setView('show')}>Перейти к оформлению</button>
+                            <button onClick={() => setIsModalOpen(true)}>Перейти к оформлению</button>
                         </div>
                         <div className={styles.rightSum}>
                             <div className={styles.sumCount}>

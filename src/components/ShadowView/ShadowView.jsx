@@ -3,11 +3,13 @@ import styles from './styles.module.css';
 import ShowHideContext from "../../contexts/ContextView";
 
 function ShadowView(props) {
-    const {view, setView} = useContext(ShowHideContext);
+    
+    const {isModalOpen, setIsModalOpen} = useContext(ShowHideContext);
+    const showHide = isModalOpen === true ? 'show' : 'hide'
 
     return(
-        <div className={styles[view]}>
-            <div className={styles.click} onClick={() => setView('hide')}></div>
+        <div className={styles[showHide]}>
+            <div className={styles.click} onClick={() => setIsModalOpen(false)}></div>
             {props.children}
         </div>
     )

@@ -1,10 +1,10 @@
 import React from "react";
 import styles from './styles.module.css';
 
-function Preloader(er) {
+function Preloader(error) {
     return (
         <div>
-            {er ? <h1 className={styles.bad}>502 Bad Gateway</h1> : <div className={styles.loaderWrapper}><div className={styles.loader}>Идет загрузка ваших товаров. Подождите...</div></div>}
+            {error ? <h1 className={styles.bad}>Сервер не отвечает. Пожалуйста, попробуйте позже...</h1> : <div className={styles.loaderWrapper}><div className={styles.loader}>Идет загрузка ваших товаров. Подождите...</div></div>}
         </div>
     )
 }

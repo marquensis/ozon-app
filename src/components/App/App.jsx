@@ -22,7 +22,7 @@ function App () {
     const [cartItemsId, setCartItemsId] = useState([]);
 
     
-    const [er, setEr] = useState();
+    const [error, setError] = useState();
     // Получение списка товаров по апи
     const getAllItems = async () => {
         const results = [];
@@ -39,26 +39,27 @@ function App () {
             setRemoveRenderItems(true);
             return setAllItems(results);
         } catch (error) {
-            setEr(error.message);
+            setError(error.message);
         }
     }
 
     // Получение списка айди по апи
     const getCartItemId = async () => {
-        const results = [];
+        let results = [];
         try {
             const response = await fetch(`http://localhost:3001/api/v1/cart`);
             let data = await response.json();
-            results.push(...data.cart);
+            const ids = data.cart.map(o => o.id);
+            results = data.cart.filter(({id}, index) => !ids.includes(id, index + 1)).sort((a,b) => a.id > b.id ? -1 : 1);
             setRemoveRenderIds(true);
             return setCartItemsId(results);
         } catch (error) {
-            setEr(error.message);
+            setError(error.message);
         }
     }
 
     // Изменение состояния модалки с логином
-    const [view, setView] = useState('hide');
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
 
     if (!removeRenderItems) {
@@ -71,14 +72,17 @@ function App () {
 
     return (
         <>
-            {(!removeRenderIds || !removeRenderItems) ? <Preloader er={er} /> : <ShowHideContext.Provider value={{view, setView}}>
-                                                                            <LoginWindow />
-                                                                            <AppHeader/>
-                                                                            <AllItemsContext.Provider value={allItems}>
-                                                                                <ShoppingCart cartId={cartItemsId}/>
-                                                                                <RecommendedList rec={allItems}/>
-                                                                            </AllItemsContext.Provider>
-                                                                        </ShowHideContext.Provider>}
+            {(!removeRenderIds || !removeRenderItems) ? 
+                <Preloader error={error} /> : 
+                <ShowHideContext.Provider value={{isModalOpen, setIsModalOpen}}>
+                    <LoginWindow />
+                    <AppHeader/>
+                    <AllItemsContext.Provider value={allItems}>
+                        <ShoppingCart cartId={cartItemsId} />
+                        <RecommendedList />
+                    </AllItemsContext.Provider>
+                </ShowHideContext.Provider>
+            }
         </>
     )
 }
