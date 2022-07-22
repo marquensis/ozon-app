@@ -31,10 +31,10 @@ function ShoppingCart ({cartId}) {
                     ...equalId,
                     ...{
                         key: nanoid(),
-                        updatedPrice: equalId.price * item.count,
-                        updatedWeight: equalId.weight * item.count,
-                        updatedDiscount: (equalId.price * item.count) * equalId.discount / 100,
-                        totalPrice: (equalId.price * item.count) - (equalId.price * item.count) * equalId.discount / 100
+                        updatedPrice: equalId.price * equalId.value,
+                        updatedWeight: equalId.weight * equalId.value,
+                        updatedDiscount: (equalId.price * equalId.value) * equalId.discount / 100,
+                        totalPrice: (equalId.price * equalId.value) - (equalId.price * equalId.value) * equalId.discount / 100
                     }
                 };
                 return result;
@@ -43,7 +43,7 @@ function ShoppingCart ({cartId}) {
                 weight: cartItems.reduce((prev, current) => {
                     return (prev + current.updatedWeight) || 0
                 }, 0),
-                count: cartItems.reduce((prev, current) => {
+                value: cartItems.reduce((prev, current) => {
                     return (prev + current.value) || 0
                 }, 0),
                 price: cartItems.reduce((prev, current) => {
@@ -63,19 +63,19 @@ function ShoppingCart ({cartId}) {
     const resetVal = (itemId, newVal) => {
 
         cartItems.forEach((el, id) => {
-            itemId === el.id ? cartItems[id].count = +newVal : cartItems[id].count = el.count;
-            cartItems[id].updatedPrice = el.price * el.count;
-            cartItems[id].updatedWeight = el.weight * el.count;
-            cartItems[id].updatedDiscount = (el.price * el.count) * el.discount / 100;
-            cartItems[id].totalPrice = (el.price * el.count) - (el.price * el.count) * el.discount / 100;
+            itemId === el.id ? cartItems[id].value = +newVal : cartItems[id].value = el.value;
+            cartItems[id].updatedPrice = el.price * el.value;
+            cartItems[id].updatedWeight = el.weight * el.value;
+            cartItems[id].updatedDiscount = (el.price * el.value) * el.discount / 100;
+            cartItems[id].totalPrice = (el.price * el.value) - (el.price * el.value) * el.discount / 100;
         });
         setCartItems(cartItems);
         setTotal({
             weight: cartItems.reduce((prev, current) => {
                 return prev + current.updatedWeight
             }, 0),
-            count: cartItems.reduce((prev, current) => {
-                return prev + current.count
+            value: cartItems.reduce((prev, current) => {
+                return prev + current.value
             }, 0),
             price: cartItems.reduce((prev, current) => {
                 return prev + current.updatedPrice
@@ -91,7 +91,7 @@ function ShoppingCart ({cartId}) {
     };
 
     // State меняющий значение в чекбоксе "Выбрать все"
-    const [checkbox, setCheckbox] = useState(true);
+    const [deleteItemCheckbox, setDeleteItemCheckbox] = useState(true);
 
     // Кнопка открытия логин окна
     const {isModalOpen, setIsModalOpen} = useContext(ShowHideContext);
@@ -101,14 +101,14 @@ function ShoppingCart ({cartId}) {
             <div className={styles.cart}>
                 <div className={styles.content}>
                     <div className={styles.cartHead}>
-                        <span>{total.count}</span>
+                        <span>{total.value}</span>
                         <h1>Корзина</h1>
                     </div>
                     <div className={styles.cartWrapper}>
                         <div className={styles.cartLeft}>
                             <div className={styles.leftHead}>
                                 <div className={styles.headWrapper}>
-                                    <input type="checkbox" checked={checkbox} onChange={() => setCheckbox(!checkbox)} />
+                                    <input type="checkbox" checked={deleteItemCheckbox} onChange={() => setDeleteItemCheckbox(!deleteItemCheckbox)} />
                                     <span>Выбрать все</span>
                                     <span className={styles.red}>Удалить выбранное</span>
                                 </div>
@@ -128,10 +128,10 @@ function ShoppingCart ({cartId}) {
                                     <tbody>
                                         <tr>
                                             <th>Ваша корзина</th>
-                                            <td>{total.count} товар * {total.weight}гр</td>
+                                            <td>{total.value} товар * {total.weight}гр</td>
                                         </tr>
                                         <tr>
-                                            <td>Товары ({total.count})</td>
+                                            <td>Товары ({total.value})</td>
                                             <td className={styles.bolder}>{total.price} ₽</td>
                                         </tr>
                                         <tr>
