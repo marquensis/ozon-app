@@ -1,6 +1,5 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useContext } from "react";
 import styles from './styles.module.css';
-// import items from '../../fixtures/fixtures';
 import RecomendItem from '../RecomendItem/RecomendItem';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import "swiper/css";
@@ -9,6 +8,7 @@ import { Navigation } from "swiper";
 import { nanoid } from 'nanoid';
 import PropTypes from 'prop-types';
 import RecommendedShapes from "../../shapes/RecShapes";
+import AllItemsContext from "../../contexts/ContextAllItems";
 
 function RecItemList ({list}) {
     return (
@@ -26,10 +26,11 @@ function RecItemList ({list}) {
     );
 }
 
-function RecommendedList ({rec}) {
-    const itemList = useMemo(() => rec.map((item) => {
-        return { ...item, ...{key: nanoid()} };
-    }), [rec]);
+function RecommendedList () {
+    const recItems = useContext(AllItemsContext)
+    const itemList = useMemo(() => recItems.map((item) => {
+        return { ...item, ...{key: nanoid()}, ...{totalPrice: item.price - (item.price / 100 * item.discount)} };
+    }), [recItems]);
     return (
         <div className={styles.recommended}>
             <div className={styles.content}>
@@ -48,7 +49,9 @@ RecItemList.propTypes = {
             key: PropTypes.string.isRequired,
             name: PropTypes.string.isRequired,
             price: PropTypes.number.isRequired,
-            weight: PropTypes.string.isRequired,
+            weight: PropTypes.number.isRequired,
+            discount: PropTypes.number.isRequired,
+            totalPrice: PropTypes.number.isRequired,
         })
     ),
 }

@@ -1,101 +1,166 @@
-import React, { useMemo, useState } from "react";
+import React, { useState, useContext, useEffect} from "react";
 import styles from './styles.module.css';
 import CartItem from '../CartItem/CartItem';
-import CountItems from '../constants';
-import { nanoid } from 'nanoid';
+import {nanoid} from 'nanoid';
 import PropTypes from 'prop-types';
-import RecommendedShapes from "../../shapes/RecShapes";
 import CartShapes from "../../shapes/CartShapes";
+import ShowHideContext from "../../contexts/ContextView";
+import CartChangesContext from "../../contexts/ContextCartChanges";
+import AllItemsContext from "../../contexts/ContextAllItems";
 
-function CartItemList ({list}) {
-    return (
-        <div className={styles.leftBody}>
-            {list.length && list.map((el) => (typeof(el) === 'object') ? <CartItem item={el} key={el.key}/> : '')}
-        </div>
-    );
-}
+function ShoppingCart ({cartId}) {
 
-function ShoppingCart ({cartId, rec}) {
-     const itemList = useMemo(() => cartId.map((item) => {
-        const equalId = rec.find(recVal => recVal.id === item.id);
-        return { ...item, ...equalId, ...{key: nanoid()} };
-    }), [cartId, rec]);
-    const [x, setX] = useState(true);
+    const recItems = useContext(AllItemsContext);
+    const [cartItems, setCartItems] = useState([]);
+    const [total, setTotal] = useState({
+        weight: 0,
+        count: 0,
+        price: 0,
+        totalPrice: 0,
+        discount: 0,
+    })
+
+        //useMemo(() => {
+    useEffect(() => {
+        if (cartId && recItems) {
+            setCartItems(cartId.map((item) => {
+
+                const equalId = recItems.find(recVal => item.id === recVal.id);
+                const result = (equalId === undefined) ? {} : {
+                    ...item,
+                    ...equalId,
+                    ...{
+                        key: nanoid(),
+                        updatedPrice: equalId.price * equalId.value,
+                        updatedWeight: equalId.weight * equalId.value,
+                        updatedDiscount: (equalId.price * equalId.value) * equalId.discount / 100,
+                        totalPrice: (equalId.price * equalId.value) - (equalId.price * equalId.value) * equalId.discount / 100
+                    }
+                };
+                return result;
+            }))
+            setTotal({
+                weight: cartItems.reduce((prev, current) => {
+                    return (prev + current.updatedWeight) || 0
+                }, 0),
+                value: cartItems.reduce((prev, current) => {
+                    return (prev + current.value) || 0
+                }, 0),
+                price: cartItems.reduce((prev, current) => {
+                    return (prev + current.updatedPrice) || 0
+                }, 0),
+                totalPrice: cartItems.reduce((prev, current) => {
+                    return (prev + current.updatedDiscount) || 0
+                }, 0),
+                discount: cartItems.reduce((prev, current) => {
+                    return (prev + current.totalPrice) || 0
+                }, 0),
+            })
+        }
+    }, [cartId, recItems] );
+
+    // Функция изменения количества товаров
+    const resetVal = (itemId, newVal) => {
+
+        cartItems.forEach((el, id) => {
+            itemId === el.id ? cartItems[id].value = +newVal : cartItems[id].value = el.value;
+            cartItems[id].updatedPrice = el.price * el.value;
+            cartItems[id].updatedWeight = el.weight * el.value;
+            cartItems[id].updatedDiscount = (el.price * el.value) * el.discount / 100;
+            cartItems[id].totalPrice = (el.price * el.value) - (el.price * el.value) * el.discount / 100;
+        });
+        setCartItems(cartItems);
+        setTotal({
+            weight: cartItems.reduce((prev, current) => {
+                return prev + current.updatedWeight
+            }, 0),
+            value: cartItems.reduce((prev, current) => {
+                return prev + current.value
+            }, 0),
+            price: cartItems.reduce((prev, current) => {
+                return prev + current.updatedPrice
+            }, 0),
+            totalPrice: cartItems.reduce((prev, current) => {
+                return prev + current.updatedDiscount
+            }, 0),
+            discount: cartItems.reduce((prev, current) => {
+                return prev + current.totalPrice
+            }, 0),
+        })
+
+    };
+
+    // State меняющий значение в чекбоксе "Выбрать все"
+    const [deleteItemCheckbox, setDeleteItemCheckbox] = useState(true);
+
+    // Кнопка открытия логин окна
+    const {isModalOpen, setIsModalOpen} = useContext(ShowHideContext);
+
     return (
-        <div className={styles.cart}>
-            <div className={styles.content}>
-                <div className={styles.cartHead}>
-                    <span>{CountItems}</span>
-                    <h1>Корзина</h1>
-                </div>
-                <div className={styles.cartWrapper}>
-                    <div className={styles.cartLeft}>
-                        <div className={styles.leftHead}>
-                            <div className={styles.headWrapper}>
-                                <input type="checkbox" checked={x} onChange={() => setX(!x)} />
-                                <span>Выбрать все</span>
-                                <span className={styles.red}>Удалить выбранное</span>
+        <CartChangesContext.Provider value={{isModalOpen}}>
+            <div className={styles.cart}>
+                <div className={styles.content}>
+                    <div className={styles.cartHead}>
+                        <span>{total.value}</span>
+                        <h1>Корзина</h1>
+                    </div>
+                    <div className={styles.cartWrapper}>
+                        <div className={styles.cartLeft}>
+                            <div className={styles.leftHead}>
+                                <div className={styles.headWrapper}>
+                                    <input type="checkbox" checked={deleteItemCheckbox} onChange={() => setDeleteItemCheckbox(!deleteItemCheckbox)} />
+                                    <span>Выбрать все</span>
+                                    <span className={styles.red}>Удалить выбранное</span>
+                                </div>
+                            </div>
+                            <div className={styles.leftBody}>
+                                {cartItems && cartItems.length !== 0 && cartItems.map((el) => (el.id !== undefined) ?
+                                    <CartItem item={el} key={el.key} resetVal={resetVal}/> : '')}
                             </div>
                         </div>
-                        <CartItemList list={itemList}/>
-                    </div>
-                    <div className={styles.cartRight}>
-                    <div className={styles.rightGreenButton}>
-                        <button>Перейти к оформлению</button>
-                    </div>
-                    <div className={styles.rightSum}>
-                        <div className={styles.sumCount}>
-                            <table>
-                                <tbody>
-                                    <tr>
-                                        <th>Ваша корзина</th>
-                                        <td>{CountItems} товар * 600гр</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Товары ({CountItems})</td>
-                                        <td className={styles.bolder}>12000 ₽</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Скидка</td>
-                                        <td className={`${styles.bolder} ${styles.red}`}>- 5023 ₽</td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                        <div className={styles.cartRight}>
+                        <div className={styles.rightGreenButton}>
+                            <button onClick={() => setIsModalOpen(true)}>Перейти к оформлению</button>
                         </div>
-                        <hr />
-                        <div className={styles.sumFinal}>
-                            <table>
-                                <tbody>
-                                    <tr>
-                                        <th>Общая стоимость</th>
-                                        <th>12000 ₽</th>
-                                    </tr>
-                                </tbody>
-                            </table>
+                        <div className={styles.rightSum}>
+                            <div className={styles.sumCount}>
+                                <table>
+                                    <tbody>
+                                        <tr>
+                                            <th>Ваша корзина</th>
+                                            <td>{total.value} товар * {total.weight}гр</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Товары ({total.value})</td>
+                                            <td className={styles.bolder}>{total.price} ₽</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Скидка</td>
+                                            <td className={`${styles.bolder} ${styles.red}`}>- {total.discount} ₽</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <hr />
+                            <div className={styles.sumFinal}>
+                                <table>
+                                    <tbody>
+                                        <tr>
+                                            <th>Общая стоимость</th>
+                                            <th>{total.totalPrice} ₽</th>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
+            </div>
                     </div>
-        </div>
                 </div>
             </div>
-        </div>
+        </CartChangesContext.Provider>
     )
 }
-CartItemList.propTypes = {
-    list: PropTypes.arrayOf(
-        PropTypes.shape({
-            color: PropTypes.string.isRequired,
-            count: PropTypes.number.isRequired,
-            id: PropTypes.string.isRequired,
-            image: PropTypes.string.isRequired,
-            key: PropTypes.string.isRequired,
-            name: PropTypes.string.isRequired,
-            price: PropTypes.number.isRequired,
-            weight: PropTypes.string.isRequired,
-        })
-    ),
-}
 ShoppingCart.propTypes = {
-    rec: PropTypes.arrayOf(RecommendedShapes).isRequired,
     cartId: PropTypes.arrayOf(CartShapes).isRequired,
 }
 export default ShoppingCart;

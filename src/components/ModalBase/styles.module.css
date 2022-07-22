@@ -1,0 +1,26 @@
+.windowWrapper {
+    width: 380px;
+    height: 380px;
+    background-color: #fff;
+    border-radius: 15px;
+    padding: 40px 25px;
+    display: flex;
+    z-index: 10000;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.windowHead {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.windowHead button {
+    background-color: #fff;
+    width: 30px;
+    height: 30px;
+    font-size: 24px;
+}
