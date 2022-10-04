@@ -4,7 +4,7 @@ import RecommendedList from "../Recommended/Recommended";
 import ShoppingCart from "../ShoppingCart/ShoppingCart";
 import LoginWindow from "../LoginWindow/LoginWindow";
 import Preloader from "../Prelodaer/Preloader";
-import store from "../../store/Store";
+import store from "../../reducers/Store";
 import { Provider } from 'react-redux';
 import "swiper/css/bundle";
 import ShowHideContext from "../../contexts/ContextView";
@@ -73,9 +73,9 @@ function App () {
 
     return (
         <>
+        <Provider store={store}>
             {(!removeRenderIds || !removeRenderItems) ? 
                 <Preloader error={error} /> : 
-                <Provider store={store}>
                     <ShowHideContext.Provider value={{isModalOpen, setIsModalOpen}}>
                         <LoginWindow />
                         <AppHeader/>
@@ -84,8 +84,8 @@ function App () {
                             <RecommendedList />
                         </AllItemsContext.Provider>
                     </ShowHideContext.Provider>
-                </Provider>
             }
+        </Provider>
         </>
     )
 }
