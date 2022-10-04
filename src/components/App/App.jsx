@@ -4,8 +4,8 @@ import RecommendedList from "../Recommended/Recommended";
 import ShoppingCart from "../ShoppingCart/ShoppingCart";
 import LoginWindow from "../LoginWindow/LoginWindow";
 import Preloader from "../Prelodaer/Preloader";
-// import cartItemsId from "../../fixtures/cart-item-id";
-// import recItems from "../../fixtures/fixtures";
+import { Store } from "../../store/Store";
+import { Provider } from 'react-redux';
 import "swiper/css/bundle";
 import ShowHideContext from "../../contexts/ContextView";
 import AllItemsContext from "../../contexts/ContextAllItems";
@@ -75,14 +75,16 @@ function App () {
         <>
             {(!removeRenderIds || !removeRenderItems) ? 
                 <Preloader error={error} /> : 
-                <ShowHideContext.Provider value={{isModalOpen, setIsModalOpen}}>
-                    <LoginWindow />
-                    <AppHeader/>
-                    <AllItemsContext.Provider value={allItems}>
-                        <ShoppingCart cartId={cartItemsId} />
-                        <RecommendedList />
-                    </AllItemsContext.Provider>
-                </ShowHideContext.Provider>
+                <Provider store={Store}>
+                    <ShowHideContext.Provider value={{isModalOpen, setIsModalOpen}}>
+                        <LoginWindow />
+                        <AppHeader/>
+                        <AllItemsContext.Provider value={allItems}>
+                            <ShoppingCart cartId={cartItemsId} />
+                            <RecommendedList />
+                        </AllItemsContext.Provider>
+                    </ShowHideContext.Provider>
+                </Provider>
             }
         </>
     )
