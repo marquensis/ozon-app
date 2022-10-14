@@ -4,13 +4,14 @@ import RecommendedList from "../Recommended/Recommended";
 import ShoppingCart from "../ShoppingCart/ShoppingCart";
 import LoginWindow from "../LoginWindow/LoginWindow";
 import Preloader from "../Prelodaer/Preloader";
-import store from "../../reducers/Store";
 import { Provider } from 'react-redux';
 import "swiper/css/bundle";
-import ShowHideContext from "../../contexts/ContextView";
 import AllItemsContext from "../../contexts/ContextAllItems";
+import store from "../../reducers/Store";
 
 // yarn mb start --configfile api.ejs
+
+
 
 function App () {
     // Отключение бесконечного реднера
@@ -60,8 +61,9 @@ function App () {
 
 
     // Изменение состояния модалки с логином
-    const [isModalOpen, setIsModalOpen] = useState(false);
-
+    // Теперь есть store
+    window.store = store;
+    
 
     if (!removeRenderItems) {
         getAllItems();
@@ -76,14 +78,14 @@ function App () {
         <Provider store={store}>
             {(!removeRenderIds || !removeRenderItems) ? 
                 <Preloader error={error} /> : 
-                    <ShowHideContext.Provider value={{isModalOpen, setIsModalOpen}}>
-                        <LoginWindow />
-                        <AppHeader/>
-                        <AllItemsContext.Provider value={allItems}>
-                            <ShoppingCart cartId={cartItemsId} />
-                            <RecommendedList />
-                        </AllItemsContext.Provider>
-                    </ShowHideContext.Provider>
+                <>
+                    <LoginWindow />
+                    <AppHeader/>
+                    <AllItemsContext.Provider value={allItems}>
+                        <ShoppingCart cartId={cartItemsId} />
+                        <RecommendedList />
+                    </AllItemsContext.Provider>
+                </>
             }
         </Provider>
         </>

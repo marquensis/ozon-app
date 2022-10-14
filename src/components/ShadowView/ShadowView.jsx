@@ -1,18 +1,20 @@
-import React, { useContext } from "react";
+import React from "react";
 import styles from './styles.module.css';
-import ShowHideContext from "../../contexts/ContextView";
+import store from "../../reducers/Store";
 
 function ShadowView(props) {
-    
-    const {isModalOpen, setIsModalOpen} = useContext(ShowHideContext);
-    const showHide = isModalOpen === true ? 'show' : 'hide'
-
+    const showHide = store.getState() === 'SHOW' ? 'show' : 'hide';
+    console.log(showHide);
     return(
         <div className={styles[showHide]}>
-            <div className={styles.click} onClick={() => setIsModalOpen(false)}></div>
+            <div className={styles.click} onClick={() => store.dispatch({type: 'HIDE'})}></div>
             {props.children}
         </div>
     )
 }
+
+store.subscribe(() => {
+    
+});
 
 export default ShadowView;

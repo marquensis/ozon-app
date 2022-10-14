@@ -1,17 +1,17 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import styles from './styles.module.css';
-import ShowHideContext from '../../contexts/ContextView';
 import ShadowView from '../ShadowView/ShadowView';
+import store from '../../reducers/Store';
+
 
 function Modal(props) {
-    const {isModalOpen, setIsModalOpen} = useContext(ShowHideContext);
-  
+
     return (
         <ShadowView>
             <div className={styles.windowWrapper}>
                 <div className={styles.windowHead}>
                     
-                    <button type='close' onClick={() => setIsModalOpen(false)}>×</button>
+                    <button type='close' onClick={() => store.dispatch({type: 'HIDE'})}>×</button>
                 </div>
                 {props.children}
             </div>

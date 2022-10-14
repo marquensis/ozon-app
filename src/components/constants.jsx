@@ -1,3 +1,2 @@
-const CountItems = 3;
-
-export default CountItems;
+// обычные константы
+export const CountItems = 3;

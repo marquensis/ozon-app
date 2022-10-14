@@ -4,9 +4,9 @@ import CartItem from '../CartItem/CartItem';
 import {nanoid} from 'nanoid';
 import PropTypes from 'prop-types';
 import CartShapes from "../../shapes/CartShapes";
-import ShowHideContext from "../../contexts/ContextView";
 import CartChangesContext from "../../contexts/ContextCartChanges";
 import AllItemsContext from "../../contexts/ContextAllItems";
+import store from "../../reducers/Store";
 
 function ShoppingCart ({cartId}) {
 
@@ -93,11 +93,9 @@ function ShoppingCart ({cartId}) {
     // State меняющий значение в чекбоксе "Выбрать все"
     const [deleteItemCheckbox, setDeleteItemCheckbox] = useState(true);
 
-    // Кнопка открытия логин окна
-    const {isModalOpen, setIsModalOpen} = useContext(ShowHideContext);
 
     return (
-        <CartChangesContext.Provider value={{isModalOpen}}>
+        <CartChangesContext.Provider value={{store}}>
             <div className={styles.cart}>
                 <div className={styles.content}>
                     <div className={styles.cartHead}>
@@ -120,7 +118,7 @@ function ShoppingCart ({cartId}) {
                         </div>
                         <div className={styles.cartRight}>
                         <div className={styles.rightGreenButton}>
-                            <button onClick={() => setIsModalOpen(true)}>Перейти к оформлению</button>
+                            <button onClick={() => store.dispatch({type: 'SHOW'})}>Перейти к оформлению</button>
                         </div>
                         <div className={styles.rightSum}>
                             <div className={styles.sumCount}>
