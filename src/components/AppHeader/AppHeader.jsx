@@ -6,10 +6,17 @@ import Logo from './ozon_logo.png';
 import Search from './search_icon.png';
 import Shopbag from './shopbag_icon.png';
 import Login from './login_icon.png';
-import store from "../../reducers/Store";
 import { CountItems } from "../constants";
+import { useDispatch } from "react-redux";
+import { SHOW } from "../../reducers/Store";
 
 function AppHeader () {
+    // Открыть модалку логина
+    const dispatch = useDispatch();
+
+    const showModalLogin = () => {
+        dispatch({type: SHOW});
+    }
 
     return (
         <div className={styles.navBar}>
@@ -31,7 +38,7 @@ function AppHeader () {
                     </form>
                 </div>
                 <div className={styles.navButtons}>
-                    <div className={styles.navButton} onClick={() => store.dispatch({type: 'SHOW'})}>
+                    <div className={styles.navButton} onClick={showModalLogin}>
                         <img src={ Login } alt="Orders" />
                         <p>Войти</p>
                     </div>

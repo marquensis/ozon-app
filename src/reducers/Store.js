@@ -1,16 +1,18 @@
 import React from 'react';
 import { createStore } from 'redux';
 
-const HIDE = 'HIDE';
-const SHOW = 'SHOW';
+export const HIDE = 'hide';
+export const SHOW = 'show';
 
-function showHideModal (state = HIDE, action) {
-  if (action.type === 'SHOW') {
-    return SHOW;
-  } else if (action.type === 'HIDE') {
-    return HIDE;
-  } 
-  return state;
+export function showHideModal (state = HIDE, action) {
+  switch(action.type) {
+    case SHOW:
+      return SHOW;
+    case HIDE:
+      return HIDE;
+    default:
+      return state;
+  }
 }
 
 const store = createStore(showHideModal, HIDE);

@@ -6,7 +6,8 @@ import PropTypes from 'prop-types';
 import CartShapes from "../../shapes/CartShapes";
 import CartChangesContext from "../../contexts/ContextCartChanges";
 import AllItemsContext from "../../contexts/ContextAllItems";
-import store from "../../reducers/Store";
+import { useDispatch } from "react-redux";
+import { SHOW } from "../../reducers/Store";
 
 function ShoppingCart ({cartId}) {
 
@@ -93,9 +94,15 @@ function ShoppingCart ({cartId}) {
     // State меняющий значение в чекбоксе "Выбрать все"
     const [deleteItemCheckbox, setDeleteItemCheckbox] = useState(true);
 
+    // Открыть модалку логина
+    const dispatch = useDispatch();
+
+    const showModalLogin = () => {
+        dispatch({type: SHOW});
+    }
 
     return (
-        <CartChangesContext.Provider value={{store}}>
+        <CartChangesContext.Provider value={'123'}>
             <div className={styles.cart}>
                 <div className={styles.content}>
                     <div className={styles.cartHead}>
@@ -118,7 +125,7 @@ function ShoppingCart ({cartId}) {
                         </div>
                         <div className={styles.cartRight}>
                         <div className={styles.rightGreenButton}>
-                            <button onClick={() => store.dispatch({type: 'SHOW'})}>Перейти к оформлению</button>
+                            <button onClick={showModalLogin}>Перейти к оформлению</button>
                         </div>
                         <div className={styles.rightSum}>
                             <div className={styles.sumCount}>
