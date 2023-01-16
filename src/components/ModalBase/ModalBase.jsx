@@ -10,7 +10,7 @@ function Modal(props) {
     const dispatch = useDispatch();
 
     const hideModalLogin = () => {
-        dispatch({type: HIDE});
+        dispatch({type: 'CHANGE_MODAL', payload: HIDE});
     }
 
     return (

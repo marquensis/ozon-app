@@ -13,9 +13,8 @@ import { SHOW } from "../../reducers/Store";
 function AppHeader () {
     // Открыть модалку логина
     const dispatch = useDispatch();
-
     const showModalLogin = () => {
-        dispatch({type: SHOW});
+        dispatch({type: 'CHANGE_MODAL', payload: SHOW});
     }
 
     return (

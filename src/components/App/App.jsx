@@ -59,12 +59,6 @@ function App () {
         }
     }
 
-
-    // Изменение состояния модалки с логином
-    // Теперь есть store
-    window.store = store;
-    
-
     if (!removeRenderItems) {
         getAllItems();
     }

@@ -1,20 +1,21 @@
 import React from "react";
 import styles from './styles.module.css';
 import store from "../../reducers/Store";
-import { HIDE, SHOW } from '../../reducers/Store';
-import { useDispatch } from "react-redux";
+import { HIDE } from '../../reducers/Store';
+import { useDispatch, useSelector } from "react-redux";
 
 function ShadowView(props) {
 
     const dispatch = useDispatch();
+    const view = useSelector(state => state.view);
+    console.log(view);
 
     const hideModalLogin = () => {
-        dispatch({type: HIDE});
+        dispatch({type: 'CHANGE_MODAL', payload: HIDE});
     }
-    const showHide = store.getState() === SHOW ? 'show' : 'hide';
-    console.log(showHide);
+
     return(
-        <div className={styles[showHide]}>
+        <div className={styles[view]}>
             <div className={styles.click} onClick={hideModalLogin}></div>
             {props.children}
         </div>

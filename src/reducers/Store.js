@@ -1,24 +1,26 @@
-import React from 'react';
-import { createStore } from 'redux';
+import { legacy_createStore as createStore } from 'redux';
 
 export const HIDE = 'hide';
 export const SHOW = 'show';
 
-export function showHideModal (state = HIDE, action) {
+// action
+export const defaultState = {
+  view: HIDE
+};
+
+// reducer
+export const showHideModal = (state = defaultState, action) => {
   switch(action.type) {
-    case SHOW:
-      return SHOW;
-    case HIDE:
-      return HIDE;
+    case 'CHANGE_MODAL':
+      return {...state, view: action.payload};
     default:
       return state;
   }
 }
 
-const store = createStore(showHideModal, HIDE);
+// store
+const store = createStore(showHideModal, defaultState);
 
-store.subscribe(() =>
-  console.log(store.getState())
-);
+store.subscribe(() => console.log(store.getState()));
 
 export default store;
