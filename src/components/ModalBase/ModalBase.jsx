@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './styles.module.css';
 import ShadowView from '../ShadowView/ShadowView';
-import { HIDE } from '../../reducers/Store';
+import { HIDE } from '../../Store/types/types';
 import { useDispatch } from "react-redux";
 
 

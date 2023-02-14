@@ -1,4 +1,4 @@
-import React, { useMemo, useContext } from "react";
+import React, { useMemo } from "react";
 import styles from './styles.module.css';
 import RecomendItem from '../RecomendItem/RecomendItem';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -8,7 +8,7 @@ import { Navigation } from "swiper";
 import { nanoid } from 'nanoid';
 import PropTypes from 'prop-types';
 import RecommendedShapes from "../../shapes/RecShapes";
-import AllItemsContext from "../../contexts/ContextAllItems";
+import { useSelector } from "react-redux";
 
 function RecItemList ({list}) {
     return (
@@ -27,7 +27,7 @@ function RecItemList ({list}) {
 }
 
 function RecommendedList () {
-    const recItems = useContext(AllItemsContext)
+    const recItems = useSelector(state => state.allItems);
     const itemList = useMemo(() => recItems.map((item) => {
         return { ...item, ...{key: nanoid()}, ...{totalPrice: item.price - (item.price / 100 * item.discount)} };
     }), [recItems]);

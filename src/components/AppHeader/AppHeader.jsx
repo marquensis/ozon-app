@@ -6,13 +6,13 @@ import Logo from './ozon_logo.png';
 import Search from './search_icon.png';
 import Shopbag from './shopbag_icon.png';
 import Login from './login_icon.png';
-import { CountItems } from "../constants";
-import { useDispatch } from "react-redux";
-import { SHOW } from "../../reducers/Store";
+import { useDispatch, useSelector } from "react-redux";
+import { SHOW } from "../../Store/types/types";
 
 function AppHeader () {
     // Открыть модалку логина
     const dispatch = useDispatch();
+    const total = useSelector(state => state.totalCount);
     const showModalLogin = () => {
         dispatch({type: 'CHANGE_MODAL', payload: SHOW});
     }
@@ -50,7 +50,7 @@ function AppHeader () {
                         <p>Избранное</p>
                     </div>
                     <div className={styles.navButton}>
-                        <span>{CountItems}</span>
+                        <span>{total.value}</span>
                         <img src={ Shopbag } alt="Cart" />
                         <p>Корзина</p>
                     </div>
