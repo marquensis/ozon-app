@@ -21,3 +21,8 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+mb.log
+mb.pid
+mb1.log
+.yarn
