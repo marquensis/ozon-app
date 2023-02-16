@@ -1,14 +1,15 @@
-import React, { useMemo } from "react";
+import React, { useEffect } from "react";
 import styles from './styles.module.css';
 import RecomendItem from '../RecomendItem/RecomendItem';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import "swiper/css";
 import "swiper/css/navigation";
 import { Navigation } from "swiper";
-import { nanoid } from 'nanoid';
 import PropTypes from 'prop-types';
 import RecommendedShapes from "../../shapes/RecShapes";
 import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { createRecItems } from "../../store/actions/recommendedActions";
 
 function RecItemList ({list}) {
     return (
@@ -27,10 +28,12 @@ function RecItemList ({list}) {
 }
 
 function RecommendedList () {
-    const recItems = useSelector(state => state.allItems);
-    const itemList = useMemo(() => recItems.map((item) => {
-        return { ...item, ...{key: nanoid()}, ...{totalPrice: item.price - (item.price / 100 * item.discount)} };
-    }), [recItems]);
+    const allItems = useSelector(state => state.itemsAndIds.allItems);
+    const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(createRecItems(allItems));
+    }, [allItems, dispatch]);
+    const itemList = useSelector(state => state.recommended.recItems);
     return (
         <div className={styles.recommended}>
             <div className={styles.content}>

@@ -1,14 +1,13 @@
 import React, { useState } from "react";
 import styles from './styles.module.css';
 import PropTypes from 'prop-types';
-import { resetCartValue } from "../../Store/actions/cartItemsActions";
-import { updateActualTotal } from "../../Store/actions/totalActions";
+import { resetCartValue } from "../../store/actions/cartItemsActions";
 import { useDispatch, useSelector } from "react-redux";
 
 
 function CartItem ({item}) {
     const dispatch = useDispatch();
-    const cartItems = useSelector(state => state.cartItems);
+    const cartItems = useSelector(state => state.cart.cartItems);
     let option = [];
 
     for (let i = 1; i <= 10; i++) {
@@ -19,7 +18,6 @@ function CartItem ({item}) {
 
     const changeVal = (event) => {
         dispatch(resetCartValue(cartItems, item.id, event.target.value));
-        dispatch(updateActualTotal(cartItems));
         setSelects(event.target.value);
     }
 

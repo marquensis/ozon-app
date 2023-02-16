@@ -1,9 +1,9 @@
 import axios from 'axios';
-import { ADD_ALL_ITEMS, ADD_CART_ITEM_ID, ADD_ITEMS_FAILURE, ADD_IDS_FAILURE } from "../types/types";
+import { ADD_ALL_ITEMS, ADD_CART_ITEM_ID, ADD_ITEMS_FAILURE, ADD_IDS_FAILURE } from "../constants/constants";
 
 export const getItems = () => {
     const resultItems = [];
-    return async (dispatch) =>  {
+    return async (dispatch) => {
         let morePages = true;
         let currentPage = 0;
         try {

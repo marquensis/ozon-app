@@ -1,7 +1,7 @@
 // types
-export const HIDE = 'hide';
-export const SHOW = 'show';
 export const CHANGE_MODAL = 'CHANGE_MODAL';
+export const CHANGE_PRELOADER = 'CHANGE_PRELOADER';
+export const CHANGE_REC_ITEMS = 'CHANGE_REC_ITEMS';
 export const ADD_CART_ITEM_ID = 'ADD_CART_ITEM_ID';
 export const ADD_ALL_ITEMS = 'ADD_ALL_ITEMS';
 export const ADD_ITEMS_FAILURE = 'ADD_ITEMS_FAILURE';

@@ -4,35 +4,35 @@ import CartItem from '../CartItem/CartItem';
 import PropTypes from 'prop-types';
 import CartShapes from "../../shapes/CartShapes";
 import { useDispatch } from "react-redux";
-import { SHOW } from "../../Store/types/types";
 import { useSelector } from "react-redux";
-import { createCartItems } from "../../Store/actions/cartItemsActions";
-import { updateActualTotal } from "../../Store/actions/totalActions";
+import { createCartItems } from "../../store/actions/cartItemsActions";
+import { modalShow } from "../../store/actions/modalActions";
+import { getIds, getItems } from "../../store/actions/apiQueries";
 
 function ShoppingCart () {
     const dispatch = useDispatch();
 
-    const cartId = useSelector(state => state.cartItemId);
-    const recItems = useSelector(state => state.allItems);
-    const total =useSelector(state => state.totalCount);
+    // получение данных апи
+    useEffect(() => {
+        dispatch(getItems());
+        dispatch(getIds());
+    }, [dispatch])
+
+    const cartId = useSelector(state => state.itemsAndIds.cartItemId);
+    const recItems = useSelector(state => state.itemsAndIds.allItems);
+    const total =useSelector(state => state.cart.totalCount);
 
     // создание списка товаров в корзине
     useEffect(() => {
-        dispatch(createCartItems(cartId, recItems));
+        if(cartId.length !== 0 && recItems.length !== 0) {
+            dispatch(createCartItems(cartId, recItems));
+        }
     }, [cartId, recItems, dispatch])
-    const cartItems = useSelector(state => state.cartItems);
-
-    useEffect(() => {
-        dispatch(updateActualTotal(cartItems));
-    }, [cartItems, dispatch] );
+    const cartItems = useSelector(state => state.cart.cartItems);
 
     // State меняющий значение в чекбоксе "Выбрать все"
     const [deleteItemCheckbox, setDeleteItemCheckbox] = useState(true);
 
-    // Открыть модалку логина
-    const showModalLogin = () => {
-        dispatch({type: 'CHANGE_MODAL', payload: SHOW});
-    }
 
     return (
         <div className={styles.cart}>
@@ -57,7 +57,7 @@ function ShoppingCart () {
                         </div>
                         <div className={styles.cartRight}>
                         <div className={styles.rightGreenButton}>
-                            <button onClick={showModalLogin}>Перейти к оформлению</button>
+                            <button onClick={() => dispatch(modalShow())}>Перейти к оформлению</button>
                         </div>
                         <div className={styles.rightSum}>
                             <div className={styles.sumCount}>

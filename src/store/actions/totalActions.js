@@ -1,4 +1,4 @@
-import { UPDATE_TOTAL } from "../types/types";
+import { UPDATE_TOTAL } from "../constants/constants";
 
 export const updateActualTotal = (cartItems) => {
     const newTotal = {

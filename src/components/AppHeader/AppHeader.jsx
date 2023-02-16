@@ -7,15 +7,12 @@ import Search from './search_icon.png';
 import Shopbag from './shopbag_icon.png';
 import Login from './login_icon.png';
 import { useDispatch, useSelector } from "react-redux";
-import { SHOW } from "../../Store/types/types";
+import { modalShow } from "../../store/actions/modalActions";
 
 function AppHeader () {
     // Открыть модалку логина
     const dispatch = useDispatch();
-    const total = useSelector(state => state.totalCount);
-    const showModalLogin = () => {
-        dispatch({type: 'CHANGE_MODAL', payload: SHOW});
-    }
+    const total = useSelector(state => state.cart.totalCount);
 
     return (
         <div className={styles.navBar}>
@@ -37,7 +34,7 @@ function AppHeader () {
                     </form>
                 </div>
                 <div className={styles.navButtons}>
-                    <div className={styles.navButton} onClick={showModalLogin}>
+                    <div className={styles.navButton} onClick={() => dispatch(modalShow())}>
                         <img src={ Login } alt="Orders" />
                         <p>Войти</p>
                     </div>

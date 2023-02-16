@@ -1,24 +1,20 @@
 import React from 'react';
 import styles from './styles.module.css';
 import ShadowView from '../ShadowView/ShadowView';
-import { HIDE } from '../../Store/types/types';
 import { useDispatch } from "react-redux";
+import { modalHide } from '../../store/actions/modalActions';
 
 
 function Modal(props) {
 
     const dispatch = useDispatch();
 
-    const hideModalLogin = () => {
-        dispatch({type: 'CHANGE_MODAL', payload: HIDE});
-    }
-
     return (
         <ShadowView>
             <div className={styles.windowWrapper}>
                 <div className={styles.windowHead}>
                     
-                    <button type='close' onClick={hideModalLogin}>×</button>
+                    <button type='close' onClick={() => dispatch(modalHide())}>×</button>
                 </div>
                 {props.children}
             </div>
