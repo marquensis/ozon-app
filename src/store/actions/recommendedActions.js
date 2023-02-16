@@ -1,10 +1,11 @@
 import {nanoid} from 'nanoid';
 import { CHANGE_REC_ITEMS } from '../constants/constants';
 
-export const createRecItems = (recItems) => {
+export const createRecItems = () => {
     let recListCreate = [];
-    return (dispatch) => {
-        recItems.forEach((item) => {
+    return (dispatch, getState) => {
+        const {allItems} = getState().itemsAndIds;
+        allItems.forEach((item) => {
             const eachItem = (item === undefined) ? {} : {
                 ...item,
                 ...{

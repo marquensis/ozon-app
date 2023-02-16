@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import styles from './styles.module.css';
 import RecomendItem from '../RecomendItem/RecomendItem';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -8,8 +8,6 @@ import { Navigation } from "swiper";
 import PropTypes from 'prop-types';
 import RecommendedShapes from "../../shapes/RecShapes";
 import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
-import { createRecItems } from "../../store/actions/recommendedActions";
 
 function RecItemList ({list}) {
     return (
@@ -28,12 +26,9 @@ function RecItemList ({list}) {
 }
 
 function RecommendedList () {
-    const allItems = useSelector(state => state.itemsAndIds.allItems);
-    const dispatch = useDispatch();
-    useEffect(() => {
-        dispatch(createRecItems(allItems));
-    }, [allItems, dispatch]);
+
     const itemList = useSelector(state => state.recommended.recItems);
+
     return (
         <div className={styles.recommended}>
             <div className={styles.content}>

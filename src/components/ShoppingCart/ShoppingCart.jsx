@@ -6,6 +6,7 @@ import CartShapes from "../../shapes/CartShapes";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { createCartItems } from "../../store/actions/cartItemsActions";
+import { createRecItems } from "../../store/actions/recommendedActions";
 import { modalShow } from "../../store/actions/modalActions";
 import { getIds, getItems } from "../../store/actions/apiQueries";
 
@@ -25,9 +26,10 @@ function ShoppingCart () {
     // создание списка товаров в корзине
     useEffect(() => {
         if(cartId.length !== 0 && recItems.length !== 0) {
-            dispatch(createCartItems(cartId, recItems));
+            dispatch(createCartItems());
+            dispatch(createRecItems());
         }
-    }, [cartId, recItems, dispatch])
+    }, [cartId.length, recItems.length, dispatch])
     const cartItems = useSelector(state => state.cart.cartItems);
 
     // State меняющий значение в чекбоксе "Выбрать все"
