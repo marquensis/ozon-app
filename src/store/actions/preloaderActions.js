@@ -1,7 +1,13 @@
-import { CHANGE_PRELOADER } from "../constants/constants";
+import { PRELOADER_CHANGE } from "../constants/constants";
 
 export const offPreloader = () => {
     return (dispatch) => {
-        dispatch({type: CHANGE_PRELOADER, payload: false});
+        dispatch({type: PRELOADER_CHANGE, payload: false});
+    };
+};
+
+export const onPreloader = () => {
+    return (dispatch) => {
+        dispatch({type: PRELOADER_CHANGE, payload: true});
     };
 };

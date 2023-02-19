@@ -13,7 +13,6 @@ function Modal(props) {
         <ShadowView>
             <div className={styles.windowWrapper}>
                 <div className={styles.windowHead}>
-                    
                     <button type='close' onClick={() => dispatch(modalHide())}>×</button>
                 </div>
                 {props.children}

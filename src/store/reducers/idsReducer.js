@@ -1,22 +1,21 @@
-import { ALL_ITEMS_ADD, ALL_ITEMS_ERROR , ALL_ITEMS_SUCCESS} from "../constants/constants";
+import { IDS_ADD, IDS_ERROR, IDS_SUCCESS } from "../constants/constants";
 
 const initialState = {
     requestStart: true,
     requestStatus: '',
     requestError: '',
-    allItems: [],
+    cartItemId: [],
 }
 
-export const allItems = (state=initialState, action) => {
+export const cartIds = (state=initialState, action) => {
     switch(action.type) {
-
-        case ALL_ITEMS_ADD:
+        case IDS_ADD:
             return {
-                ...state,  
-                allItems: [...state.allItems, ...action.payload]
+                ...state, 
+                cartItemId: [...state.cartItemId, ...action.payload]
             };
 
-        case ALL_ITEMS_SUCCESS:
+        case IDS_SUCCESS:
             return {
                 ...state,
                 requestStart: false,
@@ -24,7 +23,7 @@ export const allItems = (state=initialState, action) => {
                 requestError: '',
             }
 
-        case ALL_ITEMS_ERROR:
+        case IDS_ERROR:
             return {
                 ...state,
                 requestStart: true,

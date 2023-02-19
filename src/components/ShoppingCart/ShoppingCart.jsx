@@ -5,10 +5,11 @@ import PropTypes from 'prop-types';
 import CartShapes from "../../shapes/CartShapes";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-import { createCartItems } from "../../store/actions/cartItemsActions";
+import { cartItemCreate } from "../../store/actions/cartItemsActions";
 import { createRecItems } from "../../store/actions/recommendedActions";
 import { modalShow } from "../../store/actions/modalActions";
-import { getIds, getItems } from "../../store/actions/apiQueries";
+import { getIds } from "../../store/actions/idsGetActions";
+import { getItems } from "../../store/actions/allItemsGetActions";
 
 function ShoppingCart () {
     const dispatch = useDispatch();
@@ -19,14 +20,14 @@ function ShoppingCart () {
         dispatch(getIds());
     }, [dispatch])
 
-    const cartId = useSelector(state => state.itemsAndIds.cartItemId);
-    const recItems = useSelector(state => state.itemsAndIds.allItems);
+    const cartId = useSelector(state => state.cartIds.cartItemId);
+    const recItems = useSelector(state => state.allItems.allItems);
     const total =useSelector(state => state.cart.totalCount);
 
     // создание списка товаров в корзине
     useEffect(() => {
         if(cartId.length !== 0 && recItems.length !== 0) {
-            dispatch(createCartItems());
+            dispatch(cartItemCreate());
             dispatch(createRecItems());
         }
     }, [cartId.length, recItems.length, dispatch])

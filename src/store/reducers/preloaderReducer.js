@@ -1,4 +1,4 @@
-import { CHANGE_PRELOADER } from "../constants/constants";
+import { PRELOADER_CHANGE } from "../constants/constants";
 
 const initialState = {
     displayPreloader: true,
@@ -6,7 +6,7 @@ const initialState = {
 
 export const preloader = (state=initialState, action) => {
     switch(action.type) {
-        case CHANGE_PRELOADER:
+        case PRELOADER_CHANGE:
             return {...state, displayPreloader: action.payload};
 
         default: 

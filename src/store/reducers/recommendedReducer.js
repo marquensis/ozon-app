@@ -1,4 +1,4 @@
-import { CHANGE_REC_ITEMS } from "../constants/constants";
+import { RECOMMEDED_ITEMS_ADD } from "../constants/constants";
 
 const initialState = {
     recItems: [],
@@ -6,8 +6,8 @@ const initialState = {
 
 export const recommended = (state=initialState, action) => {
     switch(action.type) {
-        case CHANGE_REC_ITEMS:
-            return {...state, recItems: action.payload};
+        case RECOMMEDED_ITEMS_ADD:
+            return {...state, recItems: [...state.recItems, action.payload]};
 
         default: 
             return state;

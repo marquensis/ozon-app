@@ -1,4 +1,4 @@
-import { CHANGE_MODAL } from "../constants/constants";
+import { MODAL_CHANGE } from "../constants/constants";
 
 const initialState = {
     view: 'hide',
@@ -6,7 +6,7 @@ const initialState = {
 
 export const modal = (state=initialState, action) => {
     switch(action.type) {
-        case CHANGE_MODAL:
+        case MODAL_CHANGE:
             return {...state, view: action.payload};
 
         default: 

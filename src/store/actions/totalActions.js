@@ -1,4 +1,4 @@
-import { UPDATE_TOTAL } from "../constants/constants";
+import { TOTAL_UPDATE } from "../constants/constants";
 
 export const updateActualTotal = () => {
     return (dispatch, getState) => {
@@ -25,6 +25,6 @@ export const updateActualTotal = () => {
 }
 
 const updateData = data => ({
-    type: UPDATE_TOTAL,
+    type: TOTAL_UPDATE,
     payload: data
 });

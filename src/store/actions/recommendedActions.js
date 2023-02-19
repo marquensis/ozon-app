@@ -1,10 +1,12 @@
 import {nanoid} from 'nanoid';
-import { CHANGE_REC_ITEMS } from '../constants/constants';
+import { RECOMMEDED_ITEMS_ADD } from '../constants/constants';
 
 export const createRecItems = () => {
-    let recListCreate = [];
     return (dispatch, getState) => {
-        const {allItems} = getState().itemsAndIds;
+        const {allItems} = getState().allItems;
+        const {recItems} = getState().recommended;
+        const idsListSet = new Set(recItems.map(item => item.id));
+        const idsList = Array.from(idsListSet);
         allItems.forEach((item) => {
             const eachItem = (item === undefined) ? {} : {
                 ...item,
@@ -13,13 +15,15 @@ export const createRecItems = () => {
                     totalPrice: item.price - (item.price / 100 * item.discount)
                 }
             };
-            recListCreate.push(eachItem);
+
+            if (!idsList.includes(eachItem.id)) {
+                dispatch(changeItems(eachItem));
+            }
         });
-        dispatch(changeItems(recListCreate));
     }
 }
 
 const changeItems = data => ({
-    type: CHANGE_REC_ITEMS,
+    type: RECOMMEDED_ITEMS_ADD,
     payload: data
 });

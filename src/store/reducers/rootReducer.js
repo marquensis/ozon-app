@@ -1,15 +1,17 @@
 import { combineReducers } from 'redux';
 import { cart } from './cartReducer';
-import { itemsAndIds } from './itemsReducer';
+import { allItems } from './itemsReducer';
 import { modal } from './modalReducer';
 import { preloader } from './preloaderReducer';
 import { recommended } from './recommendedReducer';
+import { cartIds } from './idsReducer';
 
 // main reducer
 export const rootReducer = combineReducers({
-  cart,
-  itemsAndIds,
+  allItems,
+  cartIds,
   recommended,
+  cart,
   modal,
   preloader
 });

@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { modalHide } from "../../store/actions/modalActions";
 
 function ShadowView(props) {
-
     const dispatch = useDispatch();
     const view = useSelector(state => state.modal.view);
 
