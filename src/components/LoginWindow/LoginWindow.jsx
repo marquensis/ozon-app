@@ -4,7 +4,6 @@ import Modal from '../ModalBase/ModalBase';
 import Logo from './ozon_logo.png';
 
 function LoginWindow () {
-    
     return (
         <Modal>
             <div className={styles.ozonLogo}>
@@ -24,5 +23,5 @@ function LoginWindow () {
         </Modal>
     )
 }
-
+LoginWindow.componentName = 'login';
 export default LoginWindow;

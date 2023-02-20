@@ -1,13 +1,21 @@
-import { MODAL_CHANGE } from "../constants/constants";
+import { MODAL_LOGIN_CHANGE, MODAL_ERROR_CHANGE } from "../constants/constants";
 
 const initialState = {
-    view: 'hide',
+    login: {
+        visible: false,
+    },
+    error: {
+        visible: false,
+    }
 }
 
 export const modal = (state=initialState, action) => {
     switch(action.type) {
-        case MODAL_CHANGE:
-            return {...state, view: action.payload};
+        case MODAL_LOGIN_CHANGE:
+            return {...state, ...state.login.visible = action.payload};
+        
+        case MODAL_ERROR_CHANGE:
+            return {...state, ...state.error.visible = action.payload};
 
         default: 
             return state;

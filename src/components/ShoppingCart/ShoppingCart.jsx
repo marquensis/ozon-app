@@ -60,7 +60,7 @@ function ShoppingCart () {
                         </div>
                         <div className={styles.cartRight}>
                         <div className={styles.rightGreenButton}>
-                            <button onClick={() => dispatch(modalShow())}>Перейти к оформлению</button>
+                            <button onClick={() => dispatch(modalShow('login'))}>Перейти к оформлению</button>
                         </div>
                         <div className={styles.rightSum}>
                             <div className={styles.sumCount}>

@@ -34,7 +34,7 @@ function AppHeader () {
                     </form>
                 </div>
                 <div className={styles.navButtons}>
-                    <div className={styles.navButton} onClick={() => dispatch(modalShow())}>
+                    <div className={styles.navButton} onClick={() => dispatch(modalShow('login'))}>
                         <img src={ Login } alt="Orders" />
                         <p>Войти</p>
                     </div>

@@ -1,5 +1,6 @@
 // modal
-export const MODAL_CHANGE = 'MODAL_CHANGE';
+export const MODAL_LOGIN_CHANGE = 'MODAL_LOGIN_CHANGE';
+export const MODAL_ERROR_CHANGE = 'MODAL_ERROR_CHANGE';
 
 // preloader
 export const PRELOADER_CHANGE = 'PRELOADER_CHANGE';
