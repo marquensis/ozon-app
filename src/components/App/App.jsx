@@ -4,7 +4,7 @@ import RecommendedList from "../Recommended/Recommended";
 import ShoppingCart from "../ShoppingCart/ShoppingCart";
 import LoginWindow from "../LoginWindow/LoginWindow";
 import Preloader from "../Prelodaer/Preloader";
-import Errors from "../Errors/Errors";
+import Errors from "../ErrorWindow/ErrorWindow";
 import "swiper/css/bundle";
 import { Provider } from "react-redux";
 import { store } from "../../store";

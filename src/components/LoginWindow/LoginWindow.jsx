@@ -2,10 +2,11 @@ import React from 'react';
 import styles from './styles.module.css';
 import Modal from '../ModalBase/ModalBase';
 import Logo from './ozon_logo.png';
+import { login } from '../../store/constants/constants';
 
 function LoginWindow () {
-    return (
-        <Modal>
+    return login && (
+        <Modal modalName={login}>
             <div className={styles.ozonLogo}>
                     <img src={ Logo } alt="ozon-logo" />
                     <span>ID</span>
@@ -21,7 +22,7 @@ function LoginWindow () {
                 </form>
             </div>
         </Modal>
-    )
+    );
 }
-LoginWindow.componentName = 'login';
+
 export default LoginWindow;

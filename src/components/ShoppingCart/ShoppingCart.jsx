@@ -10,13 +10,20 @@ import { createRecItems } from "../../store/actions/recommendedActions";
 import { modalShow } from "../../store/actions/modalActions";
 import { getIds } from "../../store/actions/idsGetActions";
 import { getItems } from "../../store/actions/allItemsGetActions";
+import { login } from "../../store/constants/constants";
 
 function ShoppingCart () {
     const dispatch = useDispatch();
 
     // получение данных апи
     useEffect(() => {
-        dispatch(getItems());
+        let morePages = true;
+        let currentPage = 0;
+        while(morePages){
+            currentPage++;
+            dispatch(getItems(currentPage));
+            morePages = currentPage < 2;
+        }
         dispatch(getIds());
     }, [dispatch])
 
@@ -60,7 +67,7 @@ function ShoppingCart () {
                         </div>
                         <div className={styles.cartRight}>
                         <div className={styles.rightGreenButton}>
-                            <button onClick={() => dispatch(modalShow('login'))}>Перейти к оформлению</button>
+                            <button onClick={() => dispatch(modalShow(login))}>Перейти к оформлению</button>
                         </div>
                         <div className={styles.rightSum}>
                             <div className={styles.sumCount}>

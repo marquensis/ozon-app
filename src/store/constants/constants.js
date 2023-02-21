@@ -1,12 +1,13 @@
 // modal
-export const MODAL_LOGIN_CHANGE = 'MODAL_LOGIN_CHANGE';
-export const MODAL_ERROR_CHANGE = 'MODAL_ERROR_CHANGE';
+export const MODAL_CHANGE = 'MODAL_CHANGE';
+export const login = 'login';
+export const error = 'error';
 
 // preloader
 export const PRELOADER_CHANGE = 'PRELOADER_CHANGE';
 
 // all items
-export const ALL_ITEMS_ADD = 'ALL_ITEMS_ADD';
+export const ALL_ITEMS_START_REQUEST = 'ALL_ITEMS_START_REQUEST';
 export const ALL_ITEMS_SUCCESS = 'ALL_ITEMS_SUCCESS';
 export const ALL_ITEMS_ERROR = 'ALL_ITEMS_ERROR';
 
@@ -14,7 +15,7 @@ export const ALL_ITEMS_ERROR = 'ALL_ITEMS_ERROR';
 export const RECOMMEDED_ITEMS_ADD = 'RECOMMEDED_ITEMS_ADD';
 
 // cart ids
-export const IDS_ADD = 'IDS_ADD';
+export const IDS_START_REQUEST = 'IDS_START_REQUEST';
 export const IDS_SUCCESS = 'IDS_SUCCESS';
 export const IDS_ERROR = 'IDS_ERROR';
 

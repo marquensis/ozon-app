@@ -8,6 +8,7 @@ import Shopbag from './shopbag_icon.png';
 import Login from './login_icon.png';
 import { useDispatch, useSelector } from "react-redux";
 import { modalShow } from "../../store/actions/modalActions";
+import { login } from "../../store/constants/constants";
 
 function AppHeader () {
     // Открыть модалку логина
@@ -34,7 +35,7 @@ function AppHeader () {
                     </form>
                 </div>
                 <div className={styles.navButtons}>
-                    <div className={styles.navButton} onClick={() => dispatch(modalShow('login'))}>
+                    <div className={styles.navButton} onClick={() => dispatch(modalShow(login))}>
                         <img src={ Login } alt="Orders" />
                         <p>Войти</p>
                     </div>

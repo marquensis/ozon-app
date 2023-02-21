@@ -1,32 +1,12 @@
-import { MODAL_LOGIN_CHANGE , MODAL_ERROR_CHANGE} from "../constants/constants";
-
-export const modalShow = (modalName) => {
-    return (dispatch) => {
-        if(modalName === 'login') {
-            dispatch(loginModal(true));
-        } else if (modalName === 'error') {
-            dispatch(errorModal(true));
-        }
-    };
-};
-
-export const modalHide = (modalName) => {
-    return (dispatch) => {
-        if(modalName === 'login') {
-            dispatch(loginModal(false));
-        } else if (modalName === 'error') {
-            dispatch(errorModal(false));
-        }
-    };
-};
+import { MODAL_CHANGE } from "../constants/constants";
 
 
-const loginModal = data => ({
-    type: MODAL_LOGIN_CHANGE, 
-    payload: data
+export const modalHide = (modalName) => ({
+    type: MODAL_CHANGE, 
+    payload: {name: modalName, value: false},
 });
 
-const errorModal = data => ({
-    type: MODAL_ERROR_CHANGE, 
-    payload: data
+export const modalShow = (modalName) => ({
+    type: MODAL_CHANGE, 
+    payload: {name: modalName, value: true},
 });

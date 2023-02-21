@@ -5,15 +5,14 @@ import { useDispatch } from "react-redux";
 import { modalHide } from '../../store/actions/modalActions';
 
 
-function Modal({children}) {
+function Modal({modalName, children}) {
 
     const dispatch = useDispatch();
-    const propName = children[0]._owner.elementType.componentName;
     return (
-        <ShadowView>
+        <ShadowView modalName={modalName}>
             <div className={styles.windowWrapper}>
                 <div className={styles.windowHead}>
-                    <button type='close' onClick={() => dispatch(modalHide(propName))}>×</button>
+                    <button type='close' onClick={() => dispatch(modalHide(modalName))}>×</button>
                 </div>
                 {children}
             </div>

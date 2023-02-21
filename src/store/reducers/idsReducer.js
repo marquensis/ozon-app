@@ -1,7 +1,7 @@
-import { IDS_ADD, IDS_ERROR, IDS_SUCCESS } from "../constants/constants";
+import { IDS_ERROR, IDS_SUCCESS, IDS_START_REQUEST } from "../constants/constants";
 
 const initialState = {
-    requestStart: true,
+    requestStart: false,
     requestStatus: '',
     requestError: '',
     cartItemId: [],
@@ -9,24 +9,24 @@ const initialState = {
 
 export const cartIds = (state=initialState, action) => {
     switch(action.type) {
-        case IDS_ADD:
+        case IDS_START_REQUEST :
             return {
-                ...state, 
-                cartItemId: [...state.cartItemId, ...action.payload]
-            };
-
+                ...state,
+                requestStart: action.payload,
+            }
         case IDS_SUCCESS:
             return {
                 ...state,
                 requestStart: false,
-                requestStatus: action.payload,
+                requestStatus: action.payload[0],
                 requestError: '',
+                cartItemId: [...state.cartItemId, ...action.payload[1]]
             }
 
         case IDS_ERROR:
             return {
                 ...state,
-                requestStart: true,
+                requestStart: false,
                 requestStatus: action.payload[0],
                 requestError: action.payload[1],
             };
