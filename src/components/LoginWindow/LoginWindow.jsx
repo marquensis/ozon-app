@@ -5,7 +5,7 @@ import Logo from './ozon_logo.png';
 import { login } from '../../store/constants/constants';
 
 function LoginWindow () {
-    return login && (
+    return (
         <Modal modalName={login}>
             <div className={styles.ozonLogo}>
                     <img src={ Logo } alt="ozon-logo" />

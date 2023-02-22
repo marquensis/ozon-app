@@ -7,6 +7,7 @@ export const createRecItems = () => {
         const {recItems} = getState().recommended;
         const idsListSet = new Set(recItems.map(item => item.id));
         const idsList = Array.from(idsListSet);
+        let itemsList = [];
         allItems.forEach((item) => {
             const eachItem = (item === undefined) ? {} : {
                 ...item,
@@ -17,9 +18,10 @@ export const createRecItems = () => {
             };
 
             if (!idsList.includes(eachItem.id)) {
-                dispatch(changeItems(eachItem));
+                itemsList.push(eachItem);
             }
         });
+        dispatch(changeItems(itemsList));
     }
 }
 

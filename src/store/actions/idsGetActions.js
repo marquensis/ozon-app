@@ -1,25 +1,36 @@
 import axios from 'axios';
 import { IDS_ERROR, IDS_SUCCESS, IDS_START_REQUEST } from '../constants/constants';
+import { error } from '../constants/constants';
+import { modalShow, setErrorText } from './modalActions';
+import { onPreloader } from './preloaderActions';
 
 export const getIds = () => {
-    return async (dispatch, getState) => {
+    return async (dispatch) => {
         dispatch(startRequest());
-        let {requestStart} = getState().cartIds;
+        onPreloader();
         let idsList = [];
         let status;
-        if(requestStart) {
-            try {
-                let response = await axios.get(`http://localhost:3001/api/v1/cart`);
-                status = response.status === 200 ? 'Success' : 'Failure';
-                let data = response.data;
-                const ids = data.cart.map(o => o.id);
-                idsList = data.cart.filter(({id}, index) => !ids.includes(id, index + 1)).sort((a,b) => a.id > b.id ? -1 : 1);
-                
-            } catch (error) {
-                dispatch(addIdsFailure(status, error.message));
-            }
-            dispatch(idsSuccess([status, idsList]));
+        let errorText = '';
+        try {
+            let response = await axios.get(`http://localhost:3001/api/v1/cart`);
+            status = response.status === 200 ? 'Success' : 'Failure';
+            let data = response.data;
+            const ids = data.cart.map(o => o.id);
+            idsList = data.cart.filter(({id}, index) => !ids.includes(id, index + 1)).sort((a,b) => a.id > b.id ? -1 : 1);
+            
+        } catch (err) {
+            errorText += `Сервер не отвечает. Невозможно получить товары корзины - ошибка: ${err.message}. Подождите пожалуйста!`;
+            setErrorText(errorText);
+            dispatch(addIdsFailure({status: status, error: errorText}));
+            modalShow(error);
+            getIds();
         }
+        if (status === 200 && idsList.length === 0) {
+            errorText = 'Список товаров недоступен. Попробуйте позже';
+            setErrorText(errorText);
+            modalShow(error);
+        }
+        dispatch(idsSuccess({status: status, data: idsList, error: errorText}));
     }
 }
 const startRequest = () => ({

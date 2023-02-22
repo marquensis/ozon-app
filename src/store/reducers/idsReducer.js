@@ -18,17 +18,17 @@ export const cartIds = (state=initialState, action) => {
             return {
                 ...state,
                 requestStart: false,
-                requestStatus: action.payload[0],
-                requestError: '',
-                cartItemId: [...state.cartItemId, ...action.payload[1]]
+                requestStatus: action.payload['status'],
+                requestError: action.payload['error'],
+                cartItemId: [...state.cartItemId, ...action.payload['data']]
             }
 
         case IDS_ERROR:
             return {
                 ...state,
                 requestStart: false,
-                requestStatus: action.payload[0],
-                requestError: action.payload[1],
+                requestStatus: action.payload['status'],
+                requestError: action.payload['error'],
             };
 
         default: 

@@ -1,23 +1,34 @@
 import axios from 'axios';
 import { ALL_ITEMS_ERROR, ALL_ITEMS_SUCCESS, ALL_ITEMS_START_REQUEST } from '../constants/constants';
+import { error } from '../constants/constants';
+import { modalShow, setErrorText } from './modalActions';
+import { onPreloader } from './preloaderActions';
 
 export const getItems = (currentPage) => {
-    return async (dispatch, getState) => {
+    return async (dispatch) => {
         dispatch(startRequest());
-        let {requestStart} = getState().allItems;
+        onPreloader();
         let itemsList = [];
         let status;
-        if (requestStart) {
-            try {
-                let response = await axios.get(`http://localhost:3001/api/v1/goods?page=${currentPage}`);
-                status = response.status === 200 ? 'Success' : 'Failure';
-                let data = response.data.goods;
-                itemsList.push(...data);
-            } catch (error) {
-                dispatch(addItemsFailure([status, error.message]));
-            }
-            dispatch(itemsSuccess([status, itemsList]));
+        let errorText = '';
+        try {
+            let response = await axios.get(`http://localhost:3001/api/v1/goods?page=${currentPage}`);
+            status = response.status === 200 ? 'Success' : 'Failure';
+            let data = response.data.goods;
+            itemsList.push(...data);
+        } catch (err) {
+            errorText += `Сервер не отвечает. Невозможно получить список товаров - ошибка: ${err.message}. Подождите пожалуйста!`;
+            setErrorText(errorText);
+            dispatch(addItemsFailure({status: status, error: errorText}));
+            modalShow(error);
+            getItems();
         }
+        if (status === 200 && itemsList.length === 0) {
+            errorText = 'Список товаров недоступен. Попробуйте позже';
+            setErrorText(errorText);
+            modalShow(error);
+        }
+        dispatch(itemsSuccess({status: status, data: itemsList, error: errorText}));
     }
 }
 const startRequest = () => ({

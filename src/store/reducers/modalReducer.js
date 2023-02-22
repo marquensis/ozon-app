@@ -1,4 +1,4 @@
-import { MODAL_CHANGE } from "../constants/constants";
+import { MODAL_CHANGE, ERROR_TEXT_SET } from "../constants/constants";
 
 const initialState = {
     login: {
@@ -6,6 +6,7 @@ const initialState = {
     },
     error: {
         visible: false,
+        textError: '',
     }
 }
 
@@ -15,8 +16,15 @@ export const modal = (state=initialState, action) => {
     const list = action.payload;
     switch(action.type) {
         case MODAL_CHANGE:
-            return {...state, ...state[list['name']].visible = list['value']};
-
+            return {
+                ...state, 
+                ...state[list['name']].visible = list['value']
+            };
+        case ERROR_TEXT_SET:
+            return {
+                ...state,
+                ...state.error.textError = action.payload,
+            };
         default: 
             return state;
     }

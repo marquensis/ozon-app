@@ -18,17 +18,17 @@ export const allItems = (state=initialState, action) => {
             return {
                 ...state,
                 requestStart: false,
-                requestStatus: action.payload[0],
-                requestError: '',
-                allItems: [...state.allItems, ...action.payload[1]]
+                requestStatus: action.payload['status'],
+                requestError: action.payload['error'],
+                allItems: [...state.allItems, ...action.payload['data']]
             }
 
         case ALL_ITEMS_ERROR:
             return {
                 ...state,
                 requestStart: false,
-                requestStatus: action.payload[0],
-                requestError: action.payload[1],
+                requestStatus: action.payload['status'],
+                requestError: action.payload['error'],
             };
 
         default: 

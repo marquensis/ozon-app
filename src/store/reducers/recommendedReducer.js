@@ -7,7 +7,7 @@ const initialState = {
 export const recommended = (state=initialState, action) => {
     switch(action.type) {
         case RECOMMEDED_ITEMS_ADD:
-            return {...state, recItems: [...state.recItems, action.payload]};
+            return {...state, recItems: [...state.recItems, ...action.payload]};
 
         default: 
             return state;

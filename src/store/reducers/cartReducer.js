@@ -17,7 +17,7 @@ export const cart = (state=initialState, action) => {
         case CART_ITEMS_ADD:
             return {
                 ...state, 
-                cartItems: [...state.cartItems, action.payload]
+                cartItems: [...state.cartItems, ...action.payload]
             };
 
         case CART_ITEMS_DELETE:
@@ -29,11 +29,11 @@ export const cart = (state=initialState, action) => {
                 cartItems: [
                     ...state.cartItems.map((item) => ({
                         ...item,
-                        value: action.payload[0] === item.id ? action.payload[1] : item.value,
-                        updatedPrice: action.payload[0] === item.id ? item.price * action.payload[1] : item.price * item.value,
-                        updatedWeight: action.payload[0] === item.id ? item.weight * action.payload[1] : item.weight * item.value,
-                        updatedDiscount: action.payload[0] === item.id ? (item.price * action.payload[1]) * item.discount / 100 : (item.price * item.value) * item.discount / 100,
-                        totalPrice: action.payload[0] === item.id ? (item.price * action.payload[1]) - (item.price * action.payload[1]) * item.discount / 100 : (item.price * item.value) - (item.price * item.value) * item.discount / 100,
+                        value: action.payload['id'] === item.id ? action.payload['value'] : item.value,
+                        updatedPrice: action.payload['id'] === item.id ? item.price * action.payload['value'] : item.price * item.value,
+                        updatedWeight: action.payload['id'] === item.id ? item.weight * action.payload['value'] : item.weight * item.value,
+                        updatedDiscount: action.payload['id'] === item.id ? (item.price * action.payload['value']) * item.discount / 100 : (item.price * item.value) * item.discount / 100,
+                        totalPrice: action.payload['id'] === item.id ? (item.price * action.payload['value']) - (item.price * action.payload['value']) * item.discount / 100 : (item.price * item.value) - (item.price * item.value) * item.discount / 100,
                     })
                     )
                 ]

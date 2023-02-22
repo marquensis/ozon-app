@@ -5,11 +5,13 @@ import { updateActualTotal } from './totalActions';
 
 export const cartItemCreate = () => {
     return (dispatch, getState) => {
+        dispatch(offPreloader());
         const {allItems} = getState().allItems;
         const {cartItemId} = getState().cartIds;
         const {cartItems} = getState().cart;
         const idsListSet = new Set(cartItems.map(item => item.id));
         const idsList = Array.from(idsListSet);
+        let itemsList = [];
         if (cartItemId && allItems) {
             cartItemId.forEach((item) => {
                 const equalId = allItems.find(recVal => item.id === recVal.id);
@@ -25,13 +27,13 @@ export const cartItemCreate = () => {
                     }
                 };
                 if (!idsList.includes(eachItem.id)) {
-                    dispatch(itemsAdd(eachItem));
+                    itemsList.push(eachItem);
                 }
 
             })
         }
+        dispatch(itemsAdd(itemsList));
         dispatch(updateActualTotal());
-        dispatch(offPreloader())
     }
 }
 
@@ -43,7 +45,7 @@ export const cartItemDelete = (itemId) => {
 
 export const resetCartValue = (itemId, newValue) => {
     return (dispatch) => {
-        dispatch(itemsChange([itemId, +newValue]));
+        dispatch(itemsChange({id: itemId, value: +newValue}));
         dispatch(updateActualTotal());
     }
 }

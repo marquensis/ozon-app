@@ -1,5 +1,6 @@
 // modal
 export const MODAL_CHANGE = 'MODAL_CHANGE';
+export const ERROR_TEXT_SET = 'ERROR_TEXT_SET';
 export const login = 'login';
 export const error = 'error';
 
