@@ -1,19 +1,20 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import styles from './styles.module.css';
-import ShowHideContext from '../../contexts/ContextView';
 import ShadowView from '../ShadowView/ShadowView';
+import { useDispatch } from "react-redux";
+import { modalHide } from '../../store/actions/modalActions';
 
-function Modal(props) {
-    const {isModalOpen, setIsModalOpen} = useContext(ShowHideContext);
-  
+
+function Modal({modalName, children}) {
+
+    const dispatch = useDispatch();
     return (
-        <ShadowView>
+        <ShadowView modalName={modalName}>
             <div className={styles.windowWrapper}>
                 <div className={styles.windowHead}>
-                    
-                    <button type='close' onClick={() => setIsModalOpen(false)}>×</button>
+                    <button type='close' onClick={() => dispatch(modalHide(modalName))}>×</button>
                 </div>
-                {props.children}
+                {children}
             </div>
         </ShadowView>
     )

@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React from "react";
 import styles from './styles.module.css';
 import Like from './like_icon.png';
 import PropTypes from 'prop-types';

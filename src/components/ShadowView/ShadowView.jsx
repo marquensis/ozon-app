@@ -1,16 +1,23 @@
-import React, { useContext } from "react";
+import React from "react";
 import styles from './styles.module.css';
-import ShowHideContext from "../../contexts/ContextView";
+import { useDispatch, useSelector } from "react-redux";
+import { modalHide } from "../../store/actions/modalActions";
 
-function ShadowView(props) {
+function ShadowView({modalName, children}) {
+    const dispatch = useDispatch();
+    const modal = useSelector(state => state.modal);
+    const modalsList = Object.keys(modal);
+    let showHide = 'hide';
+    for (let i = 0; i < modalsList.length; i++) {
+        if (modalsList[i] === modalName) {
+            showHide = modal[modalsList[i]].visible ? 'show' : 'hide';
+        }
+    }
     
-    const {isModalOpen, setIsModalOpen} = useContext(ShowHideContext);
-    const showHide = isModalOpen === true ? 'show' : 'hide'
-
     return(
         <div className={styles[showHide]}>
-            <div className={styles.click} onClick={() => setIsModalOpen(false)}></div>
-            {props.children}
+            <div className={styles.click} onClick={() => dispatch(modalHide(modalName))}></div>
+            {children}
         </div>
     )
 }

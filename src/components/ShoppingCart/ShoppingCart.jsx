@@ -1,104 +1,60 @@
-import React, { useState, useContext, useEffect} from "react";
+import React, { useState, useEffect} from "react";
 import styles from './styles.module.css';
 import CartItem from '../CartItem/CartItem';
-import {nanoid} from 'nanoid';
 import PropTypes from 'prop-types';
 import CartShapes from "../../shapes/CartShapes";
-import ShowHideContext from "../../contexts/ContextView";
-import CartChangesContext from "../../contexts/ContextCartChanges";
-import AllItemsContext from "../../contexts/ContextAllItems";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import { cartItemCreate } from "../../store/actions/cartItemsActions";
+import { createRecItems } from "../../store/actions/recommendedActions";
+import { modalShow } from "../../store/actions/modalActions";
+import { getIds } from "../../store/actions/idsGetActions";
+import { getItems } from "../../store/actions/allItemsGetActions";
+import { login } from "../../store/constants/constants";
+import { offPreloader, onPreloader } from "../../store/actions/preloaderActions";
 
-function ShoppingCart ({cartId}) {
+function ShoppingCart () {
+    const dispatch = useDispatch();
 
-    const recItems = useContext(AllItemsContext);
-    const [cartItems, setCartItems] = useState([]);
-    const [total, setTotal] = useState({
-        weight: 0,
-        count: 0,
-        price: 0,
-        totalPrice: 0,
-        discount: 0,
-    })
+    const idsStart = useSelector(state => state.cartIds.requestStart);
+    const itemsStart = useSelector(state => state.allItems.requestStart);
+    if ( itemsStart && idsStart ) {
+        onPreloader();
+    } else {
+        offPreloader();
+    }
 
-        //useMemo(() => {
+    // получение данных апи
     useEffect(() => {
-        if (cartId && recItems) {
-            setCartItems(cartId.map((item) => {
-
-                const equalId = recItems.find(recVal => item.id === recVal.id);
-                const result = (equalId === undefined) ? {} : {
-                    ...item,
-                    ...equalId,
-                    ...{
-                        key: nanoid(),
-                        updatedPrice: equalId.price * equalId.value,
-                        updatedWeight: equalId.weight * equalId.value,
-                        updatedDiscount: (equalId.price * equalId.value) * equalId.discount / 100,
-                        totalPrice: (equalId.price * equalId.value) - (equalId.price * equalId.value) * equalId.discount / 100
-                    }
-                };
-                return result;
-            }))
-            setTotal({
-                weight: cartItems.reduce((prev, current) => {
-                    return (prev + current.updatedWeight) || 0
-                }, 0),
-                value: cartItems.reduce((prev, current) => {
-                    return (prev + current.value) || 0
-                }, 0),
-                price: cartItems.reduce((prev, current) => {
-                    return (prev + current.updatedPrice) || 0
-                }, 0),
-                totalPrice: cartItems.reduce((prev, current) => {
-                    return (prev + current.updatedDiscount) || 0
-                }, 0),
-                discount: cartItems.reduce((prev, current) => {
-                    return (prev + current.totalPrice) || 0
-                }, 0),
-            })
+        let morePages = true;
+        let currentPage = 0;
+        while(morePages){
+            currentPage++;
+            dispatch(getItems(currentPage));
+            morePages = currentPage < 2;
         }
-    }, [cartId, recItems] );
+        dispatch(getIds());
+    }, [dispatch])
 
-    // Функция изменения количества товаров
-    const resetVal = (itemId, newVal) => {
+    const cartId = useSelector(state => state.cartIds.cartItemId);
+    const recItems = useSelector(state => state.allItems.allItems);
+    const total =useSelector(state => state.cart.totalCount);
 
-        cartItems.forEach((el, id) => {
-            itemId === el.id ? cartItems[id].value = +newVal : cartItems[id].value = el.value;
-            cartItems[id].updatedPrice = el.price * el.value;
-            cartItems[id].updatedWeight = el.weight * el.value;
-            cartItems[id].updatedDiscount = (el.price * el.value) * el.discount / 100;
-            cartItems[id].totalPrice = (el.price * el.value) - (el.price * el.value) * el.discount / 100;
-        });
-        setCartItems(cartItems);
-        setTotal({
-            weight: cartItems.reduce((prev, current) => {
-                return prev + current.updatedWeight
-            }, 0),
-            value: cartItems.reduce((prev, current) => {
-                return prev + current.value
-            }, 0),
-            price: cartItems.reduce((prev, current) => {
-                return prev + current.updatedPrice
-            }, 0),
-            totalPrice: cartItems.reduce((prev, current) => {
-                return prev + current.updatedDiscount
-            }, 0),
-            discount: cartItems.reduce((prev, current) => {
-                return prev + current.totalPrice
-            }, 0),
-        })
-
-    };
+    // создание списка товаров в корзине
+    useEffect(() => {
+        if(cartId.length !== 0 && recItems.length !== 0) {
+            dispatch(cartItemCreate());
+            dispatch(createRecItems());
+        }
+    }, [cartId.length, recItems.length, dispatch])
+    const cartItems = useSelector(state => state.cart.cartItems);
 
     // State меняющий значение в чекбоксе "Выбрать все"
     const [deleteItemCheckbox, setDeleteItemCheckbox] = useState(true);
 
-    // Кнопка открытия логин окна
-    const {isModalOpen, setIsModalOpen} = useContext(ShowHideContext);
 
     return (
-        <CartChangesContext.Provider value={{isModalOpen}}>
-            <div className={styles.cart}>
+        <div className={styles.cart}>
                 <div className={styles.content}>
                     <div className={styles.cartHead}>
                         <span>{total.value}</span>
@@ -114,13 +70,13 @@ function ShoppingCart ({cartId}) {
                                 </div>
                             </div>
                             <div className={styles.leftBody}>
-                                {cartItems && cartItems.length !== 0 && cartItems.map((el) => (el.id !== undefined) ?
-                                    <CartItem item={el} key={el.key} resetVal={resetVal}/> : '')}
+                                {cartItems.length !== 0 && cartItems.map((el) => (el.id !== undefined) ?
+                                    <CartItem item={el} key={el.key}/> : '')}
                             </div>
                         </div>
                         <div className={styles.cartRight}>
                         <div className={styles.rightGreenButton}>
-                            <button onClick={() => setIsModalOpen(true)}>Перейти к оформлению</button>
+                            <button onClick={() => dispatch(modalShow(login))}>Перейти к оформлению</button>
                         </div>
                         <div className={styles.rightSum}>
                             <div className={styles.sumCount}>
@@ -157,7 +113,6 @@ function ShoppingCart ({cartId}) {
                     </div>
                 </div>
             </div>
-        </CartChangesContext.Provider>
     )
 }
 ShoppingCart.propTypes = {

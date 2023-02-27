@@ -1,17 +1,19 @@
-import React, { useContext } from "react";
+import React from "react";
 import styles from './styles.module.css';
-import CountItems from '../constants';
 import Like from './like_icon.png';
 import Orders from './orders_icon.png';
 import Logo from './ozon_logo.png';
 import Search from './search_icon.png';
 import Shopbag from './shopbag_icon.png';
 import Login from './login_icon.png';
-import ShowHideContext from "../../contexts/ContextView";
+import { useDispatch, useSelector } from "react-redux";
+import { modalShow } from "../../store/actions/modalActions";
+import { login } from "../../store/constants/constants";
 
 function AppHeader () {
-    
-    const {isModalOpen, setIsModalOpen} = useContext(ShowHideContext);
+    // Открыть модалку логина
+    const dispatch = useDispatch();
+    const total = useSelector(state => state.cart.totalCount);
 
     return (
         <div className={styles.navBar}>
@@ -33,7 +35,7 @@ function AppHeader () {
                     </form>
                 </div>
                 <div className={styles.navButtons}>
-                    <div className={styles.navButton} onClick={() => setIsModalOpen(true)}>
+                    <div className={styles.navButton} onClick={() => dispatch(modalShow(login))}>
                         <img src={ Login } alt="Orders" />
                         <p>Войти</p>
                     </div>
@@ -46,7 +48,7 @@ function AppHeader () {
                         <p>Избранное</p>
                     </div>
                     <div className={styles.navButton}>
-                        <span>{CountItems}</span>
+                        <span>{total.value}</span>
                         <img src={ Shopbag } alt="Cart" />
                         <p>Корзина</p>
                     </div>

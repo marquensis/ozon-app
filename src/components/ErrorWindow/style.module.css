@@ -1,0 +1,49 @@
+.ozonLogo {
+  width: max-content;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: -75px;
+}
+
+.ozonLogo img {
+  width: 150px;
+  height: 30px;
+}
+
+.ozonLogo span {
+  font-size: 40px;
+  margin-left: 10px;
+  cursor:default;
+}
+
+.windowText h3 {
+  font-weight: bolder;
+  font-size: 18px;
+  margin-bottom: 30px;
+}
+
+.windowForm {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.emailField input{ 
+  width: 100%;
+  height: 50px;
+  padding: 10px;
+  border: 2px solid darkgray;
+  border-radius: 6px;
+  margin-bottom: 15px;
+}
+
+.emailField button {
+  width: 100%;
+  height: 50px;
+  border-radius: 6px;
+  color: #FFFFFF;
+  font-weight: bolder;
+  font-size: 16px;
+  background-color: #005BFF;
+}
