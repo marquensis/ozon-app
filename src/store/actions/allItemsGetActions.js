@@ -2,12 +2,10 @@ import axios from 'axios';
 import { ALL_ITEMS_ERROR, ALL_ITEMS_SUCCESS, ALL_ITEMS_START_REQUEST } from '../constants/constants';
 import { error } from '../constants/constants';
 import { modalShow, setErrorText } from './modalActions';
-import { onPreloader } from './preloaderActions';
 
 export const getItems = (currentPage) => {
     return async (dispatch) => {
         dispatch(startRequest());
-        onPreloader();
         let itemsList = [];
         let status;
         let errorText = '';

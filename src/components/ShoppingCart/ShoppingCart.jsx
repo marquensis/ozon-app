@@ -11,9 +11,18 @@ import { modalShow } from "../../store/actions/modalActions";
 import { getIds } from "../../store/actions/idsGetActions";
 import { getItems } from "../../store/actions/allItemsGetActions";
 import { login } from "../../store/constants/constants";
+import { offPreloader, onPreloader } from "../../store/actions/preloaderActions";
 
 function ShoppingCart () {
     const dispatch = useDispatch();
+
+    const idsStart = useSelector(state => state.cartIds.requestStart);
+    const itemsStart = useSelector(state => state.allItems.requestStart);
+    if ( itemsStart && idsStart ) {
+        onPreloader();
+    } else {
+        offPreloader();
+    }
 
     // получение данных апи
     useEffect(() => {

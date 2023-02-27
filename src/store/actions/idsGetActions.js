@@ -2,12 +2,10 @@ import axios from 'axios';
 import { IDS_ERROR, IDS_SUCCESS, IDS_START_REQUEST } from '../constants/constants';
 import { error } from '../constants/constants';
 import { modalShow, setErrorText } from './modalActions';
-import { onPreloader } from './preloaderActions';
 
 export const getIds = () => {
     return async (dispatch) => {
         dispatch(startRequest());
-        onPreloader();
         let idsList = [];
         let status;
         let errorText = '';
